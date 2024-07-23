@@ -1,7 +1,5 @@
-/abi-types-generator/node_modules
-/examples/node_modules
-/abi-types-generator/dist
-/examples/dist
-/abi-types-generator/coverage
-/abi-types-generator/README.md
-/abi-types-generator/src/__PLAYGROUND__
+dist/
+node_modules/
+.DS_Store
+.env
+.eslintcache

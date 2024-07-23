@@ -1,0 +1,94 @@
+{
+  "$schema": "http://json-schema.org/draft-07/schema#",
+  "additionalProperties": true,
+  "id": "https://json.schemastore.org/ethereum-abi-types-generator-1.0.0.json",
+  "title": "JSON schema for the ethereum-abi-types-generator config file",
+  "type": "object",
+  "properties": {
+    "inputDirOrPath": {
+      "type": "string",
+      "description": "The input directory or file path for ABIs."
+    },
+    "outputDir": {
+      "type": "string",
+      "description": "The output directory for generated typings."
+    },
+    "library": {
+      "type": "string",
+      "description": "The library to use (e.g., ethers_v4, ethers_v5, ethers_v6, web3).",
+      "enum": ["ethers_v4", "ethers_v5", "ethers_v6", "web3"]
+    },
+    "libraryImportAlias": {
+      "type": "string",
+      "description": "Override the library import from name. Eg. 'from \"ethers\"' to 'from \"ethersv5\"'"
+    },
+    "framework": {
+      "type": "string",
+      "description": "Framework to use. Eg. 'hardhat' or 'truffle'. Defaults to 'none'.",
+      "enum": ["none", "hardhat", "truffle"]
+    },
+    "makeOutputDir": {
+      "type": "boolean",
+      "description": "Whether to create the output directory if it doesn't exist."
+    },
+    "makeIndexFile": {
+      "type": "boolean",
+      "description": "Whether to generate an index file exporting all the generated typings. Defaults to true."
+    },
+    "prefixName": {
+      "type": "string",
+      "description": "Prefix name to the generated typings. Only used for single file input. Defaults to name of the ABI file if `prefixTypes` is true."
+    },
+    "prefixTypes": {
+      "type": "boolean",
+      "description": "Whether to prefix the name of the type, eg. ('MyTokenContract' or 'PrefixNameContract') vs 'Contract'. Defaults to false."
+    },
+    "watch": {
+      "type": "boolean",
+      "description": "Whether to watch for changes."
+    },
+    "includeFiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of files to include."
+    },
+    "excludeFiles": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "description": "List of files to ignore."
+    },
+    "preventOverwrite": {
+      "type": "boolean",
+      "description": "Prevent overwriting existing files."
+    },
+    "verbatimModuleSyntax": {
+      "type": "boolean",
+      "description": "Whether to use verbatim module syntax."
+    },
+    "language": {
+      "type": "string",
+      "description": "The language to generate. Defaults to 'ts'.",
+      "enum": ["ts"]
+    },
+    "eslintConfigPath": {
+      "description": "ESLint options override.",
+      "type": "string"
+    },
+    "prettierConfigPath": {
+      "description": "Prettier options override.",
+      "type": "string"
+    },
+    "eslintOptions": {
+      "description": "The ESLint configuration object or the path to the eslintrc file.",
+      "$ref": "http://json.schemastore.org/eslintrc"
+    },
+    "prettierOptions": {
+      "description": "The Prettier configuration object or the path to the prettierrc file.",
+      "$ref": "http://json.schemastore.org/prettierrc"
+    }
+  }
+}

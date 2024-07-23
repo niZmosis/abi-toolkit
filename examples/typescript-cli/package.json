@@ -1,0 +1,47 @@
+{
+  "name": "examples",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "scripts": {
+    "clean": "sh scripts/cleanOutputs.sh",
+    "build": "pnpm refresh:bin",
+    "refresh:bin": "pnpm install",
+    "eat-version": "abi-types-generator --version",
+    "eat-help": "abi-types-generator --help",
+    "eat-scripts": "abi-types-generator --scripts",
+    "gen": "abi-types-generator",
+    "gen-ethersv4": "abi-types-generator --config=./customConfigs/ethersv4.config.json",
+    "gen-ethersv5": "abi-types-generator --config=./customConfigs/ethersv5.config.json",
+    "gen-ethersv6": "abi-types-generator --config=./customConfigs/ethersv6.config.json",
+    "gen-web3": "abi-types-generator --config=./customConfigs/web3.config.json",
+    "gen-all": "pnpm gen-ethersv4 && pnpm gen-ethersv5 && pnpm gen-ethersv6 && pnpm gen-web3",
+    "watch": "abi-types-generator --watch=true",
+    "watch-ethersv4": "abi-types-generator --config=./customConfigs/ethersv4.config.json --watch=true",
+    "watch-ethersv5": "abi-types-generator --config=./customConfigs/ethersv5.config.json --watch=true",
+    "watch-ethersv6": "abi-types-generator --config=./customConfigs/ethersv6.config.json --watch=true",
+    "watch-web3": "abi-types-generator --config=./customConfigs/web3.config.json --watch=true",
+    "single": "abi-types-generator inputDirOrPath='./inputs/fake-contract-abi.json'",
+    "single:ethersv4": "abi-types-generator inputDirOrPath='./inputs/fake-contract-abi.json' --config=./customConfigs/ethersv4.config.json",
+    "single:ethersv5": "abi-types-generator inputDirOrPath='./inputs/fake-contract-abi.json' --config=./customConfigs/ethersv5.config.json",
+    "single:ethersv6": "abi-types-generator inputDirOrPath='./inputs/fake-contract-abi.json' --config=./customConfigs/ethersv6.config.json",
+    "single:web3": "abi-types-generator inputDirOrPath='./inputs/fake-contract-abi.json' --config=./customConfigs/web3.config.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "@ethereum-abi-types-generator/core": "workspace:*",
+    "@ethereum-abi-types-generator/converter-typescript": "workspace:*",
+    "@ethereum-abi-types-generator/utils": "workspace:*",
+    "bignumber.js": "^9.1.2",
+    "bn.js": "^5.2.1",
+    "ethersv4": "npm:ethers@^4.0.47",
+    "ethersv5": "npm:ethers@^5.7.2",
+    "ethersv6": "npm:ethers@^6.13.1",
+    "web3": "^1.2.7"
+  },
+  "devDependencies": {
+    "@ethereum-abi-types-generator/types": "workspace:*",
+    "@types/bn.js": "5.1.5"
+  }
+}

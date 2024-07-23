@@ -1,0 +1,16 @@
+node_modules
+submodules
+coverage
+dist
+docs
+.github
+.vscode
+.eslintrc.json
+.prettierrc.json
+.prettierignore
+tsconfig.json
+tsconfig.build.json
+vitest.config.ts
+README.md
+LICENSE
+images

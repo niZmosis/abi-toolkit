@@ -1,0 +1,12 @@
+{
+  "$schema": "../node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "inputDirOrPath": "./src/inputs",
+  "outputDir": "./src/outputs/web3",
+  "makeOutputDir": true,
+  "library": "web3",
+  "watch": false,
+  "prefixTypes": true,
+  "preventOverwrite": false,
+  "eslintConfigPath": "../../.eslintrc.json",
+  "prettierConfigPath": "../../.prettierrc.json"
+}

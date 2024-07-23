@@ -1,0 +1,14 @@
+{
+  "$schema": "../node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "inputDirOrPath": "./src/inputs",
+  "outputDir": "./src/outputs/ethers_v4",
+  "makeOutputDir": true,
+  "library": "ethers_v4",
+  "libraryImportAlias": "ethersv4",
+  "watch": false,
+  "includeFiles": [],
+  "prefixTypes": true,
+  "preventOverwrite": false,
+  "eslintConfigPath": "../../.eslintrc.json",
+  "prettierConfigPath": "../../.prettierrc.json"
+}

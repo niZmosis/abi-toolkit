@@ -1,0 +1,40 @@
+{
+  "name": "@ethereum-abi-types-generator/types",
+  "version": "2.0.0",
+  "description": "Generate types from an ethereum ABI json file.",
+  "keywords": [
+    "ethereum",
+    "blockchain",
+    "types",
+    "abi",
+    "typescript"
+  ],
+  "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
+  "author": "joshstevens19@hotmail.co.uk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
+  },
+  "files": [
+    "dist/*",
+    "package.json",
+    "./README.md",
+    "./LICENSE"
+  ],
+  "repository": "github:joshstevens19/ethereum-abi-types-generator",
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "tsc -w -p tsconfig.build.json"
+  },
+  "devDependencies": {
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.3"
+  }
+}

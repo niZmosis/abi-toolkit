@@ -13,7 +13,6 @@ jobs:
       - uses: actions/checkout@v1
       - name: npm install, and test
         run: |
-          cd ./abi-types-generator
           npm install
           npm test
         env:

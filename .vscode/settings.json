@@ -1,0 +1,28 @@
+{
+  // Required for ESLint/Prettier to work properly
+  "prettier.configPath": "../.prettierrc.json",
+  "prettier.useEditorConfig": false,
+  "prettier.resolveGlobalModules": true,
+  "editor.formatOnSave": false,
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "always",
+    "source.organizeImports": "never"
+  },
+  // Words to be ignored by spellchecker
+  "cSpell.words": [
+    "Arrayish",
+    "bignumber",
+    "Blockhash",
+    "estree",
+    "ethersproject",
+    "ethersv",
+    "joshstevens",
+    "Numberish",
+    "Promi",
+    "Rustify",
+    "Sighash",
+    "solidty",
+    "testtestme",
+    "Viem"
+  ]
+}

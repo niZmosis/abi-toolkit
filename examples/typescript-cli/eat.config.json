@@ -1,0 +1,19 @@
+{
+  "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "inputDirOrPath": "./src/inputs",
+  "outputDir": "./src/outputs/ethers_v5",
+  "makeOutputDir": true,
+  "library": "ethers_v5",
+  "libraryImportAlias": "ethersv5",
+  "makeIndexFile": true,
+  "prefixName": "",
+  "watch": false,
+  "includeFiles": [],
+  "excludeFiles": [],
+  "prefixTypes": true,
+  "preventOverwrite": false,
+  "verbatimModuleSyntax": true,
+  "language": "ts",
+  "eslintConfigPath": "../../.eslintrc.json",
+  "prettierConfigPath": "../../.prettierrc.json"
+}

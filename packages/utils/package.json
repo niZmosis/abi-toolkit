@@ -1,0 +1,59 @@
+{
+  "name": "@ethereum-abi-types-generator/utils",
+  "version": "2.0.0",
+  "description": "Generate types from an ethereum ABI json file.",
+  "keywords": [
+    "ethereum",
+    "blockchain",
+    "types",
+    "abi",
+    "typescript"
+  ],
+  "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
+  "author": "joshstevens19@hotmail.co.uk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
+  },
+  "files": [
+    "dist/*",
+    "package.json",
+    "./README.md",
+    "./LICENSE"
+  ],
+  "repository": "github:joshstevens19/ethereum-abi-types-generator",
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "build": "tsc -p tsconfig.build.json",
+    "start": "tsc -w -p tsconfig.build.json"
+  },
+  "dependencies": {
+    "colors": "^1.4.0",
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7",
+    "reflect-metadata": "^0.2.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@ethereum-abi-types-generator/types": "workspace:*",
+    "@ethersproject/abi": "5.7.0",
+    "@types/fs-extra": "^11.0.4",
+    "@types/yargs": "17.0.32"
+  },
+  "peerDependencies": {
+    "@typescript-eslint/eslint-plugin": "^7.16.1",
+    "@typescript-eslint/parser": "^7.16.0",
+    "eslint": "^8.57.0",
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.29.1",
+    "eslint-plugin-prettier": "^5.1.3",
+    "eslint-plugin-unused-imports": "^4.0.0",
+    "prettier": "^3.3.3"
+  }
+}

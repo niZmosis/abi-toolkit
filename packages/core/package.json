@@ -1,0 +1,54 @@
+{
+  "name": "@ethereum-abi-types-generator/core",
+  "version": "2.0.0",
+  "description": "Generate types from an ethereum ABI json file.",
+  "keywords": [
+    "ethereum",
+    "blockchain",
+    "types",
+    "abi",
+    "typescript"
+  ],
+  "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
+  "author": "joshstevens19@hotmail.co.uk",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
+  },
+  "bin": {
+    "abi-types-generator": "./dist/bin/generator-cli.js"
+  },
+  "files": [
+    "dist/*",
+    "schemas/*",
+    "package.json",
+    "README.md",
+    "LICENSE"
+  ],
+  "repository": "github:joshstevens19/ethereum-abi-types-generator",
+  "publishConfig": {
+    "access": "public"
+  },
+  "types": "./dist/index.d.ts",
+  "main": "./dist/index.js",
+  "exports": "./dist/index.js",
+  "scripts": {
+    "prebuild": "rm -rf dist",
+    "start": "tsc -w -p tsconfig.build.json && node ./scripts/copy-files.js",
+    "build": "tsc -p tsconfig.build.json && node ./scripts/copy-files.js"
+  },
+  "dependencies": {
+    "@ethereum-abi-types-generator/utils": "workspace:*",
+    "colors": "^1.4.0",
+    "fs-extra": "^11.2.0",
+    "path": "^0.12.7",
+    "reflect-metadata": "^0.2.2",
+    "yargs": "^17.7.2"
+  },
+  "devDependencies": {
+    "@ethereum-abi-types-generator/converter-typescript": "workspace:*",
+    "@ethereum-abi-types-generator/types": "workspace:*",
+    "@types/fs-extra": "^11.0.4",
+    "@types/yargs": "17.0.32"
+  }
+}

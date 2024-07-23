@@ -5,7 +5,7 @@
 
 Dev typings for all your ethereum ABI contract methods and events with 1 liner integrations with `web3` and `ethers` 👏👏👏👏. Never have to have a runtime error again and bring them into compile time errors in 2 minutes.
 
-<img src="./images/gif-demo.gif" />
+Demo gif can be seen on the GitHub README
 
 A CLI tool which allows you to convert an ABI json file into fully loaded interfaces types.
 
