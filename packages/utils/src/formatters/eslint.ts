@@ -159,6 +159,8 @@ export async function* loadEslintConfigs({
 
   // Logger.warning('Using default ESLint configuration')
   // yield defaultEslintOptions
+
+  Logger.warning('ESlint configuration not found')
 }
 
 /**

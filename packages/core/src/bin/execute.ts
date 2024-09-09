@@ -15,7 +15,6 @@ import {
   commandMap,
 } from '@ethereum-abi-types-generator/utils'
 import { yellow, green } from 'colors'
-import yargs from 'yargs'
 
 import commands from '../commands'
 
@@ -56,11 +55,6 @@ export async function execute(packageVersion: string): Promise<void> {
     prettierOptions,
   } = options ?? {}
 
-  if (command === 'help') {
-    yargs.showHelp()
-    return
-  }
-
   if (version || command === 'version') {
     return Logger.log(packageVersion)
   }
@@ -71,7 +65,7 @@ export async function execute(packageVersion: string): Promise<void> {
 
   let dirOrPath = inputDirOrPath
 
-  if (framework === 'none' && !dirOrPath) {
+  if (!dirOrPath && (!framework || framework === 'none')) {
     Logger.error('inputDirOrPath is required.')
     process.exit(1)
   }
@@ -91,10 +85,10 @@ export async function execute(packageVersion: string): Promise<void> {
 
   const filePathContexts: AbiFilePathContext[] = isDirectory(dirOrPath)
     ? await getAbiFiles({ directoryPath: dirOrPath })
-    : [{ filePath: dirOrPath, contractName: undefined }]
+    : [{ filePath: dirOrPath, frameworkContractName: undefined }]
 
   if (!filePathContexts.length) {
-    if (framework === 'none') {
+    if (!framework || framework === 'none') {
       Logger.error(`No ABI files found in ${dirOrPath}.`)
       process.exit(1)
     } else {
@@ -112,7 +106,7 @@ export async function execute(packageVersion: string): Promise<void> {
     filePathContexts.map(async (filePathContext) => {
       stats.totalFiles++
 
-      const { filePath, contractName } = filePathContext
+      const { filePath, frameworkContractName } = filePathContext
 
       if (
         !!includeFiles.length &&
@@ -139,8 +133,9 @@ export async function execute(packageVersion: string): Promise<void> {
           // Prefix name is only used if the input was a single file
           const fileName =
             filePathContexts.length === 1
-              ? prefixName || contractName || ''
-              : contractName || path.basename(filePath, path.extname(filePath))
+              ? prefixName || frameworkContractName || ''
+              : frameworkContractName ||
+                path.basename(filePath, path.extname(filePath))
 
           await commands.generate.abiFile({
             ...context,

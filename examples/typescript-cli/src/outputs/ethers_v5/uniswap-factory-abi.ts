@@ -25,6 +25,9 @@ export type MethodNames =
   | 'getTokenWithId'
   | 'exchangeTemplate'
   | 'tokenCount'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface NewExchangeEventEmittedResponse {
   token: string
   exchange: string

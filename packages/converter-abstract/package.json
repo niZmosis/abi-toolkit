@@ -35,10 +35,10 @@
   },
   "dependencies": {
     "@ethereum-abi-types-generator/utils": "workspace:*",
-    "fs-extra": "^11.2.0"
+    "fs-extra": "11.2.0"
   },
   "devDependencies": {
     "@ethereum-abi-types-generator/types": "workspace:*",
-    "@types/fs-extra": "^11.0.4"
+    "@types/fs-extra": "11.0.4"
   }
 }

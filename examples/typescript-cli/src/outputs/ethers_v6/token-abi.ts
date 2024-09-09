@@ -35,6 +35,9 @@ export type MethodNames =
   | 'name'
   | 'symbol'
   | 'decimals'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface TransferEventEmittedResponse {
   _from: string
   _to: string

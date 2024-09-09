@@ -58,6 +58,9 @@ export type MethodNames =
   | 'addPortal'
   | 'updatePortal'
   | 'travel'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface OwnershipTransferredEventEmittedResponse {
   previousOwner: string
   newOwner: string
@@ -86,23 +89,23 @@ export interface LastResponse {
 }
 export interface System1OrbitResponse {
   center: CenterResponse
-  0: System1OrbitResponse
+  0: CenterResponse
   last: LastResponse
-  1: System1OrbitResponse
+  1: LastResponse
   rotationSpeed: number
-  2: System1OrbitResponse
+  2: number
   lastUpdate: BigNumber
-  3: System1OrbitResponse
+  3: BigNumber
 }
 export interface System2OrbitResponse {
   center: CenterResponse
-  0: System2OrbitResponse
+  0: CenterResponse
   last: LastResponse
-  1: System2OrbitResponse
+  1: LastResponse
   rotationSpeed: number
-  2: System2OrbitResponse
+  2: number
   lastUpdate: BigNumber
-  3: System2OrbitResponse
+  3: BigNumber
 }
 export interface PortalResponse {
   id: BigNumber

@@ -20,7 +20,7 @@ import fs from 'fs-extra'
  * @param options The options
  * @param prefixName The prefix name
  * @param outputDir The output dir
- * @param preventOverwrite The prevent overwrite
+ * @param preventOverwrite Whether to prevent overwrite
  */
 async function generateForLanguage(
   module: string,
@@ -140,7 +140,13 @@ export default {
           mode: 0o755,
         })
 
-      // Logger.success(`Successfully created index file saved in ${outputDir}`)
+        // Logger.success(`Successfully created index file saved in ${outputDir}`)
+        break
+      default:
+        Logger.error(
+          `"${language}" is not supported. Supported languages are - ${languageTypes.join(', ')}`,
+        )
+        return
     }
   },
 }

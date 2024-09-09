@@ -56,14 +56,13 @@ export async function getProgramArguments(): Promise<
   ProgramContext<ProgramOptions>
 > {
   const args = await yargs(hideBin(process.argv))
-    .version(false)
-    .command(commandMap.generate, 'Generate an ABI typings file')
-    .command(
-      commandMap.generateIndex,
-      'Generate an index file for all ABI typings',
-    )
+    .version(false) // Overriding the version command
+    // .command(commandMap.generate, 'Generate an ABI typings file')
+    // .command(
+    //   commandMap.generateIndex,
+    //   'Generate an index file for all ABI typings',
+    // )
     .command(commandMap.scripts, 'Show script helpers')
-    .command(commandMap.help, 'Show help')
     .command(commandMap.hardhat, 'Generate an ABI typings files for Hardhat')
     .command(commandMap.truffle, 'Generate an ABI typings files for Truffle')
     .option('scripts', {
@@ -172,9 +171,13 @@ export async function getProgramArguments(): Promise<
 
   // Load the config file if it exists
   const configPath = args.config || defaultConfigFileName
-  const config = configPath
-    ? await loadConfigFile<EatConfigContext>(configPath)
-    : null
+  let config: EatConfigContext | null = null
+
+  try {
+    config = configPath
+      ? await loadConfigFile<EatConfigContext>(configPath)
+      : null
+  } catch (error) {}
 
   // Misc options
   const scripts = args.scripts || false

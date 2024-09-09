@@ -80,6 +80,9 @@ export type MethodNames =
   | 'symbol'
   | 'decimals'
   | 'totalSupply'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface TokenPurchaseEventEmittedResponse {
   buyer: string
   eth_sold: BigNumberish

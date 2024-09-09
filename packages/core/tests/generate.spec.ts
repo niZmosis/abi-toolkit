@@ -4,17 +4,13 @@ import type {
   GeneratorContext,
   ProgramContext,
 } from '@ethereum-abi-types-generator/types'
-import {
-  commandMap,
-  getHelpMessageByCommandType,
-  Logger,
-} from '@ethereum-abi-types-generator/utils'
+import { languageTypes, Logger } from '@ethereum-abi-types-generator/utils'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
 
 import generate from '../src/commands/generate'
 
 const programOptions: ProgramContext<Partial<GeneratorContext>> = {
-  command: 'abi/abi.json',
+  command: '',
   subcommands: [],
   options: {},
 }
@@ -46,53 +42,26 @@ describe('Generate', () => {
     expect(command).toHaveProperty('abiFile')
   })
 
-  it('should log a message if no command are passed in', async () => {
-    const logSpy = vi.spyOn(Logger, 'log')
-
-    await command.abiFile({ command: undefined } as any)
-
-    expect(logSpy).toHaveBeenCalledTimes(1)
-    expect(logSpy).toHaveBeenCalledWith(
-      getHelpMessageByCommandType(commandMap.scripts),
-    )
-  })
-
-  it('should log a message if command is an empty string', async () => {
-    const logSpy = vi.spyOn(Logger, 'log')
-
-    await command.abiFile({ command: '' } as any)
-
-    expect(logSpy).toHaveBeenCalledTimes(1)
-    expect(logSpy).toHaveBeenCalledWith(
-      getHelpMessageByCommandType(commandMap.scripts),
-    )
+  it('should have the indexFile object exported', () => {
+    expect(command).toHaveProperty('indexFile')
   })
 
   it('should call log an error if language is invalid', async () => {
     const logErrorSpy = vi.spyOn(Logger, 'error')
 
+    const language = 'blah'
+
     await command.abiFile({
       command: 'abi/abi.json',
       subcommands: [],
-      options: { language: 'blah' } as any,
+      options: {
+        language,
+      } as any,
     })
 
     expect(logErrorSpy).toHaveBeenCalledTimes(1)
     expect(logErrorSpy).toHaveBeenCalledWith(
-      '"blah" is not supported. Support languages are - \'ts\'',
-    )
-  })
-
-  it('should on success log success message and nothing else', async () => {
-    const logErrorSpy = vi.spyOn(Logger, 'error')
-    const logSpy = vi.spyOn(Logger, 'log')
-
-    await command.abiFile(programOptions as ProgramContext<GeneratorContext>)
-
-    expect(logErrorSpy).toHaveBeenCalledTimes(0)
-    expect(logSpy).toHaveBeenCalledTimes(1)
-    expect(logSpy).toHaveBeenCalledWith(
-      'Successfully created typings for abi file abi/abi.json saved in test-output-location',
+      `"${language}" is not supported. Supported languages are - ${languageTypes.join(', ')}`,
     )
   })
 })

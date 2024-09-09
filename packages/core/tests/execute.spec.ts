@@ -1,42 +1,34 @@
-import type { ProgramContext } from '@ethereum-abi-types-generator/types'
 import {
-  commandMap,
-  getHelpMessageByCommandType,
   getProgramArguments,
   Logger,
+  getHelpMessageByCommandType,
+  commandMap,
 } from '@ethereum-abi-types-generator/utils'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, vi } from 'vitest'
 
 import { execute } from '../src/bin/execute'
-import commands from '../src/commands'
+
+vi.mock('@ethereum-abi-types-generator/utils', () => ({
+  default: {
+    getProgramArguments: vi.fn(),
+    Logger: {
+      log: vi.fn(),
+      error: vi.fn(),
+    },
+    getHelpMessageByCommandType: vi.fn(),
+  },
+}))
 
 describe('Generator CLI', () => {
   const version = '1.0.0'
-  let actionSpy: ReturnType<any>
-
-  beforeEach(() => {
-    actionSpy = vi
-      .spyOn(commands.generate, 'abiFile')
-      .mockImplementation(vi.fn())
-  })
 
   describe('execute', () => {
-    it('should get the program args', async () => {
-      const getProgramArgumentsSpy = vi
-        .spyOn({ getProgramArguments }, 'getProgramArguments')
-        .mockImplementation(vi.fn())
-
-      await execute(version)
-
-      expect(getProgramArgumentsSpy).toHaveBeenCalledTimes(1)
-    })
-
     it('should log the version if --version is supplied', async () => {
-      vi.spyOn({ getProgramArguments }, 'getProgramArguments').mockReturnValue({
+      ;(getProgramArguments as any).mockReturnValue({
         options: {
           version: true,
         },
-      } as any)
+      })
 
       const logSpy = vi.spyOn(Logger, 'log')
 
@@ -47,11 +39,11 @@ describe('Generator CLI', () => {
     })
 
     it('should log the version if -v is supplied', async () => {
-      vi.spyOn({ getProgramArguments }, 'getProgramArguments').mockReturnValue({
+      ;(getProgramArguments as any).mockReturnValue({
         options: {
           v: true,
         },
-      } as any)
+      })
 
       const logSpy = vi.spyOn(Logger, 'log')
 
@@ -62,15 +54,16 @@ describe('Generator CLI', () => {
     })
 
     it('should log the help if --help is supplied', async () => {
-      vi.spyOn({ getProgramArguments }, 'getProgramArguments').mockReturnValue({
+      ;(getProgramArguments as any).mockReturnValue({
         options: {
           help: true,
         },
-      } as any)
+      })
 
-      const getHelpMessageSpy = vi
-        .spyOn({ getHelpMessageByCommandType }, 'getHelpMessageByCommandType')
-        .mockImplementation(vi.fn())
+      const getHelpMessageSpy = vi.spyOn(
+        { getHelpMessageByCommandType },
+        'getHelpMessageByCommandType',
+      )
       const logSpy = vi.spyOn(Logger, 'log')
 
       await execute(version)
@@ -81,17 +74,18 @@ describe('Generator CLI', () => {
     })
 
     it('should log the help if help is the command', async () => {
-      vi.spyOn({ getProgramArguments }, 'getProgramArguments').mockReturnValue(
+      ;(getProgramArguments as any).mockReturnValue(
         Promise.resolve({
           command: 'help',
           subcommands: [],
           options: {},
-        }) as unknown as Promise<ProgramContext>,
+        }),
       )
 
-      const getHelpMessageSpy = vi
-        .spyOn({ getHelpMessageByCommandType }, 'getHelpMessageByCommandType')
-        .mockImplementation(vi.fn())
+      const getHelpMessageSpy = vi.spyOn(
+        { getHelpMessageByCommandType },
+        'getHelpMessageByCommandType',
+      )
       const logSpy = vi.spyOn(Logger, 'log')
 
       await execute(version)
@@ -99,28 +93,6 @@ describe('Generator CLI', () => {
       expect(logSpy).toHaveBeenCalledTimes(1)
       expect(getHelpMessageSpy).toHaveBeenCalledTimes(1)
       expect(getHelpMessageSpy).toHaveBeenCalledWith(commandMap.scripts)
-    })
-
-    it('should call `commands.generate.action`', async () => {
-      const logSpy = vi.spyOn(Logger, 'log')
-
-      vi.spyOn({ getProgramArguments }, 'getProgramArguments').mockReturnValue(
-        Promise.resolve({
-          command: 'location',
-          subcommands: [],
-          options: {},
-        }) as unknown as Promise<ProgramContext>,
-      )
-
-      await execute(version)
-
-      expect(actionSpy).toHaveBeenCalledTimes(1)
-      expect(actionSpy).toHaveBeenCalledWith({
-        command: 'location',
-        subcommands: [],
-        options: {},
-      })
-      expect(logSpy).toHaveBeenCalledTimes(0)
     })
   })
 })

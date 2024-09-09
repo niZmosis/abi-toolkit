@@ -11,23 +11,23 @@ To install the `utils` package, you can use any of the following package manager
 #### npm
 
 ```bash
-npm install @nonce-manager/utils
+npm install @ethereum-abi-types-generator/utils
 ```
 
 #### yarn
 
 ```bash
-yarn add @nonce-manager/utils
+yarn add @ethereum-abi-types-generator/utils
 ```
 
 #### pnpm
 
 ```bash
-pnpm add @nonce-manager/utils
+pnpm add @ethereum-abi-types-generator/utils
 ```
 
 #### bun
 
 ```bash
-bun add @nonce-manager/utils
+bun add @ethereum-abi-types-generator/utils
 ```

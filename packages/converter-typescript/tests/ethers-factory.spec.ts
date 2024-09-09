@@ -19,137 +19,101 @@ describe('EthersFactory', () => {
 
   describe('buildInterfaces', () => {
     it('should return correct interface for ethers version 4 or below', () => {
+      const library = libraryMap.ethers_v4
+      const libraryImportAlias = 'ethers'
+      const verbatimModuleSyntax = false
+
       expect(
         removeAllWhiteSpace(
           ethersFactory.buildInterfaces({
             abiName,
-            library: libraryMap.ethers_v4,
-            libraryImportAlias: 'ethers',
-            verbatimModuleSyntax: false,
+            library,
+            libraryImportAlias,
+            verbatimModuleSyntax,
           }),
         ),
       ).toEqual(
         removeAllWhiteSpace(`
-          import { ContractTransaction } from "ethers";
-          import { Arrayish, BigNumber, BigNumberish, Interface } from "ethers/utils";
-          import { EthersContractContext } from "@ethereum-abi-types-generator/converter-typescript";
+          import${verbatimModuleSyntax ? ' type' : ''} { ContractTransaction } from "${libraryImportAlias || 'ethers'}";
+          import${verbatimModuleSyntax ? ' type' : ''} { Arrayish, BigNumber, BigNumberish, Interface } from "${libraryImportAlias || 'ethers'}/utils";
+          import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContext } from "@ethereum-abi-types-generator/converter-typescript";
 
-          export type ${abiName}ContractContext = EthersContractContext<
-            ${abiName},
+          import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common-types';
+
+          export type ContractContext = EthersContractContext<
+            ${abiName || 'Contract'},
             ${abiName}EventsContext,
             ${abiName}Events
           >;
-
-          export declare type ${abiName}EventFilter = {
-            address?: string;
-            topics?: Array<string>;
-            fromBlock?: string | number;
-            toBlock?: string | number;
-          };
-
-          export interface ${abiName}ContractTransactionOverrides {
-            /**
-             * The maximum units of gas for the transaction to use
-             */
-            gasLimit?: number;
-            /**
-             * The price (in wei) per unit of gas
-             */
-            gasPrice?: BigNumber | string | number | Promise<any>;
-            /**
-             * The nonce to use in the transaction
-             */
-            nonce?: number;
-            /**
-             * The amount to send with the transaction (i.e. msg.value)
-             */
-            value?: BigNumber | string | number | Promise<any>;
-            /**
-             * The chain ID (or network ID) to use
-             */
-            chainId?: number;
-          }
-
-          export interface ${abiName}ContractCallOverrides {
-            /**
-             * The address to execute the call as
-             */
-            from?: string;
-            /**
-             * The maximum units of gas for the transaction to use
-             */
-            gasLimit?: number;
-          }
         `),
       )
     })
 
     it('should return correct interface for ethers version 5', () => {
+      const library = libraryMap.ethers_v5
+      const libraryImportAlias = 'ethers'
+      const verbatimModuleSyntax = false
+
       expect(
         removeAllWhiteSpace(
           ethersFactory.buildInterfaces({
             abiName,
-            library: libraryMap.ethers_v5,
-            libraryImportAlias: 'ethers',
-            verbatimModuleSyntax: false,
+            library,
+            libraryImportAlias,
+            verbatimModuleSyntax,
           }),
         ),
       ).toEqual(
         removeAllWhiteSpace(`
-          import { ContractTransaction,
+           import${verbatimModuleSyntax ? ' type' : ''} { ContractTransaction,
                     ContractInterface,
                     BytesLike as Arrayish,
                     BigNumber,
-                    BigNumberish } from "ethers";
-           import { EthersContractContextV5 } from "@ethereum-abi-types-generator/converter-typescript";
+                    BigNumberish } from "${libraryImportAlias || 'ethers'}";
+           import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV5 } from "@ethereum-abi-types-generator/converter-typescript";
 
-          export type ${abiName}ContractContext = EthersContractContextV5<
-            ${abiName},
+          import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common-types';
+
+           export type ContractContext = EthersContractContextV5<
+            ${abiName || 'Contract'},
             ${abiName}MethodNames,
             ${abiName}EventsContext,
             ${abiName}Events
-          >;
+           >;
+        `),
+      )
+    })
 
-          export declare type ${abiName}EventFilter = {
-            address?: string;
-            topics?: Array<string>;
-            fromBlock?: string | number;
-            toBlock?: string | number;
-          };
+    it('should return correct interface for ethers version 6', () => {
+      const library = libraryMap.ethers_v6
+      const libraryImportAlias = 'ethers'
+      const verbatimModuleSyntax = false
 
-          export interface ${abiName}ContractTransactionOverrides {
-            /**
-             * The maximum units of gas for the transaction to use
-             */
-            gasLimit?: number;
-            /**
-             * The price (in wei) per unit of gas
-             */
-            gasPrice?: BigNumber | string | number | Promise<any>;
-            /**
-             * The nonce to use in the transaction
-             */
-            nonce?: number;
-            /**
-             * The amount to send with the transaction (i.e. msg.value)
-             */
-            value?: BigNumber | string | number | Promise<any>;
-            /**
-             * The chain ID (or network ID) to use
-             */
-            chainId?: number;
-          }
+      expect(
+        removeAllWhiteSpace(
+          ethersFactory.buildInterfaces({
+            abiName,
+            library,
+            libraryImportAlias,
+            verbatimModuleSyntax,
+          }),
+        ),
+      ).toEqual(
+        removeAllWhiteSpace(`
+           import${verbatimModuleSyntax ? ' type' : ''} { ContractTransaction,
+                    ContractInterface,
+                    BytesLike as Arrayish,
+                    BigNumberish } from "${libraryImportAlias || 'ethers'}";
+           import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV6 } from "@ethereum-abi-types-generator/converter-typescript";
 
-          export interface ${abiName}ContractCallOverrides {
-            /**
-             * The address to execute the call as
-             */
-            from?: string;
-            /**
-             * The maximum units of gas for the transaction to use
-             */
-            gasLimit?: number;
-          }
+           import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common-types';
+
+           export type ContractContext = EthersContractContextV6<
+            ${abiName || 'Contract'},
+            ${abiName}MethodNames,
+            ${abiName}EventsContext,
+            ${abiName}Events
+           >;
         `),
       )
     })
@@ -164,10 +128,16 @@ describe('EthersFactory', () => {
 
     it('should build all events from the ABI', () => {
       expect(
-        ethersFactory.buildEventInterfaceProperties({
-          abiItems: AbiPropertiesMock.AbiItemsMock,
-        }),
-      ).toEqual(`NewExchange(...parameters: any): ${abiName}EventFilter;`)
+        removeAllWhiteSpace(
+          ethersFactory.buildEventInterfaceProperties({
+            abiItems: AbiPropertiesMock.AbiItemsMock,
+          }),
+        ),
+      ).toEqual(
+        removeAllWhiteSpace(
+          'NewExchange(token: string, exchange: string): EventFilter;',
+        ),
+      )
     })
   })
 

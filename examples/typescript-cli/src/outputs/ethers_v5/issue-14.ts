@@ -45,6 +45,9 @@ export type MethodNames =
   | 'getStakingComet'
   | 'cometsFrom'
   | 'countCometIn'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface NewCometEventEmittedResponse {
   cometId: string
   token: string
@@ -85,13 +88,13 @@ export interface LastResponse {
 }
 export interface OrbitResponse {
   center: CenterResponse
-  0: OrbitResponse
+  0: CenterResponse
   last: LastResponse
-  1: OrbitResponse
+  1: LastResponse
   rotationSpeed: number
-  2: OrbitResponse
+  2: number
   lastUpdate: BigNumber
-  3: OrbitResponse
+  3: BigNumber
 }
 export interface CometResponse {
   id: string
@@ -107,7 +110,7 @@ export interface CometResponse {
   solarSystemID: BigNumber
   5: BigNumber
 }
-export interface StakingcometResponse {
+export interface StakingCometResponse {
   id: string
   0: string
   orbit: OrbitResponse
@@ -131,11 +134,11 @@ export interface StakingcometResponse {
   solarSystemID: BigNumber
   10: BigNumber
 }
-export interface CometsFromResponse {
+export interface CometsFrom {
   result0: CometResponse[]
   0: CometResponse[]
-  result1: StakingcometResponse[]
-  1: StakingcometResponse[]
+  result1: StakingCometResponse[]
+  1: StakingCometResponse[]
   length: 2
 }
 export interface Contract {
@@ -224,7 +227,7 @@ export interface Contract {
     cometId: string,
     solarSystemID: BigNumberish,
     overrides?: ContractCallOverrides,
-  ): Promise<StakingcometResponse>
+  ): Promise<StakingCometResponse>
   /**
    * Payable: false
    * Constant: true
@@ -235,7 +238,7 @@ export interface Contract {
   cometsFrom(
     solarSystemID: BigNumberish,
     overrides?: ContractCallOverrides,
-  ): Promise<CometsFromResponse>
+  ): Promise<CometsFrom>
   /**
    * Payable: false
    * Constant: true

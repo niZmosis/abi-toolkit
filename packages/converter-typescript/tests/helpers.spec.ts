@@ -738,37 +738,37 @@ describe('TypeScriptHelpers', () => {
       describe('address', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'address' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'address' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'address[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'address[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'address[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'address[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'address[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'address[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('string[][][]')
         })
       })
@@ -776,73 +776,73 @@ describe('TypeScriptHelpers', () => {
       describe('uint', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('BigNumber')
         })
 
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint32' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint32' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('number')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[BigNumber,BigNumber,BigNumber,BigNumber,BigNumber]')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint32[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint32[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[number,number,number,number,number]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[BigNumber,BigNumber,BigNumber,BigNumber,BigNumber][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint32[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint32[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[number,number,number,number,number][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('BigNumber[][][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint32[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint32[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('number[][][]')
         })
       })
@@ -850,73 +850,73 @@ describe('TypeScriptHelpers', () => {
       describe('bytes', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes32' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes32' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes32[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes32[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes32[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes32[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('string[][][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes32[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes32[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('string[][][]')
         })
       })
@@ -924,37 +924,37 @@ describe('TypeScriptHelpers', () => {
       describe('string', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'string' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'string' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'string[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'string[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'string[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'string[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'string[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'string[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('string[][][]')
         })
       })
@@ -962,73 +962,73 @@ describe('TypeScriptHelpers', () => {
       describe('int', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('BigNumber')
         })
 
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int32' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int32' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('number')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[BigNumber,BigNumber,BigNumber,BigNumber,BigNumber]')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int32[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int32[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[number,number,number,number,number]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[BigNumber,BigNumber,BigNumber,BigNumber,BigNumber][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int32[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int32[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[number,number,number,number,number][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('BigNumber[][][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int32[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int32[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('number[][][]')
         })
       })
@@ -1036,37 +1036,37 @@ describe('TypeScriptHelpers', () => {
       describe('bool', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bool' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bool' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('boolean')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bool[4]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bool[4]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[boolean,boolean,boolean,boolean,boolean]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bool[4][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bool[4][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('[boolean,boolean,boolean,boolean,boolean][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bool[][][]' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bool[][][]' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('boolean[][][]')
         })
       })
@@ -1074,29 +1074,29 @@ describe('TypeScriptHelpers', () => {
       describe('tuple', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'tuple', name: 'hey' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'tuple', name: 'hey' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('HeyResponse')
         })
 
         it('should return correct result with array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'tuple[]', name: 'hey' } as AbiOutput,
-              libraryMap.ethers_v4,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'tuple[]', name: 'hey' } as AbiOutput,
+              library: libraryMap.ethers_v4,
+            }),
           ).toEqual('HeyResponse[]')
         })
       })
 
       it('should throw an error if solidity type can not be found', () => {
         expect(() => {
-          TypeScriptHelpers.getSolidityOutputTsType(
-            { type: 'blah' } as AbiOutput,
-            libraryMap.ethers_v4,
-          )
+          TypeScriptHelpers.getSolidityOutputTsType({
+            abiOutput: { type: 'blah' } as AbiOutput,
+            library: libraryMap.ethers_v4,
+          })
         }).toThrowError('blah is not valid solidty type')
       })
     })
@@ -1105,37 +1105,37 @@ describe('TypeScriptHelpers', () => {
       describe('address', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'address' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'address' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'address[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'address[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'address[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'address[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'address[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'address[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string[][][]')
         })
       })
@@ -1143,73 +1143,73 @@ describe('TypeScriptHelpers', () => {
       describe('uint', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint32' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint32' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint32[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint32[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint32[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint32[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string[][][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'uint32[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'uint32[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string[][][]')
         })
       })
@@ -1217,73 +1217,73 @@ describe('TypeScriptHelpers', () => {
       describe('bytes', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes32' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes32' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes32[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes32[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes32[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes32[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string[][][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bytes32[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bytes32[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string[][][]')
         })
       })
@@ -1291,37 +1291,37 @@ describe('TypeScriptHelpers', () => {
       describe('string', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'string' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'string' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'string[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'string[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'string[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'string[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'string[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'string[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string[][][]')
         })
       })
@@ -1329,73 +1329,73 @@ describe('TypeScriptHelpers', () => {
       describe('int', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int32' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int32' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int32[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int32[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int32[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int32[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[string,string,string,string,string][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string[][][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'int32[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'int32[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('string[][][]')
         })
       })
@@ -1403,37 +1403,37 @@ describe('TypeScriptHelpers', () => {
       describe('bool', () => {
         it('should return correct result with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bool' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bool' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('boolean')
         })
 
         it('should return correct result with fixed array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bool[4]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bool[4]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[boolean,boolean,boolean,boolean,boolean]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bool[4][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bool[4][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('[boolean,boolean,boolean,boolean,boolean][]')
         })
 
         it('should return correct result with fixed multidimensional arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'bool[][][]' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'bool[][][]' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('boolean[][][]')
         })
       })
@@ -1441,29 +1441,29 @@ describe('TypeScriptHelpers', () => {
       describe('tuple', () => {
         it('should return correct response with no arrays', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'tuple', name: 'hey' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'tuple', name: 'hey' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('HeyResponse')
         })
 
         it('should return response as an array', () => {
           expect(
-            TypeScriptHelpers.getSolidityOutputTsType(
-              { type: 'tuple[]', name: 'hey' } as AbiOutput,
-              libraryMap.web3,
-            ),
+            TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: { type: 'tuple[]', name: 'hey' } as AbiOutput,
+              library: libraryMap.web3,
+            }),
           ).toEqual('HeyResponse[]')
         })
       })
 
       it('should throw an error if solidity type can not be found', () => {
         expect(() => {
-          TypeScriptHelpers.getSolidityOutputTsType(
-            { type: 'blah' } as AbiOutput,
-            libraryMap.web3,
-          )
+          TypeScriptHelpers.getSolidityOutputTsType({
+            abiOutput: { type: 'blah' } as AbiOutput,
+            library: libraryMap.web3,
+          })
         }).toThrowError('blah is not valid solidty type')
       })
     })

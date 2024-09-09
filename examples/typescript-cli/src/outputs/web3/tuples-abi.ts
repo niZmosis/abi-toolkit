@@ -11,15 +11,31 @@ export type ContractContext = Web3ContractContext<
 export type Events = undefined
 export interface EventsContext {}
 export type MethodNames = 'postWithSig'
-export interface PostParamsRequest {
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
+export interface PostWithSigNestedTuple2Request {
+  nestedTuple2Single0: string | number[]
+  nestedTuple2Single1: string
+}
+export interface PostWithSigNestedTuple1Request {
+  nestedTuple1Single0: string
+  nestedTuple2: PostWithSigNestedTuple2Request
+}
+export interface PostWithSigNestedTuple0Request {
+  nestedTuple0Single0: string
+  nestedTuple1: PostWithSigNestedTuple1Request
+}
+export interface PostWithSigPostParamsRequest {
   profileId: string
   contentURI: string
   actionModules: string[]
   actionModulesInitDatas: string | number[][]
   referenceModule: string
   referenceModuleInitData: string | number[]
+  nestedTuple0: PostWithSigNestedTuple0Request
 }
-export interface SignatureRequest {
+export interface PostWithSigSignatureRequest {
   signer: string
   v: string | number
   r: string | number[]
@@ -36,7 +52,7 @@ export interface Contract {
    * @param signature Type: tuple, Indexed: false
    */
   postWithSig(
-    postParams: PostParamsRequest,
-    signature: SignatureRequest,
+    postParams: PostWithSigPostParamsRequest,
+    signature: PostWithSigSignatureRequest,
   ): MethodReturnContext
 }

@@ -72,7 +72,10 @@ export class AbiGenerator {
 
     const abi: AbiItem[] = this.getAbiJson()
 
-    const fullTypings = this.buildFullTypings(abi, this.buildAbiInterface(abi))
+    const fullTypings = this.buildFullTypings({
+      abi,
+      abiTypedInterface: this.buildAbiInterface(abi),
+    })
 
     // const formattedContent = await formatAndLintCode(
     //   fullTypings,
@@ -100,7 +103,7 @@ export class AbiGenerator {
   }
 
   /**
-   * Clear all quotes from the context file info
+   * Clear all quote strings from the context file info
    */
   private clearAllQuotesFromContextInfo(): void {
     this._context.inputPath = this._context.inputPath.replace(/\'/g, '')
@@ -173,7 +176,13 @@ export class AbiGenerator {
    * @param abi The abi items
    * @param abiTypedInterface The abi typed interface
    */
-  private buildFullTypings(abi: AbiItem[], abiTypedInterface: string): string {
+  private buildFullTypings({
+    abi,
+    abiTypedInterface,
+  }: {
+    abi: AbiItem[]
+    abiTypedInterface: string
+  }): string {
     const { library, libraryImportAlias, verbatimModuleSyntax } =
       this._context ?? {}
 
@@ -389,42 +398,47 @@ export type MethodReturnContext = MethodPayableReturnContext`
           this._methodNames.push('new')
           properties += `'new'${this.buildParametersAndReturnTypes(abi[i])};`
           break
+
         case abiItemsMap.function:
           properties += this.buildInterfacePropertyDocs(abi[i])
           this._methodNames.push(abi[i].name)
-          properties += `${abi[i].name}${this.buildParametersAndReturnTypes(
-            abi[i],
-          )};`
+          properties += `${abi[i].name}${this.buildParametersAndReturnTypes(abi[i])};`
           break
+
         case abiItemsMap.event:
           const eventInputs = abi[i].inputs
-          if (eventInputs && eventInputs.length > 0) {
-            const eventInterfaceName = `${capitalize(
-              abi[i].name,
-            )}EventEmittedResponse`
-            let eventTypeProperties = ''
-            for (let e = 0; e < eventInputs.length; e++) {
-              const eventTsType = TypeScriptHelpers.getSolidityInputTsType(
-                eventInputs[e],
-                this._context.library,
-                'EventEmittedResponse',
-              )
 
-              eventTypeProperties += `${eventInputs[e].name}: ${eventTsType};`
+          if (eventInputs && eventInputs.length > 0) {
+            const eventInterfaceName = `${capitalize(abi[i].name)}EventEmittedResponse`
+
+            let eventTypeProperties = ''
+
+            for (let e = 0; e < eventInputs.length; e++) {
+              const eventTsType = TypeScriptHelpers.getSolidityInputTsType({
+                abiInput: eventInputs[e],
+                library: this._context.library,
+                suffix: 'EventEmittedResponse',
+              })
+
+              eventTypeProperties += `${eventInputs[e].name || `param${e}`}: ${eventTsType};`
 
               if (eventInputs[e].type === solidityTypeMap.tuple) {
-                this.buildTupleParametersInterface(
-                  // remove due to prefix of components
-                  eventTsType.replace('EventEmittedResponse', ''),
-                  eventInputs[e],
-                  'EventEmittedResponse',
-                )
+                this.buildTupleParametersInterface({
+                  nameOverride: `event_${abi[i].name}`,
+                  abiInput: eventInputs[e],
+                  suffix: 'EventEmittedResponse',
+                })
               }
             }
 
-            this.addReturnTypeInterface(eventInterfaceName, eventTypeProperties)
+            this.addReturnTypeInterface({
+              interfaceName: eventInterfaceName,
+              interfaceContext: eventTypeProperties,
+            })
           }
+
           this._events.push(abi[i].name)
+
           break
       }
     }
@@ -448,13 +462,21 @@ export type MethodReturnContext = MethodPayableReturnContext`
   }
 
   /**
-   * Build method names type
+   * Build method names types
    */
   private buildMethodNamesType(): string {
-    return TypeScriptHelpers.buildType(
+    // Makes a type with all the method names as strings
+    const methodNamesType = TypeScriptHelpers.buildType(
       `${this.getAbiName()}MethodNames`,
-      this._methodNames,
+      Array.from(new Set(this._methodNames)),
     )
+
+    // Makes a mapping type for the method names
+    const methodNameMap = `export type ${this.getAbiName()}MethodNameMap = {
+      [key in ${this.getAbiName()}MethodNames]: string;
+    };`
+
+    return `${methodNamesType}\n${methodNameMap}`
   }
 
   /**
@@ -569,15 +591,18 @@ export type MethodReturnContext = MethodPayableReturnContext`
         }
 
         if (abiItem.inputs[i].type.includes(solidityTypeMap.tuple)) {
-          input += `${inputName}: ${this.buildTupleParametersInterface(
-            inputName,
-            abiItem.inputs[i],
-          )}`
+          input += `${inputName}: ${this.buildTupleParametersInterface({
+            nameOverride: inputName,
+            abiInput: abiItem.inputs[i],
+            suffix: 'Request',
+            methodName: abiItem.name,
+          })}`
         } else {
-          input += `${inputName}: ${TypeScriptHelpers.getSolidityInputTsType(
-            abiItem.inputs[i],
-            this._context.library,
-          )}`
+          input += `${inputName}: ${TypeScriptHelpers.getSolidityInputTsType({
+            abiInput: abiItem.inputs[i],
+            library: this._context.library,
+            suffix: 'Request',
+          })}`
         }
       }
     }
@@ -595,68 +620,72 @@ export type MethodReturnContext = MethodPayableReturnContext`
 
   /**
    * Build the object request parameter interface
-   * @param name The abi item name
+   * @param nameOverride The abi item name
    * @param abiInput The abi input
+   * @param suffix The suffix
+   * @param methodName The method name
    */
-  private buildTupleParametersInterface(
-    name: string,
-    abiInput: AbiInput,
-    prefix: 'Request' | 'Response' | 'EventEmittedResponse' = 'Request',
-  ): string {
-    const interfaceName = `${capitalize(name)}${prefix}`
+  private buildTupleParametersInterface({
+    abiInput,
+    nameOverride,
+    suffix,
+    methodName,
+  }: {
+    abiInput: AbiInput
+    nameOverride: string
+    suffix?: 'Request' | 'Response' | 'EventEmittedResponse'
+    methodName?: string
+  }): string {
+    const interfaceName = TypeScriptHelpers.buildInterfaceName({
+      inputOrOutput: abiInput,
+      nameOverride,
+      suffix,
+      methodName,
+    })
 
     let properties = ''
 
+    // Iterate over all components in the tuple
     for (let i = 0; i < abiInput.components!.length; i++) {
-      const inputTsType = TypeScriptHelpers.getSolidityInputTsType(
-        abiInput.components![i],
-        this._context.library,
-      )
+      const isNestedTuple = !!abiInput.components![i].components
 
-      properties += `${abiInput.components![i].name}: ${inputTsType};`
+      if (isNestedTuple) {
+        const componentName = abiInput.components![i].name || `result${i}`
 
-      // check for deep tuples in tuple in tuples
-      if (abiInput.components![i].components) {
-        const deepInterfaceName = TypeScriptHelpers.buildInterfaceName(
-          abiInput.components![i],
-          prefix,
-        )
-        let deepProperties = ''
-        for (
-          let deep = 0;
-          deep < abiInput.components![i].components!.length;
-          deep++
-        ) {
-          const deepInputTsType = TypeScriptHelpers.getSolidityInputTsType(
-            abiInput.components![i].components![deep],
-            this._context.library,
-          )
-          let propertyName = abiInput.components![i].components![deep].name
-          if (propertyName.length === 0) {
-            propertyName = `result${deep}`
-          }
+        // Make a new interface for the nested tuple
+        const nestedInterfaceName = this.buildTupleParametersInterface({
+          nameOverride: componentName,
+          abiInput: abiInput.components![i],
+          suffix,
+          methodName,
+        })
 
-          deepProperties += propertyName + ': ' + deepInputTsType + ';'
+        // Add the nested tuple as a property to the current interface
+        properties += `${componentName}: ${nestedInterfaceName};`
+      } else {
+        const inputTsType = TypeScriptHelpers.getSolidityInputTsType({
+          abiInput: abiInput.components![i],
+          library: this._context.library,
+          suffix: 'Request',
+          methodName,
+        })
 
-          if (abiInput.components![i].components![deep].components) {
-            this.buildTupleParametersInterface(
-              deepInterfaceName,
-              abiInput.components![i].components![deep],
-            )
-          }
-        }
-
-        this.addReturnTypeInterface(deepInterfaceName, deepProperties)
+        // Add the property to the current interface
+        properties += `${abiInput.components![i].name}: ${inputTsType};`
       }
     }
 
-    this.addReturnTypeInterface(interfaceName, properties)
+    // Add the interface to the return types
+    this.addReturnTypeInterface({
+      interfaceName,
+      interfaceContext: properties,
+    })
 
     if (abiInput.type.includes('[')) {
       return `${interfaceName}[]`
     }
 
-    return `${interfaceName}`
+    return interfaceName
   }
 
   /**
@@ -664,59 +693,60 @@ export type MethodReturnContext = MethodPayableReturnContext`
    * @param name The abi item name
    * @param abiOutput The abi output
    */
-  private buildTupleResponseInterface(abiOutput: AbiOutput): string {
-    const interfaceName = TypeScriptHelpers.buildInterfaceName(abiOutput)
+  private buildTupleResponseInterface({
+    abiOutput,
+    methodName,
+  }: {
+    abiOutput: AbiOutput
+    methodName?: string
+  }): string {
+    const interfaceName = TypeScriptHelpers.buildInterfaceName({
+      inputOrOutput: abiOutput,
+      suffix: 'Response',
+      methodName,
+    })
 
     let properties = ''
 
+    // Iterate over all components in the tuple
     for (let i = 0; i < abiOutput.components!.length; i++) {
-      const outputTsType = TypeScriptHelpers.getSolidityOutputTsType(
-        abiOutput.components![i],
-        this._context.library,
-      )
-      properties += `${abiOutput.components![i].name}: ${outputTsType};`
-
-      if (isEthersLibrary(this._context.library)) {
-        properties += `${i}: ${outputTsType};`
-      }
+      const isNestedTuple = !!abiOutput.components![i].components
 
       // check for deep tuples in tuple in tuples
-      if (abiOutput.components![i].components) {
-        const deepInterfaceName = TypeScriptHelpers.buildInterfaceName(
-          abiOutput.components![i],
-        )
-        let deepProperties = ''
-        for (
-          let deep = 0;
-          deep < abiOutput.components![i].components!.length;
-          deep++
-        ) {
-          const deepOutputTsType = TypeScriptHelpers.getSolidityOutputTsType(
-            abiOutput.components![i].components![deep],
-            this._context.library,
-          )
-          let propertyName = abiOutput.components![i].components![deep].name
-          if (propertyName.length === 0) {
-            propertyName = `result${deep}`
-          }
+      if (isNestedTuple) {
+        const componentName = abiOutput.components![i].name || `result${i}`
 
-          deepProperties += propertyName + ': ' + deepOutputTsType + ';'
-          if (isEthersLibrary(this._context.library)) {
-            deepProperties += deep + ': ' + outputTsType + ';'
-          }
+        // Make a new interface for the nested tuple
+        const nestedInterfaceName = this.buildTupleResponseInterface({
+          abiOutput: abiOutput.components![i],
+          // methodName,
+        })
 
-          if (abiOutput.components![i].components![deep].components) {
-            this.buildTupleResponseInterface(
-              abiOutput.components![i].components![deep],
-            )
-          }
+        // Add the nested tuple as a property to the current interface
+        properties += `${componentName}: ${nestedInterfaceName};`
+
+        // Add a prop with the name as the index to the current interface
+        if (isEthersLibrary(this._context.library)) {
+          properties += `${i}: ${nestedInterfaceName};`
         }
+      } else {
+        const outputTsType = TypeScriptHelpers.getSolidityOutputTsType({
+          abiOutput: abiOutput.components![i],
+          library: this._context.library,
+        })
 
-        this.addReturnTypeInterface(deepInterfaceName, deepProperties)
+        // Add the property to the current interface
+        properties += `${abiOutput.components![i].name}: ${outputTsType};`
+
+        // Add a prop with the name as the index to the current interface
+        if (isEthersLibrary(this._context.library)) {
+          properties += `${i}: ${outputTsType};`
+        }
       }
     }
 
-    this.addReturnTypeInterface(interfaceName, properties)
+    // Add the interface to the return types
+    this.addReturnTypeInterface({ interfaceName, interfaceContext: properties })
 
     if (abiOutput.type.includes('[')) {
       return `${interfaceName}[]`
@@ -736,29 +766,34 @@ export type MethodReturnContext = MethodPayableReturnContext`
       if (abiItem.outputs.length === 1) {
         output += this.buildMethodReturnContext({
           abiName: this.getAbiName(),
-          type: TypeScriptHelpers.getSolidityOutputTsType(
-            abiItem.outputs[0],
-            this._context.library,
-          ),
+          type: TypeScriptHelpers.getSolidityOutputTsType({
+            abiOutput: abiItem.outputs[0],
+            library: this._context.library,
+          }),
           abiItem,
         })
 
         if (abiItem.outputs[0].type.includes(solidityTypeMap.tuple)) {
-          this.buildTupleResponseInterface(abiItem.outputs[0])
+          this.buildTupleResponseInterface({
+            abiOutput: abiItem.outputs[0],
+            methodName: abiItem.name,
+          })
         }
       } else {
         if (isNeverModifyBlockchainState(abiItem)) {
-          const interfaceName = TypeScriptHelpers.buildInterfaceName(abiItem)
+          const interfaceName = TypeScriptHelpers.buildInterfaceName({
+            inputOrOutput: abiItem,
+          })
 
           let outputProperties = ''
 
           for (let i = 0; i < abiItem.outputs.length; i++) {
             const abiItemOutput = abiItem.outputs[i]
 
-            const outputTsType = TypeScriptHelpers.getSolidityOutputTsType(
-              abiItemOutput,
-              this._context.library,
-            )
+            const outputTsType = TypeScriptHelpers.getSolidityOutputTsType({
+              abiOutput: abiItemOutput,
+              library: this._context.library,
+            })
 
             let propertyName = abiItemOutput.name
             if (propertyName.length === 0) {
@@ -772,7 +807,10 @@ export type MethodReturnContext = MethodPayableReturnContext`
             }
 
             if (abiItemOutput.type.includes(solidityTypeMap.tuple)) {
-              this.buildTupleResponseInterface(abiItem.outputs[i])
+              this.buildTupleResponseInterface({
+                abiOutput: abiItem.outputs[i],
+                methodName: abiItem.name,
+              })
             }
           }
 
@@ -780,7 +818,10 @@ export type MethodReturnContext = MethodPayableReturnContext`
             outputProperties += `length: ${abiItem.outputs.length};`
           }
 
-          this.addReturnTypeInterface(interfaceName, outputProperties)
+          this.addReturnTypeInterface({
+            interfaceName,
+            interfaceContext: outputProperties,
+          })
 
           output += this.buildMethodReturnContext({
             abiName: this.getAbiName(),
@@ -812,10 +853,13 @@ export type MethodReturnContext = MethodPayableReturnContext`
    * @param interfaceName The interface name
    * @param interfaceContext The interface context
    */
-  private addReturnTypeInterface(
-    interfaceName: string,
-    interfaceContext: string,
-  ): void {
+  private addReturnTypeInterface({
+    interfaceName,
+    interfaceContext,
+  }: {
+    interfaceName: string
+    interfaceContext: string
+  }): void {
     // filter out any repeated interfaces
     if (
       !this._parametersAndReturnTypeInterfaces.find((c) =>

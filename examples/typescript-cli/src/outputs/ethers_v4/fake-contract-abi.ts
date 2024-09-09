@@ -33,6 +33,9 @@ export type MethodNames =
   | 'int256ReturnExample'
   | 'easyExample'
   | 'new'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface Event1EventEmittedResponse {
   token: string
   exchange: string
@@ -44,11 +47,11 @@ export interface Event2EventEmittedResponse {
   _spender: string
   _value: BigNumberish
 }
-export interface ORequest {
+export interface TupleInputOnlyORequest {
   address: string
   timestamps: [BigNumberish, BigNumberish, BigNumberish]
 }
-export interface TupleInputAndOutputResponse {
+export interface TupleInputAndOutput {
   affiliate: string
   0: string
   offerID: string
@@ -61,7 +64,7 @@ export interface TupleInputAndOutputResponse {
   4: [number, number, number, number, number, number]
   length: 5
 }
-export interface TupleNoInputNamesResponse {
+export interface TupleNoInputNames {
   affiliate: string
   0: string
   offerID: string
@@ -74,7 +77,7 @@ export interface TupleNoInputNamesResponse {
   4: [number, number, number, number, number, number]
   length: 5
 }
-export interface TupleWithParametersNamesResponse {
+export interface TupleWithParametersNames {
   affiliate: string
   0: string
   offerID: string
@@ -96,7 +99,7 @@ export interface Contract {
    * @param o Type: tuple, Indexed: false
    */
   tupleInputOnly(
-    o: ORequest,
+    o: TupleInputOnlyORequest,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -111,7 +114,7 @@ export interface Contract {
     exchangeAddress: string,
     internalAddress: string,
     overrides?: ContractCallOverrides,
-  ): Promise<TupleInputAndOutputResponse>
+  ): Promise<TupleInputAndOutput>
   /**
    * Payable: false
    * Constant: true
@@ -124,7 +127,7 @@ export interface Contract {
     parameter0: string,
     parameter1: string,
     overrides?: ContractCallOverrides,
-  ): Promise<TupleNoInputNamesResponse>
+  ): Promise<TupleNoInputNames>
   /**
    * Payable: false
    * Constant: true
@@ -137,7 +140,7 @@ export interface Contract {
     address1: string,
     address2: string,
     overrides?: ContractCallOverrides,
-  ): Promise<TupleWithParametersNamesResponse>
+  ): Promise<TupleWithParametersNames>
   /**
    * Payable: true
    * Constant: false

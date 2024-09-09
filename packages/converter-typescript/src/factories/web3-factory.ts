@@ -45,10 +45,11 @@ export class Web3Factory extends AbstractFactory {
         let filtersProperties = '{'
         for (let a = 0; a < abiItems[i].inputs!.length; a++) {
           if (abiItems[i].inputs![a].indexed === true) {
-            const parameterType = TypeScriptHelpers.getSolidityInputTsType(
-              abiItems[i].inputs![a],
-              libraryMap.web3,
-            )
+            const parameterType = TypeScriptHelpers.getSolidityInputTsType({
+              abiInput: abiItems[i].inputs![a],
+              library: libraryMap.web3,
+              suffix: 'EventEmittedResponse',
+            })
             filtersProperties += `${
               abiItems[i].inputs![a].name
             }?: ${parameterType} | ${parameterType}[],`

@@ -18,71 +18,29 @@ describe('Web3Factory', () => {
 
   describe('buildInterfaces', () => {
     it('should round correct interface', () => {
+      const verbatimModuleSyntax = false
+
       expect(
         removeAllWhiteSpace(
           web3Factory.buildInterfaces({
             abiName,
-            verbatimModuleSyntax: false,
+            verbatimModuleSyntax,
           }),
         ),
       ).toEqual(
-        removeAllWhiteSpace(`
-         import BN from "bn.js";
-         import BigNumber from "bignumber.js";
-         import { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "@ethereum-abi-types-generator/converter-typescript";
+        removeAllWhiteSpace(`import${verbatimModuleSyntax ? ' type' : ''} BN from "bn.js";
+    import${verbatimModuleSyntax ? ' type' : ''} BigNumber from 'bignumber.js';
+    import${verbatimModuleSyntax ? ' type' : ''} { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "@ethereum-abi-types-generator/converter-typescript";
 
-         export interface ${abiName}CallOptions {
-          from?: string;
-          gasPrice?: string;
-          gas?: number;
-        }
+    import${verbatimModuleSyntax ? ' type' : ''} { MethodPayableReturnContext, MethodConstantReturnContext, MethodReturnContext } from './common-types';
 
-        export interface ${abiName}SendOptions {
-          from: string;
-          value?: number | string | BN | BigNumber;
-          gasPrice?: string;
-          gas?: number;
-        }
-
-        export interface ${abiName}EstimateGasOptions {
-          from?: string;
-          value?: number | string | BN | BigNumber;
-          gas?: number;
-        }
-
-        export interface ${abiName}MethodPayableReturnContext {
-          send(options: ${abiName}SendOptions):PromiEvent<TransactionReceipt>;
-          send(
-              options: ${abiName}SendOptions,
-              callback: (error: Error, result: any) => void
-          ): PromiEvent<TransactionReceipt>;
-          estimateGas(options: ${abiName}EstimateGasOptions): Promise<number>;
-          estimateGas(
-              options: ${abiName}EstimateGasOptions,
-              callback: (error: Error, result: any) => void
-          ): Promise<number>;
-          encodeABI(): string;
-        }
-
-        export interface ${abiName}MethodConstantReturnContext<TCallReturn> {
-          call(): Promise<TCallReturn>;
-          call(options: ${abiName}CallOptions): Promise<TCallReturn>;
-          call(
-          options: ${abiName}CallOptions,
-          callback: (error: Error, result: TCallReturn) => void
-          ): Promise<TCallReturn>;
-          encodeABI():string;
-        }
-
-        export interface ${abiName}MethodReturnContext extends ${abiName}MethodPayableReturnContext {}
-
-        export type ${abiName}ContractContext = Web3ContractContext<
-          ${abiName},
-          ${abiName}MethodNames,
-          ${abiName}EventsContext,
-          ${abiName}Events
-        >;
-        `),
+    export type ${abiName}ContractContext = Web3ContractContext<
+      ${abiName || 'Contract'},
+      ${abiName}MethodNames,
+      ${abiName}EventsContext,
+      ${abiName}Events
+    >;
+    `),
       )
     })
   })

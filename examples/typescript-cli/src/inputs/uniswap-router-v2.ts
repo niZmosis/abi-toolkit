@@ -1,23 +1,7 @@
 export default [
   {
-    inputs: [
-      {
-        internalType: 'address',
-        name: '_factory',
-        type: 'address',
-      },
-      {
-        internalType: 'address',
-        name: '_WAVAX',
-        type: 'address',
-      },
-    ],
-    stateMutability: 'nonpayable',
-    type: 'constructor',
-  },
-  {
     inputs: [],
-    name: 'WAVAX',
+    name: 'WETH',
     outputs: [
       {
         internalType: 'address',
@@ -25,7 +9,7 @@ export default [
         type: 'address',
       },
     ],
-    stateMutability: 'view',
+    stateMutability: 'pure',
     type: 'function',
   },
   {
@@ -111,7 +95,7 @@ export default [
       },
       {
         internalType: 'uint256',
-        name: 'amountAVAXMin',
+        name: 'amountETHMin',
         type: 'uint256',
       },
       {
@@ -125,7 +109,7 @@ export default [
         type: 'uint256',
       },
     ],
-    name: 'addLiquidityAVAX',
+    name: 'addLiquidityETH',
     outputs: [
       {
         internalType: 'uint256',
@@ -134,7 +118,7 @@ export default [
       },
       {
         internalType: 'uint256',
-        name: 'amountAVAX',
+        name: 'amountETH',
         type: 'uint256',
       },
       {
@@ -156,7 +140,7 @@ export default [
         type: 'address',
       },
     ],
-    stateMutability: 'view',
+    stateMutability: 'pure',
     type: 'function',
   },
   {
@@ -331,26 +315,6 @@ export default [
         name: 'deadline',
         type: 'uint256',
       },
-      {
-        internalType: 'bool',
-        name: 'approveMax',
-        type: 'bool',
-      },
-      {
-        internalType: 'uint8',
-        name: 'v',
-        type: 'uint8',
-      },
-      {
-        internalType: 'bytes32',
-        name: 'r',
-        type: 'bytes32',
-      },
-      {
-        internalType: 'bytes32',
-        name: 's',
-        type: 'bytes32',
-      },
     ],
     name: 'removeLiquidity',
     outputs: [
@@ -387,7 +351,7 @@ export default [
       },
       {
         internalType: 'uint256',
-        name: 'amountAVAXMin',
+        name: 'amountETHMin',
         type: 'uint256',
       },
       {
@@ -400,28 +364,8 @@ export default [
         name: 'deadline',
         type: 'uint256',
       },
-      {
-        internalType: 'bool',
-        name: 'approveMax',
-        type: 'bool',
-      },
-      {
-        internalType: 'uint8',
-        name: 'v',
-        type: 'uint8',
-      },
-      {
-        internalType: 'bytes32',
-        name: 'r',
-        type: 'bytes32',
-      },
-      {
-        internalType: 'bytes32',
-        name: 's',
-        type: 'bytes32',
-      },
     ],
-    name: 'removeLiquidityAVAX',
+    name: 'removeLiquidityETH',
     outputs: [
       {
         internalType: 'uint256',
@@ -430,7 +374,7 @@ export default [
       },
       {
         internalType: 'uint256',
-        name: 'amountAVAX',
+        name: 'amountETH',
         type: 'uint256',
       },
     ],
@@ -456,7 +400,7 @@ export default [
       },
       {
         internalType: 'uint256',
-        name: 'amountAVAXMin',
+        name: 'amountETHMin',
         type: 'uint256',
       },
       {
@@ -469,32 +413,12 @@ export default [
         name: 'deadline',
         type: 'uint256',
       },
-      {
-        internalType: 'bool',
-        name: 'approveMax',
-        type: 'bool',
-      },
-      {
-        internalType: 'uint8',
-        name: 'v',
-        type: 'uint8',
-      },
-      {
-        internalType: 'bytes32',
-        name: 'r',
-        type: 'bytes32',
-      },
-      {
-        internalType: 'bytes32',
-        name: 's',
-        type: 'bytes32',
-      },
     ],
-    name: 'removeLiquidityAVAXSupportingFeeOnTransferTokens',
+    name: 'removeLiquidityETHSupportingFeeOnTransferTokens',
     outputs: [
       {
         internalType: 'uint256',
-        name: 'amountAVAX',
+        name: 'amountETH',
         type: 'uint256',
       },
     ],
@@ -520,7 +444,7 @@ export default [
       },
       {
         internalType: 'uint256',
-        name: 'amountAVAXMin',
+        name: 'amountETHMin',
         type: 'uint256',
       },
       {
@@ -554,7 +478,7 @@ export default [
         type: 'bytes32',
       },
     ],
-    name: 'removeLiquidityAVAXWithPermit',
+    name: 'removeLiquidityETHWithPermit',
     outputs: [
       {
         internalType: 'uint256',
@@ -563,7 +487,71 @@ export default [
       },
       {
         internalType: 'uint256',
-        name: 'amountAVAX',
+        name: 'amountETH',
+        type: 'uint256',
+      },
+    ],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'address',
+        name: 'token',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'liquidity',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'amountTokenMin',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'amountETHMin',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'deadline',
+        type: 'uint256',
+      },
+      {
+        internalType: 'bool',
+        name: 'approveMax',
+        type: 'bool',
+      },
+      {
+        internalType: 'uint8',
+        name: 'v',
+        type: 'uint8',
+      },
+      {
+        internalType: 'bytes32',
+        name: 'r',
+        type: 'bytes32',
+      },
+      {
+        internalType: 'bytes32',
+        name: 's',
+        type: 'bytes32',
+      },
+    ],
+    name: 'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens',
+    outputs: [
+      {
+        internalType: 'uint256',
+        name: 'amountETH',
         type: 'uint256',
       },
     ],
@@ -667,7 +655,7 @@ export default [
         type: 'uint256',
       },
     ],
-    name: 'swapAVAXForExactTokens',
+    name: 'swapETHForExactTokens',
     outputs: [
       {
         internalType: 'uint256[]',
@@ -701,7 +689,7 @@ export default [
         type: 'uint256',
       },
     ],
-    name: 'swapExactAVAXForTokens',
+    name: 'swapExactETHForTokens',
     outputs: [
       {
         internalType: 'uint256[]',
@@ -735,7 +723,7 @@ export default [
         type: 'uint256',
       },
     ],
-    name: 'swapExactAVAXForTokensSupportingFeeOnTransferTokens',
+    name: 'swapExactETHForTokensSupportingFeeOnTransferTokens',
     outputs: [],
     stateMutability: 'payable',
     type: 'function',
@@ -768,7 +756,7 @@ export default [
         type: 'uint256',
       },
     ],
-    name: 'swapExactTokensForAVAX',
+    name: 'swapExactTokensForETH',
     outputs: [
       {
         internalType: 'uint256[]',
@@ -787,6 +775,11 @@ export default [
         type: 'uint256',
       },
       {
+        internalType: 'uint256',
+        name: 'amountOutMin',
+        type: 'uint256',
+      },
+      {
         internalType: 'address[]',
         name: 'path',
         type: 'address[]',
@@ -802,7 +795,79 @@ export default [
         type: 'uint256',
       },
     ],
-    name: 'swapExactTokensForAVAXSupportingFeeOnTransferTokens',
+    name: 'swapExactTokensForETHSupportingFeeOnTransferTokens',
+    outputs: [],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'amountIn',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'amountOutMin',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address[]',
+        name: 'path',
+        type: 'address[]',
+      },
+      {
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'deadline',
+        type: 'uint256',
+      },
+    ],
+    name: 'swapExactTokensForTokens',
+    outputs: [
+      {
+        internalType: 'uint256[]',
+        name: 'amounts',
+        type: 'uint256[]',
+      },
+    ],
+    stateMutability: 'nonpayable',
+    type: 'function',
+  },
+  {
+    inputs: [
+      {
+        internalType: 'uint256',
+        name: 'amountIn',
+        type: 'uint256',
+      },
+      {
+        internalType: 'uint256',
+        name: 'amountOutMin',
+        type: 'uint256',
+      },
+      {
+        internalType: 'address[]',
+        name: 'path',
+        type: 'address[]',
+      },
+      {
+        internalType: 'address',
+        name: 'to',
+        type: 'address',
+      },
+      {
+        internalType: 'uint256',
+        name: 'deadline',
+        type: 'uint256',
+      },
+    ],
+    name: 'swapExactTokensForTokensSupportingFeeOnTransferTokens',
     outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
@@ -835,7 +900,7 @@ export default [
         type: 'uint256',
       },
     ],
-    name: 'swapTokensForExactAVAX',
+    name: 'swapTokensForExactETH',
     outputs: [
       {
         internalType: 'uint256[]',
@@ -874,26 +939,14 @@ export default [
         type: 'uint256',
       },
     ],
-    name: 'swapTokensForExactAVAXSupportingFeeOnTransferTokens',
-    outputs: [],
-    stateMutability: 'nonpayable',
-    type: 'function',
-  },
-  {
-    inputs: [
+    name: 'swapTokensForExactTokens',
+    outputs: [
       {
-        internalType: 'address',
-        name: 'to',
-        type: 'address',
-      },
-      {
-        internalType: 'uint256',
-        name: 'value',
-        type: 'uint256',
+        internalType: 'uint256[]',
+        name: 'amounts',
+        type: 'uint256[]',
       },
     ],
-    name: 'withdrawAVAX',
-    outputs: [],
     stateMutability: 'nonpayable',
     type: 'function',
   },

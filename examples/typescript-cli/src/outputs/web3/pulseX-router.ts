@@ -40,6 +40,9 @@ export type MethodNames =
   | 'swapExactTokensForTokensSupportingFeeOnTransferTokens'
   | 'swapTokensForExactETH'
   | 'swapTokensForExactTokens'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface Contract {
   /**
    * Payable: false

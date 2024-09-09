@@ -1,24 +1,27 @@
-import type { EthersContractContext } from '@ethereum-abi-types-generator/converter-typescript'
-import type { ContractTransaction } from 'ethersv4'
-import type { Arrayish, BigNumber, BigNumberish } from 'ethersv4/utils'
+import type { EthersContractContextV6 } from '@ethereum-abi-types-generator/converter-typescript'
+import type {
+  ContractTransaction,
+  BytesLike as Arrayish,
+  BigNumberish,
+} from 'ethersv6'
 
 import type {
   ContractTransactionOverrides,
   ContractCallOverrides,
 } from './common-types'
 
-export type ContractContext = EthersContractContext<
+export type ContractContext = EthersContractContextV6<
   Contract,
+  MethodNames,
   EventsContext,
   Events
 >
 export type Events = undefined
 export interface EventsContext {}
 export type MethodNames =
-  | 'new'
-  | 'WAVAX'
+  | 'WETH'
   | 'addLiquidity'
-  | 'addLiquidityAVAX'
+  | 'addLiquidityETH'
   | 'factory'
   | 'getAmountIn'
   | 'getAmountOut'
@@ -26,39 +29,31 @@ export type MethodNames =
   | 'getAmountsOut'
   | 'quote'
   | 'removeLiquidity'
-  | 'removeLiquidityAVAX'
-  | 'removeLiquidityAVAXSupportingFeeOnTransferTokens'
-  | 'removeLiquidityAVAXWithPermit'
+  | 'removeLiquidityETH'
+  | 'removeLiquidityETHSupportingFeeOnTransferTokens'
+  | 'removeLiquidityETHWithPermit'
+  | 'removeLiquidityETHWithPermitSupportingFeeOnTransferTokens'
   | 'removeLiquidityWithPermit'
-  | 'swapAVAXForExactTokens'
-  | 'swapExactAVAXForTokens'
-  | 'swapExactAVAXForTokensSupportingFeeOnTransferTokens'
-  | 'swapExactTokensForAVAX'
-  | 'swapExactTokensForAVAXSupportingFeeOnTransferTokens'
-  | 'swapTokensForExactAVAX'
-  | 'swapTokensForExactAVAXSupportingFeeOnTransferTokens'
-  | 'withdrawAVAX'
+  | 'swapETHForExactTokens'
+  | 'swapExactETHForTokens'
+  | 'swapExactETHForTokensSupportingFeeOnTransferTokens'
+  | 'swapExactTokensForETH'
+  | 'swapExactTokensForETHSupportingFeeOnTransferTokens'
+  | 'swapExactTokensForTokens'
+  | 'swapExactTokensForTokensSupportingFeeOnTransferTokens'
+  | 'swapTokensForExactETH'
+  | 'swapTokensForExactTokens'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface Contract {
   /**
    * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: constructor
-   * @param _factory Type: address, Indexed: false
-   * @param _WAVAX Type: address, Indexed: false
-   */
-  'new'(
-    _factory: string,
-    _WAVAX: string,
-    overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
-  /**
-   * Payable: false
    * Constant: true
-   * StateMutability: view
+   * StateMutability: pure
    * Type: function
    */
-  WAVAX(overrides?: ContractCallOverrides): Promise<string>
+  WETH(overrides?: ContractCallOverrides): Promise<string>
   /**
    * Payable: false
    * Constant: false
@@ -92,15 +87,15 @@ export interface Contract {
    * @param token Type: address, Indexed: false
    * @param amountTokenDesired Type: uint256, Indexed: false
    * @param amountTokenMin Type: uint256, Indexed: false
-   * @param amountAVAXMin Type: uint256, Indexed: false
+   * @param amountETHMin Type: uint256, Indexed: false
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    */
-  addLiquidityAVAX(
+  addLiquidityETH(
     token: string,
     amountTokenDesired: BigNumberish,
     amountTokenMin: BigNumberish,
-    amountAVAXMin: BigNumberish,
+    amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
     overrides?: ContractTransactionOverrides,
@@ -108,7 +103,7 @@ export interface Contract {
   /**
    * Payable: false
    * Constant: true
-   * StateMutability: view
+   * StateMutability: pure
    * Type: function
    */
   factory(overrides?: ContractCallOverrides): Promise<string>
@@ -126,7 +121,7 @@ export interface Contract {
     reserveIn: BigNumberish,
     reserveOut: BigNumberish,
     overrides?: ContractCallOverrides,
-  ): Promise<BigNumber>
+  ): Promise<bigint>
   /**
    * Payable: false
    * Constant: true
@@ -141,7 +136,7 @@ export interface Contract {
     reserveIn: BigNumberish,
     reserveOut: BigNumberish,
     overrides?: ContractCallOverrides,
-  ): Promise<BigNumber>
+  ): Promise<bigint>
   /**
    * Payable: false
    * Constant: true
@@ -154,7 +149,7 @@ export interface Contract {
     amountOut: BigNumberish,
     path: string[],
     overrides?: ContractCallOverrides,
-  ): Promise<BigNumber[]>
+  ): Promise<bigint[]>
   /**
    * Payable: false
    * Constant: true
@@ -167,7 +162,7 @@ export interface Contract {
     amountIn: BigNumberish,
     path: string[],
     overrides?: ContractCallOverrides,
-  ): Promise<BigNumber[]>
+  ): Promise<bigint[]>
   /**
    * Payable: false
    * Constant: true
@@ -182,7 +177,7 @@ export interface Contract {
     reserveA: BigNumberish,
     reserveB: BigNumberish,
     overrides?: ContractCallOverrides,
-  ): Promise<BigNumber>
+  ): Promise<bigint>
   /**
    * Payable: false
    * Constant: false
@@ -195,10 +190,6 @@ export interface Contract {
    * @param amountBMin Type: uint256, Indexed: false
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
-   * @param approveMax Type: bool, Indexed: false
-   * @param v Type: uint8, Indexed: false
-   * @param r Type: bytes32, Indexed: false
-   * @param s Type: bytes32, Indexed: false
    */
   removeLiquidity(
     tokenA: string,
@@ -208,10 +199,6 @@ export interface Contract {
     amountBMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
-    approveMax: boolean,
-    v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -222,7 +209,49 @@ export interface Contract {
    * @param token Type: address, Indexed: false
    * @param liquidity Type: uint256, Indexed: false
    * @param amountTokenMin Type: uint256, Indexed: false
-   * @param amountAVAXMin Type: uint256, Indexed: false
+   * @param amountETHMin Type: uint256, Indexed: false
+   * @param to Type: address, Indexed: false
+   * @param deadline Type: uint256, Indexed: false
+   */
+  removeLiquidityETH(
+    token: string,
+    liquidity: BigNumberish,
+    amountTokenMin: BigNumberish,
+    amountETHMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish,
+    overrides?: ContractTransactionOverrides,
+  ): Promise<ContractTransaction>
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param token Type: address, Indexed: false
+   * @param liquidity Type: uint256, Indexed: false
+   * @param amountTokenMin Type: uint256, Indexed: false
+   * @param amountETHMin Type: uint256, Indexed: false
+   * @param to Type: address, Indexed: false
+   * @param deadline Type: uint256, Indexed: false
+   */
+  removeLiquidityETHSupportingFeeOnTransferTokens(
+    token: string,
+    liquidity: BigNumberish,
+    amountTokenMin: BigNumberish,
+    amountETHMin: BigNumberish,
+    to: string,
+    deadline: BigNumberish,
+    overrides?: ContractTransactionOverrides,
+  ): Promise<ContractTransaction>
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param token Type: address, Indexed: false
+   * @param liquidity Type: uint256, Indexed: false
+   * @param amountTokenMin Type: uint256, Indexed: false
+   * @param amountETHMin Type: uint256, Indexed: false
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    * @param approveMax Type: bool, Indexed: false
@@ -230,11 +259,11 @@ export interface Contract {
    * @param r Type: bytes32, Indexed: false
    * @param s Type: bytes32, Indexed: false
    */
-  removeLiquidityAVAX(
+  removeLiquidityETHWithPermit(
     token: string,
     liquidity: BigNumberish,
     amountTokenMin: BigNumberish,
-    amountAVAXMin: BigNumberish,
+    amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
     approveMax: boolean,
@@ -251,7 +280,7 @@ export interface Contract {
    * @param token Type: address, Indexed: false
    * @param liquidity Type: uint256, Indexed: false
    * @param amountTokenMin Type: uint256, Indexed: false
-   * @param amountAVAXMin Type: uint256, Indexed: false
+   * @param amountETHMin Type: uint256, Indexed: false
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    * @param approveMax Type: bool, Indexed: false
@@ -259,40 +288,11 @@ export interface Contract {
    * @param r Type: bytes32, Indexed: false
    * @param s Type: bytes32, Indexed: false
    */
-  removeLiquidityAVAXSupportingFeeOnTransferTokens(
+  removeLiquidityETHWithPermitSupportingFeeOnTransferTokens(
     token: string,
     liquidity: BigNumberish,
     amountTokenMin: BigNumberish,
-    amountAVAXMin: BigNumberish,
-    to: string,
-    deadline: BigNumberish,
-    approveMax: boolean,
-    v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
-    overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param token Type: address, Indexed: false
-   * @param liquidity Type: uint256, Indexed: false
-   * @param amountTokenMin Type: uint256, Indexed: false
-   * @param amountAVAXMin Type: uint256, Indexed: false
-   * @param to Type: address, Indexed: false
-   * @param deadline Type: uint256, Indexed: false
-   * @param approveMax Type: bool, Indexed: false
-   * @param v Type: uint8, Indexed: false
-   * @param r Type: bytes32, Indexed: false
-   * @param s Type: bytes32, Indexed: false
-   */
-  removeLiquidityAVAXWithPermit(
-    token: string,
-    liquidity: BigNumberish,
-    amountTokenMin: BigNumberish,
-    amountAVAXMin: BigNumberish,
+    amountETHMin: BigNumberish,
     to: string,
     deadline: BigNumberish,
     approveMax: boolean,
@@ -342,7 +342,7 @@ export interface Contract {
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    */
-  swapAVAXForExactTokens(
+  swapETHForExactTokens(
     amountOut: BigNumberish,
     path: string[],
     to: string,
@@ -359,7 +359,7 @@ export interface Contract {
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    */
-  swapExactAVAXForTokens(
+  swapExactETHForTokens(
     amountOutMin: BigNumberish,
     path: string[],
     to: string,
@@ -376,7 +376,7 @@ export interface Contract {
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    */
-  swapExactAVAXForTokensSupportingFeeOnTransferTokens(
+  swapExactETHForTokensSupportingFeeOnTransferTokens(
     amountOutMin: BigNumberish,
     path: string[],
     to: string,
@@ -394,7 +394,7 @@ export interface Contract {
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    */
-  swapExactTokensForAVAX(
+  swapExactTokensForETH(
     amountIn: BigNumberish,
     amountOutMin: BigNumberish,
     path: string[],
@@ -408,12 +408,52 @@ export interface Contract {
    * StateMutability: nonpayable
    * Type: function
    * @param amountIn Type: uint256, Indexed: false
+   * @param amountOutMin Type: uint256, Indexed: false
    * @param path Type: address[], Indexed: false
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    */
-  swapExactTokensForAVAXSupportingFeeOnTransferTokens(
+  swapExactTokensForETHSupportingFeeOnTransferTokens(
     amountIn: BigNumberish,
+    amountOutMin: BigNumberish,
+    path: string[],
+    to: string,
+    deadline: BigNumberish,
+    overrides?: ContractTransactionOverrides,
+  ): Promise<ContractTransaction>
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param amountIn Type: uint256, Indexed: false
+   * @param amountOutMin Type: uint256, Indexed: false
+   * @param path Type: address[], Indexed: false
+   * @param to Type: address, Indexed: false
+   * @param deadline Type: uint256, Indexed: false
+   */
+  swapExactTokensForTokens(
+    amountIn: BigNumberish,
+    amountOutMin: BigNumberish,
+    path: string[],
+    to: string,
+    deadline: BigNumberish,
+    overrides?: ContractTransactionOverrides,
+  ): Promise<ContractTransaction>
+  /**
+   * Payable: false
+   * Constant: false
+   * StateMutability: nonpayable
+   * Type: function
+   * @param amountIn Type: uint256, Indexed: false
+   * @param amountOutMin Type: uint256, Indexed: false
+   * @param path Type: address[], Indexed: false
+   * @param to Type: address, Indexed: false
+   * @param deadline Type: uint256, Indexed: false
+   */
+  swapExactTokensForTokensSupportingFeeOnTransferTokens(
+    amountIn: BigNumberish,
+    amountOutMin: BigNumberish,
     path: string[],
     to: string,
     deadline: BigNumberish,
@@ -430,7 +470,7 @@ export interface Contract {
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    */
-  swapTokensForExactAVAX(
+  swapTokensForExactETH(
     amountOut: BigNumberish,
     amountInMax: BigNumberish,
     path: string[],
@@ -449,25 +489,12 @@ export interface Contract {
    * @param to Type: address, Indexed: false
    * @param deadline Type: uint256, Indexed: false
    */
-  swapTokensForExactAVAXSupportingFeeOnTransferTokens(
+  swapTokensForExactTokens(
     amountOut: BigNumberish,
     amountInMax: BigNumberish,
     path: string[],
     to: string,
     deadline: BigNumberish,
-    overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: function
-   * @param to Type: address, Indexed: false
-   * @param value Type: uint256, Indexed: false
-   */
-  withdrawAVAX(
-    to: string,
-    value: BigNumberish,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
 }

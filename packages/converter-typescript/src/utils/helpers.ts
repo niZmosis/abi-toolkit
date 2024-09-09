@@ -3,7 +3,7 @@ import type {
   AbiInput,
   AbiOutput,
 } from '@ethereum-abi-types-generator/types'
-import type { SolidityNumberType } from '@ethereum-abi-types-generator/types/src'
+import type { SolidityNumberType } from '@ethereum-abi-types-generator/types'
 import {
   capitalize,
   deepClone,
@@ -15,18 +15,28 @@ export default class TypeScriptHelpers {
     type: string,
     library: Library,
   ): string {
-    return this.getSolidityInputTsType({ type } as any, library)
+    return this.getSolidityInputTsType({
+      abiInput: { type } as any,
+      library,
+      suffix: 'Request',
+    })
   }
 
   /**
    * Get the solidity input type mapped to typescript type
    * @param type The solidity type
    */
-  public static getSolidityInputTsType(
-    abiInput: AbiInput,
-    library: Library,
-    prefix: 'Request' | 'EventEmittedResponse' = 'Request',
-  ): string {
+  public static getSolidityInputTsType({
+    methodName,
+    abiInput,
+    library,
+    suffix,
+  }: {
+    methodName?: string
+    abiInput: AbiInput
+    library: Library
+    suffix: 'Request' | 'EventEmittedResponse'
+  }): string {
     switch (library) {
       case 'web3':
         {
@@ -135,7 +145,11 @@ export default class TypeScriptHelpers {
     }
 
     if (abiInput.type.includes(solidityTypeMap.tuple)) {
-      const interfaceName = this.buildInterfaceName(abiInput, prefix)
+      const interfaceName = this.buildInterfaceName({
+        inputOrOutput: abiInput,
+        suffix,
+        methodName,
+      })
       if (abiInput.type.includes('[')) {
         return `${interfaceName}[]`
       }
@@ -151,10 +165,13 @@ export default class TypeScriptHelpers {
    * @param abiOutput The abi output type
    * @param library The library
    */
-  public static getSolidityOutputTsType(
-    abiOutput: AbiOutput,
-    library: Library,
-  ): string {
+  public static getSolidityOutputTsType({
+    abiOutput,
+    library,
+  }: {
+    abiOutput: AbiOutput
+    library: Library
+  }): string {
     // any bespoke library output type logic
     switch (library) {
       case 'ethers_v4':
@@ -202,7 +219,10 @@ export default class TypeScriptHelpers {
     }
 
     if (abiOutput.type.includes(solidityTypeMap.tuple)) {
-      const interfaceName = this.buildInterfaceName(abiOutput)
+      const interfaceName = this.buildInterfaceName({
+        inputOrOutput: abiOutput,
+        suffix: 'Response',
+      })
       if (abiOutput.type.includes('[')) {
         return `${interfaceName}[]`
       }
@@ -237,16 +257,25 @@ export default class TypeScriptHelpers {
   /**
    * Build response interface name
    * @param inputOrOutput The input or output
+   * @param nameOverride The name override
+   * @param suffix The suffix
+   * @param methodName The method name
    */
-  public static buildInterfaceName(
-    inputOrOutput: AbiOutput | AbiInput,
-    requestInterfaceType:
-      | 'Request'
-      | 'Response'
-      | 'EventEmittedResponse' = 'Response',
-  ): string {
-    if (inputOrOutput.name.length > 0) {
-      return `${capitalize(inputOrOutput.name)}${requestInterfaceType}`
+  public static buildInterfaceName({
+    inputOrOutput,
+    nameOverride,
+    suffix,
+    methodName = '',
+  }: {
+    inputOrOutput: AbiOutput | AbiInput
+    nameOverride?: string
+    suffix?: 'Request' | 'Response' | 'EventEmittedResponse'
+    methodName?: string
+  }): string {
+    const name = nameOverride || inputOrOutput.name
+
+    if (name.length > 0) {
+      return `${methodName ? capitalize(methodName) : ''}${capitalize(name)}${suffix || ''}`
     }
 
     if (!inputOrOutput.internalType) {
@@ -257,12 +286,11 @@ export default class TypeScriptHelpers {
       )
     }
 
-    const internalType = deepClone(inputOrOutput.internalType!)
+    const internalType = deepClone(inputOrOutput.internalType)
 
     return `${capitalize(
       internalType
         .substring(internalType.indexOf('.'))
-        .toLowerCase()
         .replace('struct', '')
         .replace('.', '')
         .replace('[', '')

@@ -36,8 +36,8 @@ export type AbiOutput = {
 export type AbiFilePathContext = {
   /** The file path to the ABI file. */
   filePath: string
-  /** The name of the contract in the ABI file. */
-  contractName?: string | undefined
+  /** The name of the contract in the ABI file, used by frameworks like hardhat and truffle. */
+  frameworkContractName?: string | undefined
 }
 
 /**

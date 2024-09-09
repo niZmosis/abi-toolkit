@@ -51,6 +51,9 @@ export type MethodNames =
   | 'int256ReturnExample'
   | 'easyExample'
   | 'new'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface Event1EventEmittedResponse {
   token: string
   exchange: string
@@ -62,25 +65,25 @@ export interface Event2EventEmittedResponse {
   _spender: string
   _value: string
 }
-export interface ORequest {
+export interface TupleInputOnlyORequest {
   address: string
   timestamps: [string | number, string | number, string | number]
 }
-export interface TupleInputAndOutputResponse {
+export interface TupleInputAndOutput {
   affiliate: string
   offerID: string
   creationTime: string
   timestamp: string
   timestamps: [string, string, string, string, string, string]
 }
-export interface TupleNoInputNamesResponse {
+export interface TupleNoInputNames {
   affiliate: string
   offerID: string
   creationTime: string
   timestamp: string
   timestamps: [string, string, string, string, string, string]
 }
-export interface TupleWithParametersNamesResponse {
+export interface TupleWithParametersNames {
   affiliate: string
   offerID: string
   creationTime: string
@@ -95,7 +98,7 @@ export interface Contract {
    * Type: function
    * @param o Type: tuple, Indexed: false
    */
-  tupleInputOnly(o: ORequest): MethodPayableReturnContext
+  tupleInputOnly(o: TupleInputOnlyORequest): MethodPayableReturnContext
   /**
    * Payable: false
    * Constant: true
@@ -107,7 +110,7 @@ export interface Contract {
   tupleInputAndOutput(
     exchangeAddress: string,
     internalAddress: string,
-  ): MethodConstantReturnContext<TupleInputAndOutputResponse>
+  ): MethodConstantReturnContext<TupleInputAndOutput>
   /**
    * Payable: false
    * Constant: true
@@ -119,7 +122,7 @@ export interface Contract {
   tupleNoInputNames(
     parameter0: string,
     parameter1: string,
-  ): MethodConstantReturnContext<TupleNoInputNamesResponse>
+  ): MethodConstantReturnContext<TupleNoInputNames>
   /**
    * Payable: false
    * Constant: true
@@ -131,7 +134,7 @@ export interface Contract {
   tupleWithParametersNames(
     address1: string,
     address2: string,
-  ): MethodConstantReturnContext<TupleWithParametersNamesResponse>
+  ): MethodConstantReturnContext<TupleWithParametersNames>
   /**
    * Payable: true
    * Constant: false

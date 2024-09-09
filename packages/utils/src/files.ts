@@ -277,14 +277,14 @@ export async function getAbiFiles({
         // The file is assumed to be a JsonFragment array
         fileList.push({
           filePath: itemPath,
-          contractName: undefined, // TODO
+          frameworkContractName: undefined,
         })
       } else if (filePath.endsWith('.json')) {
-        if (framework === 'none') {
-          // The file is assumed to be an ABI file
+        if (!framework || framework === 'none') {
+          // The file is assumed to be an ABI JSON file
           fileList.push({
             filePath: itemPath,
-            contractName: undefined, // TODO
+            frameworkContractName: undefined,
           })
 
           return
@@ -301,7 +301,7 @@ export async function getAbiFiles({
               if (metadata.abi && Array.isArray(metadata.abi)) {
                 fileList.push({
                   filePath: itemPath,
-                  contractName: metadata.contractName,
+                  frameworkContractName: metadata.contractName,
                 })
               }
             } catch (error) {

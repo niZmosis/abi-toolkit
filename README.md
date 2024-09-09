@@ -3,6 +3,8 @@
 
 ## ethereum-abi-types-generator
 
+NOTE: These docs need to be updated to reflect the new version. Check out the examples/typescript-cli folder.
+
 Dev typings for all your ethereum ABI contract methods and events with 1 liner integrations with `web3` and `ethers` 👏👏👏👏. Never have to have a runtime error again and bring them into compile time errors in 2 minutes.
 
 <img src="./images/gif-demo.gif" />
@@ -69,7 +71,7 @@ export interface FooRequest {
 public contractCall(request: FooRequest): Promise<ContractCallResponse>
 ```
 
-If you have worked with dynamic interfaces you understand the pain it brings having to recreate everytime.
+If you have worked with dynamic interfaces you understand the pain it brings having to recreate every time.
 
 ### Use your provider interface your use too
 

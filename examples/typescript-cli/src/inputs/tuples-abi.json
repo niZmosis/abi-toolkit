@@ -32,6 +32,47 @@
             "internalType": "bytes",
             "name": "referenceModuleInitData",
             "type": "bytes"
+          },
+          {
+            "components": [
+              {
+                "internalType": "string",
+                "name": "nestedTuple0Single0",
+                "type": "string"
+              },
+              {
+                "components": [
+                  {
+                    "internalType": "address",
+                    "name": "nestedTuple1Single0",
+                    "type": "address"
+                  },
+                  {
+                    "components": [
+                      {
+                        "internalType": "bytes32",
+                        "name": "nestedTuple2Single0",
+                        "type": "bytes32"
+                      },
+                      {
+                        "internalType": "uint256",
+                        "name": "nestedTuple2Single1",
+                        "type": "uint256"
+                      }
+                    ],
+                    "internalType": "tuple",
+                    "name": "nestedTuple2",
+                    "type": "tuple"
+                  }
+                ],
+                "internalType": "tuple",
+                "name": "nestedTuple1",
+                "type": "tuple"
+              }
+            ],
+            "internalType": "tuple",
+            "name": "nestedTuple0",
+            "type": "tuple"
           }
         ],
         "internalType": "struct Types.PostParams",

@@ -74,6 +74,9 @@ export type MethodNames =
   | 'addPortal'
   | 'updatePortal'
   | 'travel'
+export type MethodNameMap = {
+  [key in MethodNames]: string
+}
 export interface OwnershipTransferredEventEmittedResponse {
   previousOwner: string
   newOwner: string
