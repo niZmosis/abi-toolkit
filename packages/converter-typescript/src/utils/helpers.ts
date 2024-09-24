@@ -6,7 +6,6 @@ import type {
 import type { SolidityNumberType } from '@ethereum-abi-types-generator/types'
 import {
   capitalize,
-  deepClone,
   solidityTypeMap,
 } from '@ethereum-abi-types-generator/utils'
 
@@ -286,7 +285,7 @@ export default class TypeScriptHelpers {
       )
     }
 
-    const internalType = deepClone(inputOrOutput.internalType)
+    const internalType = structuredClone(inputOrOutput.internalType)
 
     return `${capitalize(
       internalType
@@ -309,7 +308,7 @@ export default class TypeScriptHelpers {
     solidityType: SolidityNumberType,
     library: Library,
   ): 'number' | 'BigNumber' | 'bigint' {
-    const clonedType = deepClone(type)
+    const clonedType = structuredClone(type)
 
     const bits = clonedType.replace(solidityType, '').split('[')[0]
     const totalBits = Number(bits)
@@ -332,7 +331,7 @@ export default class TypeScriptHelpers {
     type: string,
     solidityType: SolidityNumberType,
   ): 'string | number' | 'string' {
-    const clonedType = deepClone(type)
+    const clonedType = structuredClone(type)
 
     const bits = clonedType.replace(solidityType, '').split('[')[0]
     const totalBits = Number(bits)

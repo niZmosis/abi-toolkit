@@ -6,7 +6,6 @@ import {
   generateHelpMessages,
   getHelpMessageByCommandType,
 } from '../src/help'
-import { deepClone } from '../src/object'
 import { capitalize, removeAllWhiteSpace } from '../src/strings'
 
 describe('Helpers', () => {
@@ -46,7 +45,7 @@ describe('Helpers', () => {
 
   describe('buildUpHelpMessage', () => {
     it('should render the correct output message', () => {
-      const helperMessageObject = deepClone(generateHelpMessages)
+      const helperMessageObject = structuredClone(generateHelpMessages)
       helperMessageObject.commands.push('test')
       const result = buildUpHelpMessage(helperMessageObject)
 
@@ -72,10 +71,10 @@ describe('Helpers', () => {
     })
   })
 
-  describe('deepClone', () => {
+  describe('structuredClone', () => {
     it('should deep clone a object', () => {
       const foo = { bar: true }
-      const clone = deepClone(foo)
+      const clone = structuredClone(foo)
       clone.bar = false
       expect(foo).not.toEqual(clone)
     })
