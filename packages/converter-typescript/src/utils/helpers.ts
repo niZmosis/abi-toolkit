@@ -10,6 +10,11 @@ import {
 } from '@ethereum-abi-types-generator/utils'
 
 export default class TypeScriptHelpers {
+  /**
+   * Get the solidity input type mapped to typescript type
+   * @param type The solidity type
+   * @param library The library
+   */
   public static getSolidityInputTsTypeByTypeName(
     type: string,
     library: Library,

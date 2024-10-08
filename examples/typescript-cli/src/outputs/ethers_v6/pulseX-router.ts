@@ -19,7 +19,6 @@ export type ContractContext = EthersContractContextV6<
 export type Events = undefined
 export interface EventsContext {}
 export type MethodNames =
-  | 'new'
   | 'WPLS'
   | 'addLiquidity'
   | 'addLiquidityETH'
@@ -48,19 +47,6 @@ export type MethodNameMap = {
   [key in MethodNames]: string
 }
 export interface Contract {
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: undefined
-   * Type: constructor
-   * @param _factory Type: address, Indexed: false
-   * @param _WPLS Type: address, Indexed: false
-   */
-  'new'(
-    _factory: string,
-    _WPLS: string,
-    overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
   /**
    * Payable: false
    * Constant: true

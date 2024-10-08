@@ -15,7 +15,7 @@ const library = `--library=${libraryTypes.join('|')}`
 const libraryImportAlias = '--libraryImportAlias=ethersv5'
 const makeOutputDir = '--makeOutputDir'
 const makeIndexFile = '--makeIndexFile'
-const prefixName = '--prefixName=MyPrefixName'
+const outputFileName = '--outputFileName=MyPrefixName'
 const prefixTypes = '--prefixTypes'
 const watch = '--watch'
 const includeFiles = '--includeFiles=["./inputs/fake-contract-abi.json"]'
@@ -36,25 +36,25 @@ export const generateHelpMessages: HelpMessage = {
   examples: [
     cyan('Basic Usage'),
     `${command} ${inputDirOrPath}`,
-    `${command} ${inputDirOrPath} ${prefixName}`,
-    `${command} ${inputDirOrPath} ${prefixName} ${prettierOptions}`,
+    `${command} ${inputDirOrPath} ${outputFileName}`,
+    `${command} ${inputDirOrPath} ${outputFileName} ${prettierOptions}`,
     `${command} ${inputDirOrPath} ${watch}`,
-    `${command} ${inputDirOrPath} ${prefixName} ${watch}`,
+    `${command} ${inputDirOrPath} ${outputFileName} ${watch}`,
 
     cyan('Output Directory'),
     `${command} ${inputDirOrPath} ${outputDir}`,
     `${command} ${inputDirOrPath} ${outputDir} ${watch}`,
-    `${command} ${inputDirOrPath} ${outputDir} ${prefixName}`,
-    `${command} ${inputDirOrPath} ${outputDir} ${prefixName} ${prefixTypes}`,
-    `${command} ${inputDirOrPath} ${outputDir} ${prefixName} ${watch}`,
+    `${command} ${inputDirOrPath} ${outputDir} ${outputFileName}`,
+    `${command} ${inputDirOrPath} ${outputDir} ${outputFileName} ${prefixTypes}`,
+    `${command} ${inputDirOrPath} ${outputDir} ${outputFileName} ${watch}`,
 
     cyan('Formatting Options'),
     `${command} ${inputDirOrPath} ${prettierOptions}`,
     `${command} ${inputDirOrPath} ${prettierOptions} ${watch}`,
     `${command} ${inputDirOrPath} ${outputDir} ${prettierOptions}`,
     `${command} ${inputDirOrPath} ${outputDir} ${prettierOptions} ${watch}`,
-    `${command} ${inputDirOrPath} ${outputDir} ${prefixName} ${prettierOptions}`,
-    `${command} ${inputDirOrPath} ${outputDir} ${prefixName} ${prettierOptions} ${watch}`,
+    `${command} ${inputDirOrPath} ${outputDir} ${outputFileName} ${prettierOptions}`,
+    `${command} ${inputDirOrPath} ${outputDir} ${outputFileName} ${prettierOptions} ${watch}`,
 
     cyan('Library Options'),
     `${command} ${inputDirOrPath} ${library}`,
@@ -64,10 +64,10 @@ export const generateHelpMessages: HelpMessage = {
     `${command} ${inputDirOrPath} ${library} ${prettierOptions} ${watch}`,
 
     cyan('Custom Library Options'),
-    `${command} ${inputDirOrPath} ${prefixName} ${library}`,
-    `${command} ${inputDirOrPath} ${prefixName} ${library} ${watch}`,
-    `${command} ${inputDirOrPath} ${prefixName} ${library} ${prettierOptions}`,
-    `${command} ${inputDirOrPath} ${prefixName} ${library} ${prettierOptions} ${watch}`,
+    `${command} ${inputDirOrPath} ${outputFileName} ${library}`,
+    `${command} ${inputDirOrPath} ${outputFileName} ${library} ${watch}`,
+    `${command} ${inputDirOrPath} ${outputFileName} ${library} ${prettierOptions}`,
+    `${command} ${inputDirOrPath} ${outputFileName} ${library} ${prettierOptions} ${watch}`,
 
     cyan('ESLint and Prettier Configurations'),
     `${command} ${inputDirOrPath} ${outputDir} ${eslintConfigPath}`,
@@ -123,6 +123,7 @@ export function buildUpHelpMessage(helpMessage: HelpMessage): string {
  */
 export function getHelpMessageByCommandType(commandType: CommandType): string {
   switch (commandType) {
+    case 'generate':
     case 'scripts':
       return buildUpHelpMessage(generateHelpMessages)
     default:

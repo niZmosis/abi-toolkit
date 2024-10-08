@@ -4,7 +4,6 @@ import type { AbiFilePathContext } from '@ethereum-abi-types-generator/types'
 import {
   defaultOutputDir,
   getAbiFiles,
-  loadAbiContent,
   formatAndLintFiles,
   Logger,
   getProgramArguments,
@@ -13,6 +12,7 @@ import {
   buildExecutingPath,
   getDirectoryPathForFramework,
   commandMap,
+  defaultClassOutputDir,
 } from '@ethereum-abi-types-generator/utils'
 import { yellow, green } from 'colors'
 
@@ -30,47 +30,55 @@ const stats = {
 /**
  * Tracks all the generated files to build the index file
  */
-const generatedFilePaths: string[] = []
+const generatedFilePaths: {
+  typings: string[]
+  classes: string[]
+} = {
+  typings: [],
+  classes: [],
+}
 
 export async function execute(packageVersion: string): Promise<void> {
   // Used to track how long it takes to generate the typings
   const startTime = new Date()
 
   // Get the cli arguments, and or the config file arguments
-  const context = await getProgramArguments()
+  const context = await getProgramArguments(packageVersion)
   const { command, options } = context ?? {}
   const {
-    scripts,
-    version,
     inputDirOrPath,
     outputDir,
     framework,
     includeFiles,
     excludeFiles,
-    prefixName,
+    outputFileName,
     makeIndexFile,
+    generateClasses,
     eslintConfigPath,
     prettierConfigPath,
     eslintOptions,
     prettierOptions,
+    classOutputDir,
   } = options ?? {}
 
-  if (version || command === 'version') {
-    return Logger.log(packageVersion)
-  }
-
-  if (scripts || command === 'scripts') {
+  if (command === 'scripts' || command === 's') {
     return Logger.log(getHelpMessageByCommandType(commandMap.scripts))
   }
 
   let dirOrPath = inputDirOrPath
 
-  if (!dirOrPath && (!framework || framework === 'none')) {
+  const hasFramework =
+    framework === 'hardhat' ||
+    command === 'hardhat' ||
+    framework === 'truffle' ||
+    command === 'truffle'
+
+  if (!dirOrPath && !hasFramework) {
     Logger.error('inputDirOrPath is required.')
     process.exit(1)
   }
 
-  if (!dirOrPath && (framework === 'hardhat' || framework === 'truffle')) {
+  if (!dirOrPath && hasFramework) {
     const frameworkDirectory = getDirectoryPathForFramework(framework)
     const contracts = buildExecutingPath(frameworkDirectory)
 
@@ -83,9 +91,9 @@ export async function execute(packageVersion: string): Promise<void> {
     dirOrPath = contracts
   }
 
-  const filePathContexts: AbiFilePathContext[] = isDirectory(dirOrPath)
-    ? await getAbiFiles({ directoryPath: dirOrPath })
-    : [{ filePath: dirOrPath, frameworkContractName: undefined }]
+  const filePathContexts: AbiFilePathContext[] = await getAbiFiles({
+    dirOrPath,
+  })
 
   if (!filePathContexts.length) {
     if (!framework || framework === 'none') {
@@ -99,14 +107,18 @@ export async function execute(packageVersion: string): Promise<void> {
     }
   }
 
-  Logger.info(`Found ${filePathContexts.length} files to process. Starting...`)
+  const numberOfFiles = filePathContexts.length
+
+  Logger.info(
+    `Found ${numberOfFiles} ABI ${numberOfFiles === 1 ? 'file' : 'files'} to process. Starting...`,
+  )
 
   // Generate all the type files
   await Promise.allSettled(
     filePathContexts.map(async (filePathContext) => {
-      stats.totalFiles++
+      stats.totalFiles += generateClasses ? 2 : 1
 
-      const { filePath, frameworkContractName } = filePathContext
+      const { filePath, frameworkContractName, abiItems } = filePathContext
 
       if (
         !!includeFiles.length &&
@@ -126,41 +138,69 @@ export async function execute(packageVersion: string): Promise<void> {
         return
       }
 
-      const result = await loadAbiContent(filePath)
+      const results = await commands.generate.abiFiles({
+        ...context,
+        options: {
+          ...context.options,
+          inputPath: filePath,
+          abiItems,
+        },
+      })
 
-      switch (result.type) {
+      if (!results) {
+        // Logger.error is already called
+        return
+      }
+
+      const fileName =
+        // `outputFileName` is only used if the input was a single file
+        filePathContexts.length === 1
+          ? outputFileName || frameworkContractName || ''
+          : frameworkContractName ||
+            path.basename(filePath, path.extname(filePath))
+
+      if (results?.typingsResult) {
+        generatedFilePaths.typings.push(
+          path.join(outputDir || defaultOutputDir, `${fileName}.ts`),
+        )
+
+        stats.generatedFiles++
+      }
+
+      if (results?.classResult) {
+        generatedFilePaths.classes.push(
+          path.join(classOutputDir || defaultClassOutputDir, `${fileName}.ts`),
+        )
+
+        stats.generatedFiles++
+      }
+
+      switch (results.typingsResult.type) {
         case 'ok':
-          // Prefix name is only used if the input was a single file
-          const fileName =
-            filePathContexts.length === 1
-              ? prefixName || frameworkContractName || ''
-              : frameworkContractName ||
-                path.basename(filePath, path.extname(filePath))
-
-          await commands.generate.abiFile({
-            ...context,
-            options: {
-              ...context.options,
-              inputPath: filePath,
-              inputFile: result.value,
-            },
-          })
-
-          generatedFilePaths.push(
-            path.join(outputDir || defaultOutputDir, `${fileName}.ts`),
-          )
-
-          stats.generatedFiles++
-
-          return
+          break
         case 'err':
-          Logger.error(`Error generating file: ${result.error}`)
+          Logger.error(`Error generating file: ${results.typingsResult.error}`)
           stats.failedFiles++
-          return
+          break
         case 'mute':
-          Logger.warning(`Skipping file: ${result.error}`)
+          Logger.warning(`Skipping file: ${results.typingsResult.error}`)
           stats.incompatible++
-          return
+          break
+      }
+
+      if (results.classResult) {
+        switch (results.classResult.type) {
+          case 'ok':
+            break
+          case 'err':
+            Logger.error(`Error generating file: ${results.classResult.error}`)
+            stats.failedFiles++
+            break
+          case 'mute':
+            Logger.warning(`Skipping file: ${results.classResult.error}`)
+            stats.incompatible++
+            break
+        }
       }
     }),
   )
@@ -169,7 +209,7 @@ export async function execute(packageVersion: string): Promise<void> {
   if (makeIndexFile) {
     try {
       Logger.info('Generating index file...')
-      await commands.generate.indexFile(context, generatedFilePaths)
+      await commands.generate.indexFiles(context, generatedFilePaths)
       stats.createdIndexFile = true
     } catch (error: any) {
       Logger.error(`Error generating index file: ${error?.message}`)

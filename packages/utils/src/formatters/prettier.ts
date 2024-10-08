@@ -90,8 +90,9 @@ async function loadPrettierConfigDefault(): Promise<PrettierOptions | null> {
  * 3. If neither `prettierOptions` nor `prettierConfigPath` is provided, it will try to automatically find the Prettier configuration.
  * 4. If all methods fail, it will return a default Prettier configuration.
  *
- * @param prettierOptions - Optional Prettier options to be used directly.
- * @param prettierConfigPath - Optional path to the Prettier configuration file.
+ * @param params - The arguments.
+ * @param params.prettierOptions - Optional Prettier options to be used directly.
+ * @param params.prettierConfigPath - Optional path to the Prettier configuration file.
  * @returns A promise that resolves to the Prettier options.
  */
 export async function loadPrettierConfig({

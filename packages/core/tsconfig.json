@@ -1,6 +1,6 @@
 {
   "extends": "../../tsconfig.json",
-  "include": ["src/**/*.ts", "tests/**/*.ts", "../../tests/mocks/abi-properties.mock.ts", "../utils/tests/helpers.spec.ts"],
+  "include": ["src/**/*.ts", "tests/**/*.ts"],
   "compilerOptions": {
     "outDir": "./dist"
   }

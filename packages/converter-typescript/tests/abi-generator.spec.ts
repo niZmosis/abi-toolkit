@@ -6,12 +6,12 @@ import fs, { type FSWatcher } from 'fs-extra'
 import { describe, it, expect, vi } from 'vitest'
 
 import abiJson from '../../../tests/mocks/fake-contract-abi.json'
-import { AbiGenerator } from '../src/factories/abi-generator'
+import { TypingsGenerator } from '../src/factories/typings/typings-generator'
 
 const generatorContext = {
   library: 'web3',
   inputPath: "'abi.json'",
-  inputFile: JSON.stringify(abiJson),
+  abiItems: abiJson,
   outputDir: "'badOutputDir'",
   verbatimModuleSyntax: false,
   makeOutputDir: false,
@@ -19,13 +19,13 @@ const generatorContext = {
   preventOverwrite: false,
 } as GeneratorContext
 
-type abiGeneratorOptionsType = {
+type typingsGeneratorOptionsType = {
   existsSync: boolean
   lstatSync: boolean
   callGenerate: boolean
 }
 
-const defaultAbiGeneratorOptions: abiGeneratorOptionsType = {
+const defaultTypingsGeneratorOptions: typingsGeneratorOptionsType = {
   existsSync: true,
   lstatSync: true,
   callGenerate: true,
@@ -39,11 +39,11 @@ let watchSpy: ReturnType<any>
 let pathDirnameSpy: ReturnType<any>
 let pathResolveSpy: ReturnType<any>
 
-const callSuccessAbiGeneratorInstance = async (
-  options: abiGeneratorOptionsType = defaultAbiGeneratorOptions,
+const callSuccessTypingsGeneratorInstance = async (
+  options: typingsGeneratorOptionsType = defaultTypingsGeneratorOptions,
   context: GeneratorContext = generatorContext,
 ) => {
-  const instance = new AbiGenerator(context)
+  const instance = new TypingsGenerator(context)
 
   existsSyncSpy = vi
     .spyOn(fs, 'existsSync')
@@ -79,32 +79,36 @@ const callSuccessAbiGeneratorInstance = async (
   return instance
 }
 
-describe('AbiGenerator', async () => {
+describe('TypingsGenerator', async () => {
   it('should clear all quotes from generatorContext.inputPath', async () => {
-    const generator = await callSuccessAbiGeneratorInstance()
+    const generator = await callSuccessTypingsGeneratorInstance()
     // @ts-ignore
     expect(generator._context.inputPath).toEqual(generatorContext.inputPath)
   })
 
   it('should clear all quotes from generatorContext.outputDir', async () => {
-    const generator = await callSuccessAbiGeneratorInstance()
+    const generator = await callSuccessTypingsGeneratorInstance()
     // @ts-ignore
     expect(generator._context.outputDir).toEqual(generatorContext.outputDir)
   })
 
   it('should throw an error if output path does not exist', async () => {
-    const abiGeneratorOptionsClone = structuredClone(defaultAbiGeneratorOptions)
-    abiGeneratorOptionsClone.existsSync = false
+    const typingsGeneratorOptionsClone = structuredClone(
+      defaultTypingsGeneratorOptions,
+    )
+    typingsGeneratorOptionsClone.existsSync = false
 
     await expect(
-      callSuccessAbiGeneratorInstance(abiGeneratorOptionsClone),
-    ).rejects.toThrowError('output path must be a directory')
+      callSuccessTypingsGeneratorInstance(typingsGeneratorOptionsClone),
+    ).rejects.toThrowError('Output path must be a directory')
   })
 
   it('should throw an error if output path is not a directory', async () => {
-    const abiGeneratorOptionsClone = structuredClone(defaultAbiGeneratorOptions)
-    abiGeneratorOptionsClone.lstatSync = false
-    abiGeneratorOptionsClone.callGenerate = false
+    const typingsGeneratorOptionsClone = structuredClone(
+      defaultTypingsGeneratorOptions,
+    )
+    typingsGeneratorOptionsClone.lstatSync = false
+    typingsGeneratorOptionsClone.callGenerate = false
 
     vi.spyOn(fs, 'lstatSync').mockReturnValue({
       isDirectory: () => {
@@ -112,19 +116,19 @@ describe('AbiGenerator', async () => {
       },
     } as any)
 
-    const instance = await callSuccessAbiGeneratorInstance(
-      abiGeneratorOptionsClone,
+    const instance = await callSuccessTypingsGeneratorInstance(
+      typingsGeneratorOptionsClone,
     )
 
     expect(instance).toBeDefined()
 
     await expect(instance!.generate()).rejects.toThrowError(
-      'output path must be a directory',
+      'Output path must be a directory',
     )
   })
 
   it('should not call path.dirname if `this._context.outputDir` is defined', async () => {
-    await callSuccessAbiGeneratorInstance()
+    await callSuccessTypingsGeneratorInstance()
     expect(pathDirnameSpy).toHaveBeenCalledTimes(0)
   })
 
@@ -134,15 +138,15 @@ describe('AbiGenerator', async () => {
 
     generatorContextClone!.outputDir = ''
 
-    await callSuccessAbiGeneratorInstance(
-      defaultAbiGeneratorOptions,
+    await callSuccessTypingsGeneratorInstance(
+      defaultTypingsGeneratorOptions,
       generatorContextClone,
     )
     expect(pathDirnameSpy).toHaveBeenCalledTimes(3)
   })
 
   // it('should call path.resolve 5 times if `this._context.outputDir` is defined', async () => {
-  //   await callSuccessAbiGeneratorInstance()
+  //   await callSuccessTypingsGeneratorInstance()
   //   expect(pathResolveSpy).toHaveBeenCalledTimes(5)
   // })
 
@@ -151,8 +155,8 @@ describe('AbiGenerator', async () => {
     expect(generatorContextClone).toBeDefined()
     generatorContextClone!.outputDir = ''
 
-    await callSuccessAbiGeneratorInstance(
-      defaultAbiGeneratorOptions,
+    await callSuccessTypingsGeneratorInstance(
+      defaultTypingsGeneratorOptions,
       generatorContextClone,
     )
     expect(pathResolveSpy).toHaveBeenCalled()
@@ -162,8 +166,8 @@ describe('AbiGenerator', async () => {
     const generatorContextClone = structuredClone(generatorContext)
     generatorContextClone.preventOverwrite = false
 
-    await callSuccessAbiGeneratorInstance(
-      defaultAbiGeneratorOptions,
+    await callSuccessTypingsGeneratorInstance(
+      defaultTypingsGeneratorOptions,
       generatorContextClone,
     )
     expect(existsSyncSpy).toHaveBeenCalledTimes(1)
@@ -173,8 +177,8 @@ describe('AbiGenerator', async () => {
     const generatorContextClone = structuredClone(generatorContext)
     generatorContextClone.preventOverwrite = true
 
-    await callSuccessAbiGeneratorInstance(
-      defaultAbiGeneratorOptions,
+    await callSuccessTypingsGeneratorInstance(
+      defaultTypingsGeneratorOptions,
       generatorContextClone,
     )
     expect(existsSyncSpy).toHaveBeenCalledTimes(2)
@@ -182,12 +186,12 @@ describe('AbiGenerator', async () => {
 
   it('should call fs.readFileSync 0 times', async () => {
     // Core reads the file, not converters
-    await callSuccessAbiGeneratorInstance()
+    await callSuccessTypingsGeneratorInstance()
     expect(readFileSyncSpy).toHaveBeenCalledTimes(0)
   })
 
   it('should call fs.writeFileSyncSpy 2 times, one for abi and one for common types', async () => {
-    await callSuccessAbiGeneratorInstance()
+    await callSuccessTypingsGeneratorInstance()
     expect(writeFileSyncSpy).toHaveBeenCalledTimes(2)
   })
 
@@ -196,15 +200,15 @@ describe('AbiGenerator', async () => {
     generatorContextClone.library = 'blah' as any
 
     await expect(
-      callSuccessAbiGeneratorInstance(
-        defaultAbiGeneratorOptions,
+      callSuccessTypingsGeneratorInstance(
+        defaultTypingsGeneratorOptions,
         generatorContextClone,
       ),
     ).rejects.toThrowError('blah is not a known supported library')
   })
 
   it('should not call `fs.watch` if watch is not defined', async () => {
-    await callSuccessAbiGeneratorInstance()
+    await callSuccessTypingsGeneratorInstance()
     expect(watchSpy).toHaveBeenCalledTimes(0)
   })
 
@@ -212,15 +216,15 @@ describe('AbiGenerator', async () => {
     const generatorContextClone = structuredClone(generatorContext)
     generatorContextClone.watch = true
 
-    await callSuccessAbiGeneratorInstance(
-      defaultAbiGeneratorOptions,
+    await callSuccessTypingsGeneratorInstance(
+      defaultTypingsGeneratorOptions,
       generatorContextClone,
     )
     expect(watchSpy).toHaveBeenCalledTimes(1)
   })
 
   // it('should call prettier once with the default options', async () => {
-  //   await callSuccessAbiGeneratorInstance()
+  //   await callSuccessTypingsGeneratorInstance()
   //   expect(prettierFormatSpy).toHaveBeenCalledTimes(1)
   //   expect(JSON.stringify(prettierFormatSpy.mock.calls[0][1])).toEqual(
   //     '{"parser":"typescript","trailingComma":"es5","singleQuote":true,"bracketSpacing":true,"printWidth":80,"plugins":[{"parsers":{"typescript":{"astFormat":"estree"}}}]}',
@@ -229,7 +233,7 @@ describe('AbiGenerator', async () => {
 
   describe('Web3', async () => {
     it('round trip', async () => {
-      await callSuccessAbiGeneratorInstance()
+      await callSuccessTypingsGeneratorInstance()
 
       expect(writeFileSyncSpy).toHaveBeenCalledTimes(2)
 
@@ -263,13 +267,13 @@ describe('AbiGenerator', async () => {
     })
 
     it('should call _web3Factory.buildInterfaces once', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
       )
 
       expect(instance).toBeDefined()
@@ -300,13 +304,13 @@ describe('AbiGenerator', async () => {
     })
 
     it('should call _web3Factory.buildEventInterfaceProperties once', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
       )
 
       expect(instance).toBeDefined()
@@ -531,13 +535,13 @@ describe('AbiGenerator', async () => {
     })
 
     it('should call _web3Factory.buildMethodReturnContext 10 times', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
       )
 
       expect(instance).toBeDefined()
@@ -570,8 +574,8 @@ describe('AbiGenerator', async () => {
       const generatorContextClone = structuredClone(generatorContext)
       generatorContextClone.library = libraryMap.ethers_v4
 
-      await callSuccessAbiGeneratorInstance(
-        defaultAbiGeneratorOptions,
+      await callSuccessTypingsGeneratorInstance(
+        defaultTypingsGeneratorOptions,
         generatorContextClone,
       )
 
@@ -609,8 +613,8 @@ describe('AbiGenerator', async () => {
     //   const generatorContextClone = structuredClone(generatorContext)
     //   generatorContextClone.library = libraryMap.ethers_v4
 
-    //   callSuccessAbiGeneratorInstance(
-    //     defaultAbiGeneratorOptions,
+    //   callSuccessTypingsGeneratorInstance(
+    //     defaultTypingsGeneratorOptions,
     //     generatorContextClone,
     //   )
 
@@ -876,16 +880,16 @@ describe('AbiGenerator', async () => {
     // })
 
     it('should call _ethersFactory.buildEthersInterfaces once', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
       const generatorContextClone = structuredClone(generatorContext)
       generatorContextClone.library = libraryMap.ethers_v4
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
         generatorContextClone,
       )
 
@@ -921,16 +925,16 @@ describe('AbiGenerator', async () => {
     })
 
     it('should call _ethersFactory.buildEventInterfaceProperties once', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
       const generatorContextClone = structuredClone(generatorContext)
       generatorContextClone.library = libraryMap.ethers_v4
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
         generatorContextClone,
       )
 
@@ -1156,16 +1160,16 @@ describe('AbiGenerator', async () => {
     })
 
     it('should call _ethersFactory.buildMethodReturnContext 10 times', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
       const generatorContextClone = structuredClone(generatorContext)
       generatorContextClone.library = libraryMap.ethers_v4
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
         generatorContextClone,
       )
 
@@ -1199,8 +1203,8 @@ describe('AbiGenerator', async () => {
       const generatorContextClone = structuredClone(generatorContext)
       generatorContextClone.library = libraryMap.ethers_v5
 
-      await callSuccessAbiGeneratorInstance(
-        defaultAbiGeneratorOptions,
+      await callSuccessTypingsGeneratorInstance(
+        defaultTypingsGeneratorOptions,
         generatorContextClone,
       )
 
@@ -1239,8 +1243,8 @@ describe('AbiGenerator', async () => {
     //   const generatorContextClone = structuredClone(generatorContext)
     //   generatorContextClone.library = libraryMap.ethers_v5
 
-    //   callSuccessAbiGeneratorInstance(
-    //     defaultAbiGeneratorOptions,
+    //   callSuccessTypingsGeneratorInstance(
+    //     defaultTypingsGeneratorOptions,
     //     generatorContextClone,
     //   )
 
@@ -1510,16 +1514,16 @@ describe('AbiGenerator', async () => {
     // })
 
     it('should call _ethersFactory.buildEthersInterfaces once', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
       const generatorContextClone = structuredClone(generatorContext)
       generatorContextClone.library = libraryMap.ethers_v5
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
         generatorContextClone,
       )
 
@@ -1555,16 +1559,16 @@ describe('AbiGenerator', async () => {
     })
 
     it('should call _ethersFactory.buildEventInterfaceProperties once', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
       const generatorContextClone = structuredClone(generatorContext)
       generatorContextClone.library = libraryMap.ethers_v5
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
         generatorContextClone,
       )
 
@@ -1790,16 +1794,16 @@ describe('AbiGenerator', async () => {
     })
 
     it('should call _ethersFactory.buildMethodReturnContext 10 times', async () => {
-      const abiGeneratorOptionsClone = structuredClone(
-        defaultAbiGeneratorOptions,
+      const typingsGeneratorOptionsClone = structuredClone(
+        defaultTypingsGeneratorOptions,
       )
-      abiGeneratorOptionsClone.callGenerate = false
+      typingsGeneratorOptionsClone.callGenerate = false
 
       const generatorContextClone = structuredClone(generatorContext)
       generatorContextClone.library = libraryMap.ethers_v5
 
-      const instance = await callSuccessAbiGeneratorInstance(
-        abiGeneratorOptionsClone,
+      const instance = await callSuccessTypingsGeneratorInstance(
+        typingsGeneratorOptionsClone,
         generatorContextClone,
       )
 

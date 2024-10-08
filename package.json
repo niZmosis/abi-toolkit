@@ -12,8 +12,9 @@
   ],
   "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
   "author": "joshstevens19@hotmail.co.uk",
-  "license": "MIT",
+  "license": "ISC",
   "scripts": {
+    "wipe": "lerna clean -y && rm -rf node_modules && find . -name 'node_modules' -type d -prune -exec rm -rf '{}' + && find . -name 'dist' -type d -prune -exec rm -rf '{}' +",
     "clean": "lerna clean --yes",
     "lint": "pnpm eslint --ext .ts,.tsx,.js,.jsx . --fix",
     "prettier": "prettier --write .",

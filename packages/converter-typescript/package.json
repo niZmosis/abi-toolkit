@@ -11,7 +11,7 @@
   ],
   "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
   "author": "joshstevens19@hotmail.co.uk",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
   },
@@ -34,7 +34,6 @@
     "start": "tsc -w -p tsconfig.build.json"
   },
   "dependencies": {
-    "@ethereum-abi-types-generator/converter-abstract": "workspace:*",
     "@ethereum-abi-types-generator/utils": "workspace:*",
     "bignumber.js": "9.1.2",
     "bn.js": "5.2.1",

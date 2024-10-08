@@ -1,67 +1,40 @@
 import {
   getProgramArguments,
   Logger,
-  getHelpMessageByCommandType,
   commandMap,
 } from '@ethereum-abi-types-generator/utils'
-import { describe, it, expect, vi } from 'vitest'
+import * as utilsModule from '@ethereum-abi-types-generator/utils'
+import { describe, it, expect, vi, type Mock } from 'vitest'
 
 import { execute } from '../src/bin/execute'
 
-vi.mock('@ethereum-abi-types-generator/utils', () => ({
-  default: {
+vi.mock('@ethereum-abi-types-generator/utils', async () => {
+  const actual = await vi.importActual<
+    typeof import('@ethereum-abi-types-generator/utils')
+  >('@ethereum-abi-types-generator/utils')
+  return {
+    ...actual,
     getProgramArguments: vi.fn(),
     Logger: {
       log: vi.fn(),
       error: vi.fn(),
+      info: vi.fn(),
+      warning: vi.fn(),
     },
-    getHelpMessageByCommandType: vi.fn(),
-  },
-}))
+  }
+})
 
 describe('Generator CLI', () => {
   const version = '1.0.0'
 
   describe('execute', () => {
-    it('should log the version if --version is supplied', async () => {
-      ;(getProgramArguments as any).mockReturnValue({
-        options: {
-          version: true,
-        },
-      })
-
-      const logSpy = vi.spyOn(Logger, 'log')
-
-      await execute(version)
-
-      expect(logSpy).toHaveBeenCalledTimes(1)
-      expect(logSpy).toHaveBeenCalledWith(version)
-    })
-
-    it('should log the version if -v is supplied', async () => {
-      ;(getProgramArguments as any).mockReturnValue({
-        options: {
-          v: true,
-        },
-      })
-
-      const logSpy = vi.spyOn(Logger, 'log')
-
-      await execute(version)
-
-      expect(logSpy).toHaveBeenCalledTimes(1)
-      expect(logSpy).toHaveBeenCalledWith(version)
-    })
-
-    it('should log the help if --help is supplied', async () => {
-      ;(getProgramArguments as any).mockReturnValue({
-        options: {
-          help: true,
-        },
+    it('should log the scripts if --scripts is supplied', async () => {
+      ;(getProgramArguments as Mock).mockResolvedValue({
+        command: 'scripts',
       })
 
       const getHelpMessageSpy = vi.spyOn(
-        { getHelpMessageByCommandType },
+        utilsModule,
         'getHelpMessageByCommandType',
       )
       const logSpy = vi.spyOn(Logger, 'log')
@@ -73,17 +46,13 @@ describe('Generator CLI', () => {
       expect(getHelpMessageSpy).toHaveBeenCalledWith(commandMap.scripts)
     })
 
-    it('should log the help if help is the command', async () => {
-      ;(getProgramArguments as any).mockReturnValue(
-        Promise.resolve({
-          command: 'help',
-          subcommands: [],
-          options: {},
-        }),
-      )
+    it('should log the scripts if -s is supplied', async () => {
+      ;(getProgramArguments as Mock).mockResolvedValue({
+        command: 's',
+      })
 
       const getHelpMessageSpy = vi.spyOn(
-        { getHelpMessageByCommandType },
+        utilsModule,
         'getHelpMessageByCommandType',
       )
       const logSpy = vi.spyOn(Logger, 'log')

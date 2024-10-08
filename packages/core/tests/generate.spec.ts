@@ -1,8 +1,9 @@
-import { AbiGenerator } from '@ethereum-abi-types-generator/converter-typescript'
+import { TypingsGenerator } from '@ethereum-abi-types-generator/converter-typescript'
 import type {
   GenerateResponse,
   GeneratorContext,
   ProgramContext,
+  Rustify,
 } from '@ethereum-abi-types-generator/types'
 import { languageTypes, Logger } from '@ethereum-abi-types-generator/utils'
 import { describe, it, expect, beforeEach, vi } from 'vitest'
@@ -15,16 +16,20 @@ const programOptions: ProgramContext<Partial<GeneratorContext>> = {
   options: {},
 }
 
-class MockAbiGenerator extends AbiGenerator {
+class MockTypingsGenerator extends TypingsGenerator {
   constructor() {
     super(null as any)
   }
 
-  override async generate(): Promise<GenerateResponse> {
+  override async generate(): Promise<Rustify<GenerateResponse, string>> {
     return {
-      abiName: 'abiName',
-      outputLocation: 'test-output-location',
-      abiJsonFileLocation: programOptions.command,
+      type: 'ok',
+      value: {
+        abiName: 'abiName',
+        outputLocation: 'test-output-location',
+        abiFileLocation: programOptions.command,
+        content: '',
+      },
     }
   }
 }
@@ -34,16 +39,16 @@ describe('Generate', () => {
 
   beforeEach(() => {
     vi.mock('../../converter-typescript/src/factories/abi-generator', () => ({
-      default: MockAbiGenerator,
+      default: MockTypingsGenerator,
     }))
   })
 
   it('should have the abiFile object exported', () => {
-    expect(command).toHaveProperty('abiFile')
+    expect(command).toHaveProperty('abiFiles')
   })
 
   it('should have the indexFile object exported', () => {
-    expect(command).toHaveProperty('indexFile')
+    expect(command).toHaveProperty('indexFiles')
   })
 
   it('should call log an error if language is invalid', async () => {
@@ -51,8 +56,8 @@ describe('Generate', () => {
 
     const language = 'blah'
 
-    await command.abiFile({
-      command: 'abi/abi.json',
+    await command.abiFiles({
+      command: '',
       subcommands: [],
       options: {
         language,

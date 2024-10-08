@@ -1,6 +1,5 @@
 import type {
   ProgramContext,
-  ProgramOptions,
   EatConfigContext,
   Library,
   Language,
@@ -24,9 +23,6 @@ import { removeAllWhiteSpace } from './strings'
  */
 export const commandTypes: CommandType[] = [
   'generate',
-  'generateIndex',
-  'help',
-  'version',
   'scripts',
   'hardhat',
   'truffle',
@@ -52,30 +48,20 @@ export const isCommandType = (
  * Retrieves and parses all program arguments using yargs.
  * @returns A promise that resolves to a ProgramContext containing the parsed options.
  */
-export async function getProgramArguments(): Promise<
-  ProgramContext<ProgramOptions>
-> {
-  const args = await yargs(hideBin(process.argv))
-    .version(false) // Overriding the version command
-    // .command(commandMap.generate, 'Generate an ABI typings file')
-    // .command(
-    //   commandMap.generateIndex,
-    //   'Generate an index file for all ABI typings',
-    // )
+export async function getProgramArguments(
+  packageVersion: string,
+): Promise<ProgramContext<EatConfigContext>> {
+  const parser = yargs(hideBin(process.argv))
+    .alias('h', 'help')
+    .alias('v', 'version')
+    .version(packageVersion)
     .command(commandMap.scripts, 'Show script helpers')
-    .command(commandMap.hardhat, 'Generate an ABI typings files for Hardhat')
-    .command(commandMap.truffle, 'Generate an ABI typings files for Truffle')
-    .option('scripts', {
-      type: 'boolean',
-      describe: 'Show script helpers',
-    })
+    .command(commandMap.generate, 'Generate ABI typings')
+    .command(commandMap.hardhat, 'Generate ABI typings for Hardhat')
+    .command(commandMap.truffle, 'Generate ABI typings for Truffle')
     .option('config', {
       type: 'string',
       describe: 'Path to config file',
-    })
-    .option('version', {
-      type: 'boolean',
-      describe: 'Show version',
     })
     .option('inputDirOrPath', {
       type: 'string',
@@ -109,15 +95,15 @@ export async function getProgramArguments(): Promise<
       type: 'boolean',
       describe: 'Generate an index file exporting all the generated typings',
     })
-    .option('prefixName', {
+    .option('outputFileName', {
       type: 'string',
       describe:
-        'Prefix name to the generated typings. Only used for single file input',
+        'The file name to use for the generated typings. Only used for single file input. Defaults to name of the ABI file',
     })
     .option('prefixTypes', {
       type: 'boolean',
       describe:
-        'Whether to prefix the name of the type, eg. ("MyTokenContract" or "PrefixNameContract") vs "Contract"',
+        'Whether to prefix the name of the type with the `outputFileName`, eg. ("MyTokenContract" or "PrefixNameContract") vs "Contract"',
     })
     .option('watch', {
       type: 'boolean',
@@ -160,12 +146,38 @@ export async function getProgramArguments(): Promise<
     .option('prettierOptions', {
       type: 'string',
       describe: 'Prettier options override',
-    }).argv
+    })
+    .option('generateClasses', {
+      type: 'boolean',
+      describe: 'Generate classes for each contract',
+    })
+    .option('classOutputDir', {
+      type: 'string',
+      describe: 'Output directory for generated classes',
+    })
+    .option('classMulticall', {
+      type: 'boolean',
+      describe: 'Enable multicall support in generated classes',
+    })
+
+  const args = await parser.argv
+
+  const positionalArgs = args._ as string[]
+
+  if (!positionalArgs.length) {
+    parser.showHelp()
+    process.exit(0)
+  }
 
   // Get the commands
-  const positionalArgs = args._
-  const command = positionalArgs[0] as string
-  const subcommands = positionalArgs.slice(1) as string[]
+  const command = positionalArgs[0]
+
+  if (!Object.keys(commandMap).includes(command)) {
+    Logger.error(`Command ${command} is not supported`)
+    process.exit(1)
+  }
+
+  const subcommands = positionalArgs.slice(1)
 
   const isCommandFramework = frameworkTypes.includes(command as Framework)
 
@@ -178,10 +190,6 @@ export async function getProgramArguments(): Promise<
       ? await loadConfigFile<EatConfigContext>(configPath)
       : null
   } catch (error) {}
-
-  // Misc options
-  const scripts = args.scripts || false
-  const version = args.version || false
 
   // Generator options
   const inputDirOrPath = args.inputDirOrPath || config?.inputDirOrPath || ''
@@ -207,8 +215,10 @@ export async function getProgramArguments(): Promise<
     args.makeIndexFile ||
     config?.makeIndexFile ||
     defaultConfigArgs.makeIndexFile
-  const prefixName = removeAllWhiteSpace(
-    args.prefixName || config?.prefixName || defaultConfigArgs.prefixName,
+  const outputFileName = removeAllWhiteSpace(
+    args.outputFileName ||
+      config?.outputFileName ||
+      defaultConfigArgs.outputFileName,
   )
   const prefixTypes =
     args.prefixTypes || config?.prefixTypes || defaultConfigArgs.prefixTypes
@@ -240,8 +250,20 @@ export async function getProgramArguments(): Promise<
     args.eslintConfigPath ||
     config?.eslintConfigPath ||
     defaultConfigArgs.eslintConfigPath
+  const generateClasses =
+    args.generateClasses ||
+    config?.generateClasses ||
+    defaultConfigArgs.generateClasses
+  const classOutputDir =
+    args.classOutputDir ||
+    config?.classOutputDir ||
+    defaultConfigArgs.classOutputDir
+  const classMulticall =
+    args.classMulticall ||
+    config?.classMulticall ||
+    defaultConfigArgs.classMulticall
 
-  // Parsing ESLint and Prettier options
+  // Parsing ESLint options
   let eslintOptions: ESLint.Options = defaultConfigArgs.eslintOptions
   if (args.eslintOptions && typeof args.eslintOptions === 'string') {
     try {
@@ -261,6 +283,7 @@ export async function getProgramArguments(): Promise<
     eslintOptions = config.eslintOptions
   }
 
+  // Parsing Prettier options
   let prettierOptions: PrettierOptions = defaultConfigArgs.prettierOptions
   if (args.prettierOptions && typeof args.prettierOptions === 'string') {
     try {
@@ -283,8 +306,6 @@ export async function getProgramArguments(): Promise<
   return {
     command,
     options: {
-      scripts,
-      version,
       inputDirOrPath,
       outputDir,
       library,
@@ -292,7 +313,7 @@ export async function getProgramArguments(): Promise<
       framework,
       makeOutputDir,
       makeIndexFile,
-      prefixName,
+      outputFileName,
       prefixTypes,
       watch,
       includeFiles,
@@ -304,6 +325,9 @@ export async function getProgramArguments(): Promise<
       prettierConfigPath,
       eslintOptions,
       prettierOptions,
+      generateClasses,
+      classOutputDir,
+      classMulticall,
     },
     subcommands,
   }

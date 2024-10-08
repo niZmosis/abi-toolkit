@@ -19,6 +19,13 @@ import type {
   TransactionDescription,
 } from 'ethersv5/lib/utils'
 
+/**
+ * Represents the context of an Ethers v5 contract with methods, method names, events context, and event types.
+ * @template TMethods The contract methods
+ * @template TMethodNames The names of the contract methods
+ * @template TEventsContext The context for contract events
+ * @template TEventType The type of contract events
+ */
 export type EthersContractContextV5<
   TMethods,
   TMethodNames,
@@ -27,8 +34,16 @@ export type EthersContractContextV5<
 > = EthersContractV5<TMethods, TMethodNames, TEventsContext, TEventType> &
   TMethods
 
+/**
+ * Represents a contract function that returns a promise.
+ * @template T The type of the promise result
+ */
 type ContractFunction<T = any> = (...args: any[]) => Promise<T>
 
+/**
+ * Represents the internal interface of an Ethers v5 contract.
+ * @template TMethodNames The names of the contract methods
+ */
 declare class InternalInterface<TMethodNames> {
   readonly fragments: Fragment[]
   readonly errors: {
@@ -93,7 +108,11 @@ declare class InternalInterface<TMethodNames> {
   static isInterface(value: any): value is Interface
 }
 
-interface ContractVersionV5<TMethodNames> {
+/**
+ * Represents the base structure of an Ethers v5 contract.
+ * @template TMethodNames The names of the contract methods
+ */
+export interface ContractVersionV5<TMethodNames> {
   readonly address: string
   readonly interface: InternalInterface<TMethodNames>
   readonly signer: Signer
@@ -125,8 +144,19 @@ interface ContractVersionV5<TMethodNames> {
   listeners(eventName: EventFilter | string): Listener[]
 }
 
-interface EthersContractV5<TMethods, TMethodNames, TEventsContext, TEventType>
-  extends ContractVersionV5<TMethodNames> {
+/**
+ * Represents an Ethers v5 contract with extended functionality.
+ * @template TMethods The contract methods
+ * @template TMethodNames The names of the contract methods
+ * @template TEventsContext The context for contract events
+ * @template TEventType The type of contract events
+ */
+export interface EthersContractV5<
+  TMethods,
+  TMethodNames,
+  TEventsContext,
+  TEventType,
+> extends ContractVersionV5<TMethodNames> {
   // readonly estimate: TMethods => Promise<BigNumber>;
   readonly functions: TMethods
   readonly filters: TEventsContext

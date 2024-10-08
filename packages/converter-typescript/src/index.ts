@@ -1,3 +1,5 @@
-export * from './factories'
-export * from './types'
+export * from './factories/classes/class-generator'
+export * from './factories/typings/typings-generator'
+export * from './factories/generator'
+export * from './types/index'
 export * from './utils/helpers'

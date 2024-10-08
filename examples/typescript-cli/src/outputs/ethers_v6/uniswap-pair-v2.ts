@@ -23,7 +23,6 @@ export interface EventsContext {
   ): EventFilter
 }
 export type MethodNames =
-  | 'new'
   | 'allPairs'
   | 'allPairsLength'
   | 'createPair'
@@ -42,17 +41,6 @@ export interface PairCreatedEventEmittedResponse {
   param3: BigNumberish
 }
 export interface Contract {
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: constructor
-   * @param _feeToSetter Type: address, Indexed: false
-   */
-  'new'(
-    _feeToSetter: string,
-    overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
   /**
    * Payable: false
    * Constant: true

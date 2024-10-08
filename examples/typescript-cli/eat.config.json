@@ -6,7 +6,7 @@
   "library": "ethers_v5",
   "libraryImportAlias": "ethersv5",
   "makeIndexFile": true,
-  "prefixName": "",
+  "outputFileName": "",
   "watch": false,
   "includeFiles": [],
   "excludeFiles": [],
@@ -15,5 +15,8 @@
   "verbatimModuleSyntax": true,
   "language": "ts",
   "eslintConfigPath": "../../.eslintrc.json",
-  "prettierConfigPath": "../../.prettierrc.json"
+  "prettierConfigPath": "../../.prettierrc.json",
+  "generateClasses": false,
+  "classOutputDir": "./src/classes/ethers_v5",
+  "classMulticall": false
 }

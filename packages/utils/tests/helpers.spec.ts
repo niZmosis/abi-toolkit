@@ -1,6 +1,6 @@
 import { describe, it, expect } from 'vitest'
 
-import { commandMap, getProgramArguments } from '../src/command'
+import { commandMap } from '../src/command'
 import {
   buildUpHelpMessage,
   generateHelpMessages,
@@ -19,16 +19,6 @@ describe('Helpers', () => {
     })
   })
 
-  describe('getProgramArguments', () => {
-    it('should return jests cli execution objects running', async () => {
-      const args = await getProgramArguments()
-
-      expect(args).toHaveProperty('command')
-      expect(args).toHaveProperty('options')
-      expect(args).toHaveProperty('subcommands')
-    })
-  })
-
   describe('getHelpMessageByCommandType', () => {
     it('should throw a error if command is not a type', () => {
       expect(() => {
@@ -37,7 +27,7 @@ describe('Helpers', () => {
     })
 
     it('should build a help message by calling `buildUpHelpMessage` returning a string', () => {
-      const message = getHelpMessageByCommandType(commandMap.scripts)
+      const message = getHelpMessageByCommandType(commandMap.generate)
 
       expect(message.length).toBeGreaterThan(0)
     })

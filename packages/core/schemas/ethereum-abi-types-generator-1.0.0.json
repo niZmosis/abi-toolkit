@@ -35,13 +35,13 @@
       "type": "boolean",
       "description": "Whether to generate an index file exporting all the generated typings. Defaults to true."
     },
-    "prefixName": {
+    "outputFileName": {
       "type": "string",
-      "description": "Prefix name to the generated typings. Only used for single file input. Defaults to name of the ABI file if `prefixTypes` is true."
+      "description": "The file name to use for the generated typings. Only used for single file input. Defaults to name of the ABI file."
     },
     "prefixTypes": {
       "type": "boolean",
-      "description": "Whether to prefix the name of the type, eg. ('MyTokenContract' or 'PrefixNameContract') vs 'Contract'. Defaults to false."
+      "description": "Whether to prefix the name of the type with the `outputFileName`, eg. ('MyTokenContract' or 'PrefixNameContract') vs 'Contract'. Defaults to false."
     },
     "watch": {
       "type": "boolean",
@@ -89,6 +89,20 @@
     "prettierOptions": {
       "description": "The Prettier configuration object or the path to the prettierrc file.",
       "$ref": "http://json.schemastore.org/prettierrc"
+    },
+    "generateClasses": {
+      "type": "boolean",
+      "description": "Generate classes for each contract.",
+      "default": false
+    },
+    "classOutputDir": {
+      "type": "string",
+      "description": "The output directory for the class files. Defaults to the `outputDir` if not supplied."
+    },
+    "classMulticall": {
+      "type": "boolean",
+      "description": "Enable multicall support in generated classes.",
+      "default": false
     }
   }
 }

@@ -3,6 +3,7 @@ import type { ESLint } from 'eslint'
 import type { Options as PrettierOptions } from 'prettier'
 
 export const defaultOutputDir = './ethereum-abi-types'
+export const defaultClassOutputDir = './ethereum-abi-classes'
 
 export const defaultConfigFileName = 'eat.config.json'
 
@@ -14,7 +15,7 @@ export const defaultConfigArgs: EatConfigContext = {
   framework: 'none',
   makeOutputDir: true,
   makeIndexFile: true,
-  prefixName: '',
+  outputFileName: '',
   prefixTypes: false,
   watch: false,
   includeFiles: [],
@@ -26,6 +27,9 @@ export const defaultConfigArgs: EatConfigContext = {
   prettierConfigPath: '',
   eslintOptions: {},
   prettierOptions: {},
+  generateClasses: false,
+  classOutputDir: defaultClassOutputDir,
+  classMulticall: false,
 }
 
 export const defaultPrettierConfig: PrettierOptions = {

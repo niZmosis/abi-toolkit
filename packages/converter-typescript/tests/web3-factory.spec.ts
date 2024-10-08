@@ -6,7 +6,7 @@ import {
 import { describe, it, expect, beforeEach } from 'vitest'
 
 import { AbiPropertiesMock } from '../../../tests/mocks/abi-properties.mock'
-import { Web3Factory } from '../src'
+import { Web3Factory } from '../src/factories/typings/web3-typings.factory'
 
 describe('Web3Factory', () => {
   const abiName = 'TestAbi'

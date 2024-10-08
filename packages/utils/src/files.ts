@@ -5,7 +5,13 @@ import type {
   Framework,
   Rustify,
   AbiFilePathContext,
+  AbiItem,
+  AbiItemType,
+  AbiInput,
+  AbiOutput,
+  StateMutabilityType,
 } from '@ethereum-abi-types-generator/types'
+import type { JsonFragment } from '@ethersproject/abi'
 import fs from 'fs-extra'
 
 import { isJsonFragmentArray } from './abi'
@@ -103,6 +109,70 @@ export function getDirectoryPathForFramework(framework: Framework): string {
   }
 }
 
+export async function transformJsonFragmentToAbiItems({
+  abiFilePath,
+  content,
+}: {
+  abiFilePath: string
+  content: string
+}): Promise<Rustify<AbiItem[], string>> {
+  try {
+    // Check if the file starts with "export default", indicating it's a JS/TS file
+    if (!content.startsWith('export default')) {
+      return {
+        type: 'mute',
+        error: `${abiFilePath} does not contain a valid JsonFragment array.`,
+      }
+    }
+
+    // Clean up the "export default" part
+    content = content.replace('export default ', '')
+
+    // Remove trailing commas and format the content
+    content = content.replace(/,(\s*[\]}])/g, '$1')
+
+    // Replace single quotes with double quotes
+    content = content.replace(/'/g, '"')
+
+    // Fix unquoted keys
+    content = content.replace(/(\w+):/g, '"$1":')
+
+    // Remove comments from the file
+    content = stripComments(content)
+
+    let jsonFragments: JsonFragment[]
+
+    try {
+      jsonFragments = eval(content)
+    } catch (error) {
+      return {
+        type: 'err',
+        error: `${abiFilePath} failed to parse content for ABI file.`,
+      }
+    }
+
+    if (!Array.isArray(jsonFragments)) {
+      return {
+        type: 'mute',
+        error: `${abiFilePath} does not contain a valid JsonFragment array.`,
+      }
+    }
+
+    // Convert JsonFragment[] to AbiItem[]
+    const abiItems = convertJsonFragmentToAbiItems(jsonFragments)
+
+    return {
+      type: 'ok',
+      value: abiItems,
+    }
+  } catch (error) {
+    return {
+      type: 'err',
+      error: `${abiFilePath} is not a valid file or an error occurred: ${error}`,
+    }
+  }
+}
+
 /**
  * Transform a JsonFragment file to a valid JSON file
  * @param abiFilePath The ABI file path
@@ -172,34 +242,104 @@ export async function transformJsonFragmentToJson(
 }
 
 /**
+ * Gets the abi json
+ */
+export function convertAbiFileToAbiItems(file: string): AbiItem[] {
+  try {
+    const result = JSON.parse(file)
+
+    if (result.abi) {
+      return result.abi
+    }
+
+    return result as AbiItem[]
+  } catch (error) {
+    throw new Error(`Provided ABI content is not a valid JSON object.`)
+  }
+}
+
+/**
  * Load and parse ABI content
  * @param abiFilePath The ABI file path
  * @returns The ABI content, or an empty string if the file is incompatible (e.g. not a JSON file or JsonFragment file)
- * @throws Error if the JSON or JsonFragment file is invalid
  */
-export async function loadAbiContent(
-  abiFilePath: string,
-): Promise<Rustify<string, string>> {
-  if (abiFilePath.endsWith('.json')) {
-    try {
-      const content = fs.readFileSync(abiFilePath, 'utf8')
-      return {
-        type: 'ok',
-        value: stripComments(content),
+export async function loadAbiContent(abiFilePath: string): Promise<
+  Rustify<
+    | AbiItem[]
+    | {
+        contractName: string
+        abiItems: AbiItem[]
+      },
+    string
+  >
+> {
+  try {
+    const content = fs.readFileSync(abiFilePath, 'utf8')
+
+    if (abiFilePath.endsWith('.json')) {
+      try {
+        return {
+          type: 'ok',
+          value: JSON.parse(stripComments(content)),
+        }
+      } catch (error) {
+        return {
+          type: 'err',
+          error: `${abiFilePath} invalid ABI JSON.`,
+        }
       }
-    } catch (error) {
-      return {
-        type: 'err',
-        error: `${abiFilePath} invalid ABI JSON.`,
-      }
+    } else if (abiFilePath.endsWith('.js') || abiFilePath.endsWith('.ts')) {
+      const value = await transformJsonFragmentToAbiItems({
+        abiFilePath,
+        content,
+      })
+
+      return value
     }
-  } else if (abiFilePath.endsWith('.js') || abiFilePath.endsWith('.ts')) {
-    return transformJsonFragmentToJson(abiFilePath)
+  } catch (error) {
+    return {
+      type: 'err',
+      error: `${abiFilePath} file not found.`,
+    }
   }
 
   return {
     type: 'mute',
     error: `${abiFilePath} has incompatible extension.`,
+  }
+}
+
+/**
+ * Converts a JsonFragment file to an array of AbiItems
+ * @param fragments The JsonFragment array
+ * @returns The array of AbiItems
+ */
+export function convertJsonFragmentToAbiItems(
+  fragments: JsonFragment[],
+): AbiItem[] {
+  try {
+    return fragments
+      .map((fragment) => {
+        // `ABIItem` requires name and type, ignore fragment if they're not present
+        if (!fragment.name || !fragment.type) {
+          return undefined
+        }
+
+        const item: AbiItem = {
+          name: fragment.name,
+          type: fragment.type as AbiItemType,
+          inputs: fragment.inputs as AbiInput[],
+          outputs: fragment.outputs as AbiOutput[],
+          stateMutability: fragment.stateMutability as StateMutabilityType,
+          payable: fragment.payable,
+          anonymous: fragment.anonymous,
+        }
+
+        return item
+      })
+      .filter(Boolean) as AbiItem[]
+  } catch (error) {
+    throw new Error(`Provided ABI content is not a valid JSON object.`)
   }
 }
 
@@ -251,64 +391,53 @@ export function getAbiFileLocationRawName(inputPath: string): string {
 
 /**
  * Get all the abi files and extract the .abi property if it's a Hardhat or Truffle framework
- * @param framework The framework
- * @param directoryPath The directory
- * @param fileList The file list
+ * @param params The arguments
+ * @param params.dirOrPath The directory or file path
+ * @param params.framework The framework
+ * @param params.fileList The file list, used for recursion
  */
 export async function getAbiFiles({
-  directoryPath,
+  dirOrPath,
   framework = 'none',
   fileList = [],
 }: {
-  directoryPath: string
+  dirOrPath: string
   framework?: Framework
   fileList?: AbiFilePathContext[]
 }): Promise<AbiFilePathContext[]> {
-  const filePaths = await fs.promises.readdir(directoryPath)
+  const filePaths = isDirectory(dirOrPath)
+    ? await fs.promises.readdir(dirOrPath)
+    : [dirOrPath]
 
   await Promise.allSettled(
     filePaths.map(async (filePath) => {
-      const itemPath = path.join(directoryPath, filePath)
+      const itemPath = path.join(dirOrPath, filePath)
 
       if (isDirectory(itemPath)) {
-        getAbiFiles({ framework, directoryPath: itemPath, fileList })
+        getAbiFiles({ framework, dirOrPath: itemPath, fileList })
         return
-      } else if (filePath.endsWith('.js') || filePath.endsWith('.ts')) {
-        // The file is assumed to be a JsonFragment array
-        fileList.push({
-          filePath: itemPath,
-          frameworkContractName: undefined,
-        })
-      } else if (filePath.endsWith('.json')) {
-        if (!framework || framework === 'none') {
-          // The file is assumed to be an ABI JSON file
+      }
+
+      const result = await loadAbiContent(itemPath)
+
+      if (result.type === 'ok') {
+        if (result.value && Array.isArray(result.value)) {
           fileList.push({
             filePath: itemPath,
             frameworkContractName: undefined,
+            abiItems: result.value,
           })
-
-          return
+        } else if (result.value && 'contractName' in result.value) {
+          fileList.push({
+            filePath: itemPath,
+            frameworkContractName: result.value.contractName,
+            abiItems: result.value.abiItems,
+          })
+        } else {
+          throw new Error(`Invalid ABI file`)
         }
-
-        // The file is assumed to be a metadata file
-        const result = await loadAbiContent(itemPath)
-
-        if (result.type === 'ok') {
-          if (filePath.includes('.json')) {
-            try {
-              const metadata = JSON.parse(result.value)
-
-              if (metadata.abi && Array.isArray(metadata.abi)) {
-                fileList.push({
-                  filePath: itemPath,
-                  frameworkContractName: metadata.contractName,
-                })
-              }
-            } catch (error) {
-              // mute it
-            }
-          }
-        }
+      } else {
+        throw new Error(`Error loading ABI file`)
       }
     }),
   )

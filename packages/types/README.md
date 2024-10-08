@@ -29,3 +29,7 @@ pnpm add @ethereum-abi-types-generator/types
 ```bash
 bun add @ethereum-abi-types-generator/types
 ```
+
+## Links
+
+- [Github](https://github.com/joshstevens19/ethereum-abi-types-generator)

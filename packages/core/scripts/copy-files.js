@@ -25,18 +25,6 @@ fs.readFile(srcReadmePath, 'utf8', (err, data) => {
   });
 });
 
-// Copy LICENSE
-const srcLicensePath = path.resolve(__dirname, '../../../LICENSE');
-const destLicensePath = path.resolve(__dirname, '../LICENSE');
-
-fs.copyFile(srcLicensePath, destLicensePath, (err) => {
-  if (err) {
-    console.error(err);
-  } else {
-    console.log('Successfully copied LICENSE');
-  }
-});
-
 // Copy schema
 const srcDir = path.resolve(__dirname, '../schemas')
 const distDir = path.resolve(__dirname, '../dist/schemas')

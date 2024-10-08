@@ -1,299 +1,376 @@
+# ethereum-abi-types-generator
+
 [![npm version](https://badge.fury.io/js/ethereum-abi-types-generator.svg)](https://badge.fury.io/js/ethereum-abi-types-generator)
 ![downloads](https://img.shields.io/npm/dw/ethereum-abi-types-generator)
 
-## ethereum-abi-types-generator
+Generate TypeScript typings for all your Ethereum ABI contract methods and events with 1-liner integrations for `web3` and `ethers`. Never have runtime errors again - bring them into compile-time errors in 2 minutes! 🎉
 
-NOTE: These docs need to be updated to reflect the new version. Check out the examples/typescript-cli folder.
+![GIF Demo](./images/gif-demo.gif)
 
-Dev typings for all your ethereum ABI contract methods and events with 1 liner integrations with `web3` and `ethers` 👏👏👏👏. Never have to have a runtime error again and bring them into compile time errors in 2 minutes.
+A CLI tool that allows you to convert an ABI JSON file into fully loaded interface types.
 
-<img src="./images/gif-demo.gif" />
+## Table of Contents
 
-A CLI tool which allows you to convert an ABI json file into fully loaded interfaces types.
+- [Features](#features)
+- [Supported Libraries / Frameworks](#supported-libraries--frameworks)
+- [Installation](#installation)
+- [Tsconfig Compile Time Issues](#tsconfig-compile-time-issues)
+- [Usage](#usage)
+  - [Common Options](#common-options)
+    - [Configuration](#configuration)
+    - [Input/Output](#inputoutput)
+    - [Library Options](#library-options)
+    - [Framework Options](#framework-options)
+    - [Generation Options](#generation-options)
+    - [Watching Options](#watching-options)
+    - [File Inclusion/Exclusion](#file-inclusionexclusion)
+    - [Formatting Options](#formatting-options)
+- [Generator CLI](#generator-cli)
+  - [Available Commands](#available-commands)
+  - [CLI Examples](#cli-examples)
+- [Generator Configuration File](#generator-configuration-file)
+- [Using with Hardhat/Truffle](#using-with-hardhattruffle)
+- [Test Example](#test-example)
+- [Using Web3](#using-web3)
+  - [Uniswap Full Example](#uniswap-full-example-web3)
+  - [Example](#example-web3)
+  - [Full Example](#full-example-web3)
+- [Using Ethers](#using-ethers)
+  - [Uniswap Full Example](#uniswap-full-example-ethers)
+  - [Example](#example-ethers)
+  - [Full Example](#full-example-ethers)
+- [Motivation](#motivation)
+- [⚔️ ethereum-abi-types-generator vs TypeChain](#️-ethereum-abi-types-generator-vs-typechain)
+- [Issues](#issues)
+- [Thanks And Support](#thanks-and-support)
+- [License](#license)
 
-## Features 🚀
+## Features
 
-🚀 Compile time errors, never make easy dynamic mistakes again.
-<br/>
-🚀 Easy 1 line solution to get working
-<br/>
-🚀 Use the same interfaces as the provider your use to, no changes in how you develop
-<br/>
-🚀 Works with just a simple ABI json file
-<br/>
-🚀 Supports `ethers` and `web3` out the box
-<br/>
-🚀 0 bundle increase, its all dev dependencies so get all the benefit with no negative impact on your build size
-<br/>
-🚀 Nice easy CLI to allow you to generate these however you like, build scripts, watch file change events its up to you
-<br/>
-🚀 Supported multidimensional return types aka `bytes32[4] >`[string, string, string, string, string]`
-<br/>
-🚀 Automatic documentation generated on each method outputting all the details about it which is on the ABI - no jumping back and forth
-<br/>
-🚀 Generated event typings
+- 🚀 **Generate TypeScript Typings from ABI Files**: Convert your Ethereum smart contract ABIs into fully typed TypeScript interfaces, including support for complex types like nested tuples and multi-dimensional arrays. Supporting both JSON and JSONFragment[] files.
 
-## Supports
+- 🔎 **Automatic Regeneration with Watch Mode**: Enable watch mode to automatically regenerate typings whenever your ABI files change, ensuring your types are always up-to-date.
+
+- ⚙️ **Highly Configurable via CLI and Config Files**: Customize the tool using command-line arguments or a configuration file, allowing for flexible integration into any project setup.
+
+- 🔌 **Supports Multiple Ethereum Libraries and Frameworks**:
+  - **Libraries**:
+    - Web3.js (1.x and 2.x)
+    - Ethers.js (v4, v5, and v6)
+  - **Frameworks**:
+    - Truffle
+    - Hardhat
+
+- 🧩 **Comprehensive Type Support**: Handles all Solidity types, including advanced types like nested tuples and multi-dimensional arrays, to ensure accurate type definitions.
+
+- 📚 **Automatic Documentation Generation**: Generates detailed documentation for each contract method and event directly from the ABI, including parameter types, state mutability, and more.
+
+- 🛠 **Index File Generation**: Optionally generate an index file that exports all generated typings for easier imports and better project organization.
+
+- ✨ **Code Formatting with Prettier and ESLint**: Automatically formats and lints generated code using Prettier and ESLint, with support for custom configuration paths and options.
+
+- 📦 **Zero Runtime Dependencies**: Produces pure TypeScript interfaces without adding any runtime dependencies to your project.
+
+- 🔄 **ESM Export Alias Support**: Supports ECMAScript Module (ESM) export aliases for all generated typing files, allowing for flexible import strategies.
+
+- 🗂 **Selective File Inclusion/Exclusion**: Specify which ABI files to include or exclude, giving you granular control over the generation process.
+
+- 🔐 **Overwrite Protection**: Optionally prevent overwriting existing files to safeguard manual changes.
+
+- 🌐 **Multi-Language Support**: Designed to support multiple target languages, starting with TypeScript, with plans for future expansion.
+
+- ⚡ **Performance Optimized**: Efficiently handles large projects with many contracts, ensuring fast generation times.
+
+- 🛡 **Event Typing and Filtering**: Generates accurate typings for contract events, including event filters and listener methods.
+
+- 🤝 **Easy Integration with Build Tools**: Seamlessly integrate into your build process or scripts, enhancing your development workflow.
+
+- 💎 **Open Source and Community-Driven**: Join the community on GitHub to contribute, report issues, or request features.
+
+## Supported Libraries / Frameworks
 
 - Web3 1.x and 2.x
-- Ethers 5.x
-- Ethers 4.x
+- Ethers 4.x, 5.x, and 6.x
+- Truffle
 - Hardhat
-
-## ethereum-abi-types-generator vs TypeChain
-
-The first question I normally get is “have you seen TypeChain”, yes I have of course and it is a great tool but it was missing and did a few things which I didn't want as a developer. The main differences with this ethereum-abi-types-generator vs typechain are:
-
-### No bundle size at all added
-
-With TypeChain you have a class factory you have to connect to adding size into the final bundle. This package is all interfaces meaning nothing is added to your final bundle size.
-
-### Exposes proper typed interfaces meaning you can use them in your application
-
-TypeChain has dynamic interfaces aka `public contractCall(): Promise<{ foo: BigNumber }>` so if you wanted to use that interface somewhere in your app its not exported so can not be used. This lib generates response interfaces which are exported aka:
-
-```ts
-export interface ContractCallResponse {
-  foo: BigNumber
-}
-
-public contractCall(): Promise<ContractCallResponse>
-```
-
-This means you can use this interface anywhere in your app as its just exported for you. The naming for this is `${contractCallMethodName}Response` aka if a method was called HelloWorld the response interface would be `HelloWorldResponse`. This also follows suit on the request interfaces aka:
-
-```ts
-export interface FooRequest {
-  foo: BigNumber,
-  boo: string;
-}
-
-public contractCall(request: FooRequest): Promise<ContractCallResponse>
-```
-
-If you have worked with dynamic interfaces you understand the pain it brings having to recreate every time.
-
-### Use your provider interface your use too
-
-TypeChain you have to connect to the factory then use the contract that way. With this lib you just use web3 or ethers interface for every contract call meaning you don't have to get use to another process it just works and zero code changes just cast and you got compile time errors for contracts.
-
-## Motivation
-
-Blockchain development in JavaScript is already super hard. You have all these tools like `truffle,` `ethers`, `web3` (the list goes on) which you have to get use to and the learning curve is already quite high. On top of this, you have loads of other tools to get things to work as you need. TypeScript allows you to bring runtime errors in the compiler but on contract calls most developers have to either build their own types meaning maintaining them and easily getting out of sync or have no compile type errors using the dreaded `any` hoping and praying you don't break anything. The idea was to not have to make the developer wrap any kind of `web3` or `ethers` instance or use a new tool to get this working but with a simple 1 line change you can use all the same libraries interfaces as what the developer is use to but with `types` `auto-generated` for you to bring back compile-time errors on any contract calls with super ease.
-
-The ABI file is the source of truth for all contract calls so by building types from this file we can be assured our types correct.
 
 ## Installation
 
-### pnpm:
-
-```js
-$ pnpm add ethereum-abi-types-generator --save-dev
+```bash
+npm i ethereum-abi-types-generator -D
+# or
+yarn add ethereum-abi-types-generator -D
+# or
+pnpm add ethereum-abi-types-generator -D
+# or
+bun add ethereum-abi-types-generator -d
 ```
-
-### npm:
-
-```js
-$ npm install ethereum-abi-types-generator --save-dev
-```
-
-### yarn:
-
-```js
-$ yarn add ethereum-abi-types-generator --dev
-```
-
-You can install this globally as well but you **must** make sure wherever the `--output` location is which generates the typings file has `ethereum-abi-types-generator` installed in that project, as it uses imports from this package to map the `ContractContext` to make your life easier handling the generic type build up automatically. We suggest always running this tool inside a project context.
 
 ## Tsconfig compile time issues
 
 If you get compile time errors due to it waiting `web3` dependencies when using ethers please set `skipLibCheck`: true in the tsconfig.json compiler options and this should fix that issue.
 
-## CLI usage
+## Usage
 
-### Web3 1.x and 2.x & Ethers 5.x & Ethers 4.x
+There are two ways to use this package: via the CLI or via a configuration file.
+
+*NOTE: If using a configuration file, you can also use the CLI flags to override the configs options.*
+
+## **Common Options**
+
+### **Configuration**
+
+- **`--config`**: Path to config file.
+
+### **Input/Output**
+
+- **`--inputDirOrPath`**: Directory of ABI files or a single ABI file path.
+- **`--outputDir`**: Output directory. Defaults to `./ethereum-abi-types`.
+
+### **Library Options**
+
+- **`--library`**: Library to use. Choices are:
+  - `web3`
+  - `ethers_v4`
+  - `ethers_v5`
+  - `ethers_v6`
+
+  *NOTE: If not supplied it will fallback to `web3`*
+
+- **`--libraryImportAlias`**: Override the library import from name (e.g., from `"import { Contract } from 'ethers';"` to `"import { Contract } from 'ethersv5';"`).
+
+### **Framework Options**
+
+- **`--framework`**: Framework to use. Choices are:
+  - `hardhat`
+  - `truffle`
+  - `none`
+
+### **Generation Options**
+
+- **`--makeOutputDir`**: Make the output directory if it does not exist.
+- **`--makeIndexFile`**: Generate an index (barrel) file exporting all the generated typings.
+- **`--outputFileName`**: The file name to use for the generated typings. Only used for single file input. Defaults to name of the ABI file.
+- **`--prefixTypes`**: Whether to prefix the name of the type with the `outputFileName` (e.g., `"MyTokenContract"` or `"PrefixNameContract"` vs `"Contract"`).
+- **`--preventOverwrite`**: Prevent overwriting existing files.
+- **`--verbatimModuleSyntax`**: Use verbatim module syntax (eg: 'import type { Contract } from "ethers"').
+- **`--language`**: Language to generate. Choices are:
+  - `typescript`
+
+### **Watching Options**
+
+- **`--watch`**: Watch the ABI files for changes and regenerate typings automatically.
+
+### **File Inclusion/Exclusion**
+
+- **`--includeFiles`**: List of file paths to include, ignoring all other files (e.g., `--includeFiles=["./path/to/contract1.json"]`).
+- **`--excludeFiles`**: List of file paths to exclude, including all other files (e.g., `--excludeFiles=["./path/to/contract2.json"]`).
+
+  *NOTE: Include will supersede exclude.*
+
+### **Formatting Options**
+
+- **`--eslintConfigPath`**: ESLint config file path.
+- **`--prettierConfigPath`**: Prettier config file path.
+- **`--eslintOptions`**: ESLint options override (provide as a JSON string).
+- **`--prettierOptions`**: Prettier options override (provide as a JSON string).
+
+We use `prettier` to format all files, to make sure it matches your coding style just make sure you have a `.prettierrc` defined in the root of your project and it will use that. If it can not find a prettier config it will use the default prettier config:
 
 ```ts
-$ abi-types-generator <abiFileLocation>
-$ abi-types-generator <abiFileLocation> --name=ABI_NAME
-$ abi-types-generator <abiFileLocation> --watch
-$ abi-types-generator <abiFileLocation> --name=ABI_NAME --watch
-$ abi-types-generator <abiFileLocation> --output=PATH_DIRECTORY
-$ abi-types-generator <abiFileLocation> --output=PATH_DIRECTORY --watch
-$ abi-types-generator <abiFileLocation> --output=PATH_DIRECTORY --name=ABI_NAME
-$ abi-types-generator <abiFileLocation> --output=PATH_DIRECTORY --name=ABI_NAME --watch
-$ abi-types-generator <abiFileLocation> --provider=web3|ethers|ethers_v5
-$ abi-types-generator <abiFileLocation> --provider=web3|ethers|ethers_v5 --watch
-$ abi-types-generator <abiFileLocation> --name=ABI_NAME --provider=web3|ethers|ethers_v5
-$ abi-types-generator <abiFileLocation> --name=ABI_NAME --provider=web3|ethers|ethers_v5 --watch
-$ abi-types-generator <abiFileLocation> --output=PATH_DIRECTORY --provider=web3|ethers|ethers_v5
-$ abi-types-generator <abiFileLocation> --output=PATH_DIRECTORY --provider=web3|ethers|ethers_v5 --watch
-$ abi-types-generator <abiFileLocation> --output=PATH_DIRECTORY --name=ABI_NAME --provider=web3|ethers|ethers_v5
-$ abi-types-generator <abiFileLocation> --output=PATH_DIRECTORY --name=ABI_NAME --provider=web3|ethers|ethers_v5 --watch
+{
+  parser: 'typescript',
+  semi: false,
+  trailingComma: "all",
+  singleQuote: true,
+  printWidth: 80,
+  tabWidth: 2,
+  useTabs: false,
+  bracketSpacing: true
+}
 ```
 
-#### Hardhat
+---
 
-```ts
-$ abi-types-generator hardhat
+## **Generator CLI**
+
+### **Available Commands**
+
+- **`scripts`**: Show script helpers.
+- **`generate`**: Generate ABI typings.
+- **`hardhat`**: Generate ABI typings for Hardhat projects.
+- **`truffle`**: Generate ABI typings for Truffle projects.
+
+---
+
+### **CLI Examples**
+
+#### **Checking Version**
+
+```bash
+abi-types-generator --version
+abi-types-generator -v
 ```
 
-We suggest running these within the `script` commands in npm or yarn this way you will not lose your commands and can be run on build agents as well. Also you will not get confused with sharing the script and others running in the wrong paths. Examples below:
+#### **Showing Help**
+
+```bash
+abi-types-generator --help
+abi-types-generator -h
+```
+
+#### **Showing Script Helpers**
+
+```bash
+abi-types-generator scripts
+```
+
+#### **Custom Configuration File**
+
+```bash
+abi-types-generator generate --inputDirOrPath=DIR_OR_FILE_PATH --config=./customConfigs/ethersv5.config.json
+```
+
+#### **Specify Output Directory**
+
+```bash
+abi-types-generator generate --inputDirOrPath=./abis --outputDir=./types
+```
+
+#### **Use a Specific Library**
+
+- web3: Use Web3.js library.
+- ethers_v4: Use Ethers.js version 4.
+- ethers_v5: Use Ethers.js version 5.
+- ethers_v6: Use Ethers.js version 6.
+
+```bash
+abi-types-generator generate --inputDirOrPath=./abis --library=ethers_v5
+```
+
+#### **Watch for Changes**
+
+```bash
+abi-types-generator generate --inputDirOrPath=./abis --watch
+```
+
+#### **Generate Typings for Truffle or Hardhat**
+
+```bash
+abi-types-generator hardhat
+abi-types-generator truffle
+```
+
+#### **Generate Typings with Custom Prefix**
+
+*NOTE: This will only work for single file input.*
+
+```bash
+abi-types-generator generate --inputDirOrPath=./myAbi.json --outputFileName=MyPrefixName
+```
+
+#### **Prevent Overwriting**
+
+```bash
+abi-types-generator generate --inputDirOrPath=./abis --preventOverwrite
+```
+
+#### **Specify Language**
+
+*NOTE: Only supports `ts` for now.*
+
+```bash
+abi-types-generator generate --inputDirOrPath=./abis --language=ts
+```
+
+#### **ESLint and Prettier Configurations**
+
+```bash
+abi-types-generator generate --inputDirOrPath=./abis --eslintConfigPath=./.eslintrc.json --prettierConfigPath=./.prettierrc.json
+```
+
+#### **File Inclusions and Exclusions**
+
+*NOTE: Include will supersede exclude.*
+
+```bash
+abi-types-generator generate --inputDirOrPath=./abis --includeFiles=["./abis/Contract1.json","./abis/Contract2.json"]
+abi-types-generator generate --inputDirOrPath=./abis --excludeFiles=["./abis/Contract3.json"]
+```
+
+---
+
+## Generator Configuration File
+
+You can use a configuration file to set default options. Create a file named `eat.config.json` in your project root:
+
+Minimal:
 
 ```json
 {
-  "name": "examples",
-  "version": "1.0.0",
-  "description": "",
-  "main": "index.js",
-  "scripts": {
-    "web3-example": "abi-types-generator './abi-examples/fake-contract-abi.json' --output='./web3/fake-contract-example/generated-typings' --name=fake-contract",
-    "web3-token-abi": "abi-types-generator './abi-examples/token-abi.json' --output='./web3/uniswap-example/generated-typings' --name=token-contract",
-    "web3-uniswap-exchange-abi": "abi-types-generator './abi-examples/uniswap-exchange-abi.json' --output='./web3/uniswap-example/generated-typings' --name=uniswap-exchange-contract",
-    "web3-uniswap-factory-abi": "abi-types-generator './abi-examples/uniswap-factory-abi.json' --output='./web3/uniswap-example/generated-typings' --name=uniswap-factory-contract",
-    "web3-uniswap": "npm run web3-token-abi && npm run web3-uniswap-exchange-abi && npm run web3-uniswap-factory-abi",
-    "ethers-example": "abi-types-generator './abi-examples/fake-contract-abi.json' --output='./ethers/fake-contract-example/generated-typings' --name=fake-contract --provider=ethers",
-    "ethers-token-abi": "abi-types-generator './abi-examples/token-abi.json' --output='./ethers/uniswap-example/generated-typings' --name=token-contract --provider=ethers",
-    "ethers-uniswap-exchange-abi": "abi-types-generator './abi-examples/uniswap-exchange-abi.json' --output='./ethers/uniswap-example/generated-typings' --name=uniswap-exchange-contract --provider=ethers",
-    "ethers-uniswap-factory-abi": "abi-types-generator './abi-examples/uniswap-factory-abi.json' --output='./ethers/uniswap-example/generated-typings' --name=uniswap-factory-contract --provider=ethers",
-    "ethers-uniswap": "npm run ethers-token-abi && npm run ethers-uniswap-exchange-abi && npm run ethers-uniswap-factory-abi",
-    "ethers-v5-example": "abi-types-generator './abi-examples/fake-contract-abi.json' --output='./ethers_v5/fake-contract-example/generated-typings' --name=fake-contract --provider=ethers_v5",
-    "ethers-v5-token-abi": "abi-types-generator './abi-examples/token-abi.json' --output='./ethers_v5/uniswap-example/generated-typings' --name=token-contract --provider=ethers_v5",
-    "ethers-v5-uniswap-exchange-abi": "abi-types-generator './abi-examples/uniswap-exchange-abi.json' --output='./ethers_v5/uniswap-example/generated-typings' --name=uniswap-exchange-contract --provider=ethers_v5",
-    "ethers-v5-uniswap-factory-abi": "abi-types-generator './abi-examples/uniswap-factory-abi.json' --output='./ethers_v5/uniswap-example/generated-typings' --name=uniswap-factory-contract --provider=ethers_v5",
-    "ethers-v5-uniswap": "npm run ethers-token-abi && npm run ethers-uniswap-exchange-abi && npm run ethers-uniswap-factory-abi",
-    "hardhat-example": "abi-types-generator hardhat"
-  }
+  "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "inputDirOrPath": "./abis",
+  "outputDir": "./types",
+  "library": "web3"
 }
 ```
 
-### Arguments
+Full:
 
-#### `<abiFileLocation>` \* required
-
-The ABI json file path location. Must be a JSON file path.
-
-### `--name=ABI_NAME`
-
-The ABI ts file you want it to be named as, this will also name interface and enums as this. It will remove any `-` and `.` for the `ts` interfaces and enum names.
-
-If not supplied it will take the file name and use that as the abi name throughout.
-
-Example:
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json
-```
-
-generates: `./examples/abi-examples/uniswap-factory-abi.ts`
-
-Example:
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json --name=foo-abi
-```
-
-generates: `./examples/abi-examples/foo-abi.ts`
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json --name=foo.abi
-```
-
-generates: `./examples/abi-examples/foo.abi.ts`
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json --name=foo
-```
-
-generates: `./examples/abi-examples/foo.ts`
-
-### `--output=PATH_DIRECTORY`
-
-Where you want the `.ts` to be generated and saved to.
-
-If not supplied it will use the directory of the `<abiFileLocation>` and generate it there.
-
-Example:
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json
-```
-
-generates in: `./examples/abi-examples/uniswap-factory-abi.ts`
-
-Example:
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json --output=./examples/ethers/generated-typings
-```
-
-generates in: `./examples/ethers/generated-typings/uniswap-factory-abi.ts`
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json --output=./examples/ethers/generated-typings --name=foo
-```
-
-generates: `./examples/ethers/generated-typings/foo.ts`
-
-### `--provider=web3|ethers|ethers_v5`
-
-What `contract` support you want to generate. This is the library you are using on your dapp and the lib you use to call any contract calls.
-
-```ts
-export enum Provider {
-  web3 = 'web3',
-  ethers = 'ethers',
-  ethers_v5 = 'ethers_v5',
-}
-```
-
-If not supplied it will fallback to `web3`
-
-Example:
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json
-```
-
-generates the web3 contract typings based on the web3 lib.
-
-Example:
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json --provider=ethers
-```
-
-generates the ethers contract typings based on the ethers 4 lib.
-
-Example:
-
-```ts
-$ abi-types-generator ./examples/abi-examples/uniswap-factory-abi.json --provider=ethers_v5
-```
-
-generates the ethers contract typings based on the ethers 5 lib.
-
-### `--watch`
-
-This will watch the `<abiFileLocation>` for changes and if anything does change it will regenerate the typings and resave them in the `--output` defined or use the default one if one is not defined.
-
-### Formatting
-
-We use `prettier` to format all files, to make sure it matches your coding style just make sure you have a `.prettierrc` defined in the root of your project and it will use that. If it can not find any it will take these default prettier:
-
-```ts
+```json
 {
-    parser: 'typescript',
-    trailingComma: 'es5',
-    singleQuote: true,
-    bracketSpacing: true,
-    printWidth: 80,
+  "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "inputDirOrPath": "./abis",
+  "outputDir": "./types",
+  "library": "ethers_v5",
+  "libraryImportAlias": "",
+  "framework": "none",
+  "makeOutputDir": true,
+  "makeIndexFile": true,
+  "outputFileName": "",
+  "prefixTypes": false,
+  "watch": false,
+  "includeFiles": [],
+  "excludeFiles": [],
+  "language": "ts",
+  "preventOverwrite": false,
+  "verbatimModuleSyntax": true,
+  "eslintConfigPath": "",
+  "prettierConfigPath": "",
+  "eslintOptions": {},
+  "prettierOptions": {},
 }
 ```
 
-### Using with hardhat/truffle
+Once you have a configuration file, you can use it with the CLI:
+
+```bash
+abi-types-generator generate
+```
+
+Or use the `--config` option to specify a path to a configuration file:
+
+```bash
+abi-types-generator generate --config ./custom-config.json
+```
+
+You can override any option in the configuration file with the CLI:
+
+```bash
+abi-types-generator generate --inputDirOrPath=./otherAbis --outputDir=./types --library=web3 --watch
+```
+
+---
+
+### Using with Hardhat/Truffle
+
+#### CLI
 
 First you create a script in your `package.json` that runs the `abi-types-generator` script after it compiles every time.
+
+You may add options in the script or in the configuration file.
+
+Shorthand:
 
 ```json
 {
@@ -303,15 +380,58 @@ First you create a script in your `package.json` that runs the `abi-types-genera
 }
 ```
 
-If your contracts are ready to compile run:
+Normal:
 
-```bash
-$ npm run compile
+```json
+{
+  "scripts": {
+    "compile": "npx hardhat compile && abi-types-generator generate --framework=hardhat"
+  }
+}
 ```
 
-You types are now created within the root of your hardhat project in a folder called `ethereum-abi-types` and you can use them throughout your tests/scripts or anything `ts` related.
+Or use the eat.config.json file, or the `--config` option to specify a path to a configuration file:
 
-### Test example
+```json
+// package.json
+{
+  "scripts": {
+    "compile": "npx hardhat compile && abi-types-generator generate"
+  }
+}
+// or
+{
+  "scripts": {
+    "compile": "npx hardhat compile && abi-types-generator generate --config=./custom.config.json"
+  }
+}
+```
+
+```ts
+// eat.config.json or custom config file
+{
+  "framework": "hardhat",
+  // other options
+}
+```
+
+If your contracts are ready to compile, you can run:
+
+```bash
+npm run compile
+# or
+yarn compile
+# or
+pnpm compile
+# or
+bun run compile
+```
+
+Your types are now created within the root of your hardhat project, in a folder called `ethereum-abi-types` and you can use them throughout your tests/scripts or anything Typescript related.
+
+---
+
+## Test example
 
 ```ts
 import { expect } from 'chai';
@@ -344,13 +464,17 @@ describe('Example test', function () {
 });
 ```
 
-### Using with web3 and ethers
+---
 
-#### Web3 - https://www.npmjs.com/package/web3
+## Using Web3
 
-#### Uniswap full example:
+[Web3 NPM Package](https://www.npmjs.com/package/web3)
 
-https://github.com/joshstevens19/ethereum-abi-types-generator/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts
+*NOTE: If the ABI changes and I run the CLI command again or have a --watch on the file, when you try to compile it will flag any errors with your typings for you.*
+
+### Uniswap full example (Web3)
+
+[Uniswap Contract Strongly Typed Example](https://github.com/joshstevens19/ethereum-abi-types-generator/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
@@ -359,14 +483,14 @@ The cli tool will generate all your typings for you and expose them in the gener
 Lets say i run the cli command:
 
 ```ts
-$ abi-types-generator ./abi-examples/fake-contract-abi.json  --output=./generated-typings --name=fake-contract
+abi-types-generator --inputDirOrPath=./abi-examples/fake-contract-abi.json  --output=./generated-typings --outputFileName=fake-contract
 ```
 
 This will generate an `ts` file of `./generated-typings/fake-contract.ts` which has all your strongly typed methods and events.
 
 All you meed to do is cast your `new web3.eth.Contract` code to an `ContractContext` which is exposed in where you defined the `--output` path to. In this example it is `./generated-typings/fake-contract.ts`
 
-#### Example:
+#### Example (Web3)
 
 ```ts
 import Web3 from 'web3';
@@ -389,7 +513,7 @@ const contract = new web3.eth.Contract(
 
 Easy as that 🔥🔥
 
-#### Full example:
+#### Full example (Web3)
 
 ```ts
 import Web3 from 'web3';
@@ -473,13 +597,15 @@ const example = async () => {
 example();
 ```
 
-If the ABI changes and I run the CLI command again or have a --watch on the file, when you try to compile it will flag any errors with your typings for you.
+---
 
-### Ethers - https://www.npmjs.com/package/ethers
+## Using Ethers
 
-#### Uniswap full example:
+[Ethers.js NPM Package](https://www.npmjs.com/package/ethers)
 
-https://github.com/joshstevens19/ethereum-abi-types-generator/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts
+### Uniswap full example (Ethers)
+
+[Uniswap Contract Strongly Typed Example](https://github.com/joshstevens19/ethereum-abi-types-generator/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
@@ -490,20 +616,20 @@ Lets say i run the cli command:
 Ethers v4
 
 ```ts
-$ abi-types-generator ./abi-examples/fake-contract-abi.json  --output=./generated-typings --name=fake-contract --provider=ethers
+abi-types-generator ./abi-examples/fake-contract-abi.json  --output=./generated-typings --name=fake-contract --provider=ethers
 ```
 
 Ethers v5
 
 ```ts
-$ abi-types-generator ./abi-examples/fake-contract-abi.json  --output=./generated-typings --name=fake-contract --provider=ethers_v5
+abi-types-generator ./abi-examples/fake-contract-abi.json  --output=./generated-typings --name=fake-contract --provider=ethers_v5
 ```
 
 This will generate an `ts` file of `./generated-typings/fake-contract.ts` which has all your strongly typed methods and events.
 
 All you meed to do is cast your `new ethers.Contract` code to an `ContractContext` which is exposed in where you defined the `--output` path to. In this example it is `./generated-typings/fake-contract.ts`
 
-#### Example:
+#### Example (Ethers)
 
 ```ts
 import { ethers } from 'ethers';
@@ -528,7 +654,7 @@ const contract = new ethers.Contract(
 
 Easy as that 🔥🔥
 
-#### Full example:
+#### Full example (Ethers)
 
 ```ts
 import { ethers, utils } from 'ethers';
@@ -665,22 +791,38 @@ const example = async () => {
 example();
 ```
 
-If the ABI changes and I run the CLI command again or have a --watch on the file, when you try to compile it will flag any errors with your typings for you.
+## Motivation
+
+Blockchain development in JavaScript is already super hard. You have all these tools like `truffle`, `ethers`, `web3` (the list goes on) which you have to get used to, and the learning curve is already quite high. On top of this, you have loads of other tools to get things to work as you need. TypeScript allows you to bring runtime errors into the compiler, but on contract calls, most developers have to either build their own types (meaning maintaining them and easily getting out of sync) or have no compile-time errors using the dreaded `any`, hoping and praying they don't break anything.
+
+The idea was to not have to make the developer wrap any kind of `web3` or `ethers` instance or use a new tool to get this working. With a simple 1-line change, you can use all the same library interfaces that the developer is used to, but with `types` `auto-generated` for you to bring back compile-time errors on any contract calls with super ease.
+
+The ABI file is the source of truth for all contract calls, so by building types from this file, we can be assured our types are correct.
+
+## ⚔️ ethereum-abi-types-generator vs TypeChain
+
+The main differences between ethereum-abi-types-generator and TypeChain are:
+
+1. **No bundle size added**: This package uses only interfaces, adding nothing to your final bundle size.
+2. **Proper typed interfaces**: Generates and exports interfaces for both requests and responses, allowing you to use them throughout your app.
+3. **Use your familiar provider interface**: Just use web3 or ethers interface for every contract call, no need to learn a new process.
 
 ## Issues
 
-Please raise any issues in the below link.
-
-https://github.com/joshstevens19/ethereum-abi-types-generator/issues
+Please raise any issues in the [GitHub repository](https://github.com/joshstevens19/ethereum-abi-types-generator/issues).
 
 ## Thanks And Support
 
-This package is brought to you by [Josh Stevens](https://github.com/joshstevens19). My aim is to be able to keep creating these awesome packages to help the Ethereum space grow with easier-to-use tools to allow the learning curve to get involved with blockchain development easier and making Ethereum ecosystem better. If you want to help with that vision and allow me to invest more time into creating cool packages or if this package has saved you a lot of development time donations are welcome, every little helps. By donating, you are supporting me to be able to maintain existing packages, extend existing packages (as Ethereum matures), and allowing me to build more packages for Ethereum due to being able to invest more time into it. Thanks, everyone!
+This package is brought to you by [Josh Stevens](https://github.com/joshstevens19). If you want to support the development of this and other packages, or if this package has saved you a lot of development time, donations are welcome. By donating, you are supporting the maintenance and development of tools that make the Ethereum ecosystem better.
 
-## Direct donations
+### Direct donations
 
-Direct donations any token accepted - Eth address > `0x699c2daD091ffcF18f3cd9E8495929CA3a64dFe1`
+Direct donations (any token accepted) - Eth address: `0x699c2daD091ffcF18f3cd9E8495929CA3a64dFe1`
 
-## Github sponsors
+### Github sponsors
 
-[sponsor me](https://github.com/sponsors/joshstevens19) via github using fiat money
+[Sponsor me](https://github.com/sponsors/joshstevens19) via GitHub using fiat money.
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.

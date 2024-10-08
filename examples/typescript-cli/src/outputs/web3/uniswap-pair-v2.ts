@@ -28,7 +28,6 @@ export interface EventsContext {
   ): EventResponse
 }
 export type MethodNames =
-  | 'new'
   | 'allPairs'
   | 'allPairsLength'
   | 'createPair'
@@ -47,14 +46,6 @@ export interface PairCreatedEventEmittedResponse {
   param3: string
 }
 export interface Contract {
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: constructor
-   * @param _feeToSetter Type: address, Indexed: false
-   */
-  'new'(_feeToSetter: string): MethodReturnContext
   /**
    * Payable: false
    * Constant: true

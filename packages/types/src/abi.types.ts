@@ -36,6 +36,8 @@ export type AbiOutput = {
 export type AbiFilePathContext = {
   /** The file path to the ABI file. */
   filePath: string
+  /** The ABI items in the ABI file. */
+  abiItems: AbiItem[]
   /** The name of the contract in the ABI file, used by frameworks like hardhat and truffle. */
   frameworkContractName?: string | undefined
 }
@@ -54,22 +56,26 @@ export type StateMutabilityType = 'pure' | 'view' | 'nonpayable' | 'payable'
  * Represents an ABI item.
  */
 export type AbiItem = {
-  /** Whether the event is anonymous (used in events). */
-  anonymous?: boolean
-  /** Whether the function is constant (used in functions). */
-  constant?: boolean
-  /** The input parameters of the ABI item. */
-  inputs?: AbiInput[]
   /** The name of the ABI item. */
   name: string
-  /** The output parameters of the ABI item. */
-  outputs?: AbiOutput[]
-  /** Whether the function is payable (used in functions). */
-  payable?: boolean
-  /** The state mutability of the ABI item. */
-  stateMutability?: StateMutabilityType
   /** The type of the ABI item. */
   type: AbiItemType
+
+  /** Whether the event is anonymous (used in events). */
+  anonymous?: boolean
+
+  /** Whether the function is payable (used in functions). */
+  payable?: boolean
+  /** Whether the function is constant (used in functions). */
+  constant?: boolean
+  /** The state mutability of the ABI item. */
+  stateMutability?: StateMutabilityType
+
+  /** The input parameters of the ABI item. */
+  inputs?: AbiInput[]
+  /** The output parameters of the ABI item. */
+  outputs?: AbiOutput[]
+
   /** The gas limit for the ABI item. */
   gas?: number
 }

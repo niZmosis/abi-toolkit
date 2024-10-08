@@ -7,7 +7,7 @@ import {
 import { describe, it, expect, beforeEach } from 'vitest'
 
 import { AbiPropertiesMock } from '../../../tests/mocks/abi-properties.mock'
-import { EthersFactory } from '../src'
+import { EthersFactory } from '../src/factories/typings/ethers-typings.factory'
 
 describe('EthersFactory', () => {
   const abiName = 'TestAbi'

@@ -13,6 +13,13 @@ import type {
   Result,
 } from 'ethersv6'
 
+/**
+ * Represents the context of an Ethers v6 contract with methods, method names, events context, and event types.
+ * @template TMethods The contract methods
+ * @template TMethodNames The names of the contract methods
+ * @template TEventsContext The context for contract events
+ * @template TEventType The type of contract events
+ */
 export type EthersContractContextV6<
   TMethods,
   TMethodNames,
@@ -23,6 +30,10 @@ export type EthersContractContextV6<
 
 type ContractFunction<T = any> = (...args: any[]) => Promise<T>
 
+/**
+ * Represents the internal interface of an Ethers v6 contract.
+ * @template TMethodNames The names of the contract methods
+ */
 declare class InternalInterface<TMethodNames> {
   readonly fragments: any[]
   readonly errors: Record<string, any>
@@ -73,7 +84,11 @@ declare class InternalInterface<TMethodNames> {
   static isInterface(value: any): value is ContractInterface
 }
 
-interface ContractVersionV6<TMethodNames> {
+/**
+ * Represents the base structure of an Ethers v6 contract.
+ * @template TMethodNames The names of the contract methods
+ */
+export interface ContractVersionV6<TMethodNames> {
   readonly address: string
   readonly interface: InternalInterface<TMethodNames>
   readonly signer: Signer
@@ -95,8 +110,19 @@ interface ContractVersionV6<TMethodNames> {
   listeners(eventName: EventFilter | string): Listener[]
 }
 
-interface EthersContractV6<TMethods, TMethodNames, TEventsContext, TEventType>
-  extends ContractVersionV6<TMethodNames> {
+/**
+ * Represents an Ethers v6 contract with extended functionality.
+ * @template TMethods The contract methods
+ * @template TMethodNames The names of the contract methods
+ * @template TEventsContext The context for contract events
+ * @template TEventType The type of contract events
+ */
+export interface EthersContractV6<
+  TMethods,
+  TMethodNames,
+  TEventsContext,
+  TEventType,
+> extends ContractVersionV6<TMethodNames> {
   readonly functions: TMethods
   readonly filters: TEventsContext
   deployed(): Promise<

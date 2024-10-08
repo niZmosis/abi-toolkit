@@ -4,6 +4,7 @@ import type {
   EatConfigContext,
   GeneratorContext,
   ProgramContext,
+  GeneratedResults,
 } from '@ethereum-abi-types-generator/types'
 import {
   defaultOutputDir,
@@ -18,42 +19,48 @@ import fs from 'fs-extra'
  * Generates the file for the given language
  * @param module The module to import
  * @param options The options
- * @param prefixName The prefix name
- * @param outputDir The output dir
- * @param preventOverwrite Whether to prevent overwrite
  */
 async function generateForLanguage(
   module: string,
   options: GeneratorContext,
-  prefixName: string,
-  outputDir: string,
-  preventOverwrite: boolean,
-): Promise<void> {
+): Promise<GeneratedResults> {
+  const { outputDir, outputFileName, preventOverwrite } = options ?? {}
+
   const outputFilePath = path.join(
     outputDir ?? defaultOutputDir,
-    `${prefixName}.ts`,
+    `${outputFileName}.ts`,
   )
 
   if (preventOverwrite && fs.existsSync(outputFilePath)) {
-    Logger.warning(
-      `File ${outputFilePath} already exists and preventOverwrite is true. Skipping file generation.`,
-    )
-    return
+    return {
+      typingsResult: {
+        type: 'mute',
+        error: `${outputFilePath} already exists and preventOverwrite is true. Skipping file generation.`,
+      },
+      classResult: undefined,
+    }
   }
 
   try {
-    const { AbiGenerator } = await import(module)
+    const { Generator } = (await import(module)) ?? {}
 
-    if (!AbiGenerator) {
+    if (!Generator) {
       throw new Error(
         `Could not find the ${module} package. Please make sure you have installed the correct version of the package. eg. pnpm add ${module}@latest`,
       )
     }
 
-    const generator = new AbiGenerator(options)
-    await generator.generate()
+    const generator = new Generator(options)
+
+    return generator.generate() as GeneratedResults
   } catch (error: any) {
-    Logger.error(error)
+    return {
+      typingsResult: {
+        type: 'err',
+        error,
+      },
+      classResult: undefined,
+    }
   }
 }
 
@@ -62,27 +69,22 @@ export default {
    * Generate an ABI typings file
    * @param cmd The command
    */
-  async abiFile(cmd: ProgramContext<GeneratorContext>): Promise<void> {
+  async abiFiles(
+    cmd: ProgramContext<GeneratorContext>,
+  ): Promise<GeneratedResults | undefined> {
     const { options } = cmd ?? {}
-    const { outputDir, prefixName, language, preventOverwrite } = options ?? {}
+    const { language } = options ?? {}
 
     switch (language) {
       case 'ts':
-        await generateForLanguage(
+        return generateForLanguage(
           '@ethereum-abi-types-generator/converter-typescript',
           options,
-          prefixName,
-          outputDir,
-          preventOverwrite,
         )
-        break
       // case 'rs':
       //   await generateForLanguage(
       //     '@ethereum-abi-types-generator/converter-rust',
       //     options,
-      //     prefixName,
-      //     outputDir,
-      //     preventOverwrite,
       //   )
       //   break
       default:
@@ -92,18 +94,24 @@ export default {
         return
     }
   },
+
   /**
    * Generate the index file
    * @param cmd The command
-   * @param filePaths The file paths
+   * @param filePaths The file paths for the typings and classes
    */
-  async indexFile(
+  async indexFiles(
     cmd: ProgramContext<EatConfigContext>,
-    filePaths: string[],
+    filePaths: {
+      typings: string[]
+      classes: string[]
+    },
   ): Promise<void> {
     const {
       outputDir,
       language,
+      generateClasses,
+      classOutputDir,
       // verbatimModuleSyntax,
       // eslintConfigPath,
       // prettierConfigPath,
@@ -113,19 +121,41 @@ export default {
 
     switch (language) {
       case 'ts':
+        // Creates barrel exports for the index file
+        const barrel = (paths: string[], outputDirectory: string): string => {
+          let content = ''
+
+          for (const filePath of paths) {
+            if (path.basename(filePath) !== 'index.ts') {
+              const relativePath = `./${path.relative(outputDirectory, filePath).replace(/\\/g, '/').replace('.ts', '')}`
+
+              content += `export * as ${formatAbiName(getAbiFileLocationRawName(path.relative(outputDirectory, filePath)))} from '${relativePath}';\n`
+            }
+          }
+
+          return content
+        }
+
+        // Typings Index
         const indexPath = path.join(outputDir, 'index.ts')
 
-        let indexContent = ''
+        const content =
+          `export * from './common-types';\n` +
+          barrel(filePaths.typings, outputDir)
 
-        // Add the common types file
-        indexContent += `export * from './common-types';\n`
+        fs.writeFileSync(indexPath, content, {
+          mode: 0o755,
+        })
 
-        for (const filePath of filePaths) {
-          if (path.basename(filePath) !== 'index.ts') {
-            const relativePath = `./${path.relative(outputDir, filePath).replace(/\\/g, '/').replace('.ts', '')}`
+        // Classes Index
+        if (generateClasses) {
+          const classIndexPath = path.join(classOutputDir, 'index.ts')
 
-            indexContent += `export * as ${formatAbiName(getAbiFileLocationRawName(path.relative(outputDir, filePath)))} from '${relativePath}';\n`
-          }
+          const content = barrel(filePaths.classes, classOutputDir)
+
+          fs.writeFileSync(classIndexPath, content, {
+            mode: 0o755,
+          })
         }
 
         // const formattedIndexContent = await formatAndLintCode(
@@ -135,10 +165,6 @@ export default {
         //   prettierOptions,
         //   prettierConfigPath,
         // )
-
-        fs.writeFileSync(indexPath, indexContent, {
-          mode: 0o755,
-        })
 
         // Logger.success(`Successfully created index file saved in ${outputDir}`)
         break

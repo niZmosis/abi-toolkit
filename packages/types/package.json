@@ -11,7 +11,7 @@
   ],
   "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
   "author": "joshstevens19@hotmail.co.uk",
-  "license": "MIT",
+  "license": "ISC",
   "bugs": {
     "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
   },

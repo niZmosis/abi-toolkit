@@ -19,7 +19,6 @@ export type ContractContext = EthersContractContextV6<
 export type Events = undefined
 export interface EventsContext {}
 export type MethodNames =
-  | 'new'
   | 'WETH9'
   | 'exactInput'
   | 'exactInputSingle'
@@ -75,19 +74,6 @@ export interface ExactOutputSingleParamsRequest {
   sqrtPriceLimitX96: BigNumberish
 }
 export interface Contract {
-  /**
-   * Payable: false
-   * Constant: false
-   * StateMutability: nonpayable
-   * Type: constructor
-   * @param _factory Type: address, Indexed: false
-   * @param _WETH9 Type: address, Indexed: false
-   */
-  'new'(
-    _factory: string,
-    _WETH9: string,
-    overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
   /**
    * Payable: false
    * Constant: true
