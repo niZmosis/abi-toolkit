@@ -10,6 +10,7 @@
     "noImplicitOverride": true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
+    "noUncheckedIndexedAccess": true,
     // Module Resolution
     "moduleResolution": "Bundler",
     "resolveJsonModule": true,
@@ -19,7 +20,6 @@
     // Diagnostics
     "noUnusedLocals": true,
     "noUnusedParameters": true,
-    "noUncheckedIndexedAccess": true,
     // Additional Checks
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,

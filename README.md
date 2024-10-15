@@ -13,6 +13,7 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
 
 - [Features](#features)
 - [Supported Libraries / Frameworks](#supported-libraries--frameworks)
+- [Packages](#packages)
 - [Installation](#installation)
 - [Tsconfig Compile Time Issues](#tsconfig-compile-time-issues)
 - [Usage](#usage)
