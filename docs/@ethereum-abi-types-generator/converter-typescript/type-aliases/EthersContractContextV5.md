@@ -30,4 +30,4 @@ The type of contract events
 
 ## Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:29](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L29)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:29](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L29)

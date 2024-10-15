@@ -28,7 +28,7 @@
     "test:converter:ts": "vitest ./packages/converter-typescript/tests",
     "test:core": "vitest ./packages/core/tests",
     "test:utils": "vitest ./packages/utils/tests",
-    "test:single": "vitest ./packages/core/tests/execute.spec.ts",
+    "test:single": "vitest ./packages/converter-typescript/tests/abi-generator.spec.ts",
     "test:coverage": "vitest run --coverage",
     "build": "lerna run build",
     "start": "lerna run start --parallel --ignore 'examples'",

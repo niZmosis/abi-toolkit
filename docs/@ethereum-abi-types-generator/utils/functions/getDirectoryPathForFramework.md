@@ -22,4 +22,4 @@ The framework
 
 ## Defined in
 
-[files.ts:101](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/files.ts#L101)
+files.utils.ts:120

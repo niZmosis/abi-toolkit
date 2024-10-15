@@ -24,4 +24,4 @@ The corresponding TypeScript type
 
 ## Defined in
 
-[solidity.ts:44](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/solidity.ts#L44)
+solidity.utils.ts:44

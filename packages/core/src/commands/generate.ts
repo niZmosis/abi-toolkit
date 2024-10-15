@@ -7,6 +7,7 @@ import type {
   GeneratedResults,
 } from '@ethereum-abi-types-generator/types'
 import {
+  buildFileName,
   defaultOutputDir,
   formatAbiName,
   getAbiFileLocationRawName,
@@ -24,11 +25,12 @@ async function generateForLanguage(
   module: string,
   options: GeneratorContext,
 ): Promise<GeneratedResults> {
-  const { outputDir, outputFileName, preventOverwrite } = options ?? {}
+  const { typingsOutputDir, typingsOutputFileName, preventOverwrite } =
+    options ?? {}
 
   const outputFilePath = path.join(
-    outputDir ?? defaultOutputDir,
-    `${outputFileName}.ts`,
+    typingsOutputDir ?? defaultOutputDir,
+    `${typingsOutputFileName}.ts`,
   )
 
   if (preventOverwrite && fs.existsSync(outputFilePath)) {
@@ -108,10 +110,12 @@ export default {
     },
   ): Promise<void> {
     const {
-      outputDir,
+      typingsOutputDir,
       language,
       generateClasses,
       classOutputDir,
+      typingsOutputFileSuffix,
+      classOutputFileSuffix,
       // verbatimModuleSyntax,
       // eslintConfigPath,
       // prettierConfigPath,
@@ -122,14 +126,23 @@ export default {
     switch (language) {
       case 'ts':
         // Creates barrel exports for the index file
-        const barrel = (paths: string[], outputDirectory: string): string => {
+        const barrel = (
+          paths: string[],
+          typingsOutputDirectory: string,
+          isClass?: boolean,
+        ): string => {
           let content = ''
 
           for (const filePath of paths) {
             if (path.basename(filePath) !== 'index.ts') {
-              const relativePath = `./${path.relative(outputDirectory, filePath).replace(/\\/g, '/').replace('.ts', '')}`
+              let relativePath = `./${path.relative(typingsOutputDirectory, filePath).replace(/\\/g, '/').replace('.ts', '')}`
+              relativePath =
+                (!isClass && typingsOutputFileSuffix) ||
+                (isClass && classOutputFileSuffix)
+                  ? relativePath.replace('.abi', '')
+                  : relativePath
 
-              content += `export * as ${formatAbiName(getAbiFileLocationRawName(path.relative(outputDirectory, filePath)))} from '${relativePath}';\n`
+              content += `export * as ${formatAbiName(getAbiFileLocationRawName(path.relative(typingsOutputDirectory, filePath)))}Types from '${buildFileName({ fileName: relativePath, suffix: typingsOutputFileSuffix })}';\n`
             }
           }
 
@@ -137,11 +150,11 @@ export default {
         }
 
         // Typings Index
-        const indexPath = path.join(outputDir, 'index.ts')
+        const indexPath = path.join(typingsOutputDir, 'index.ts')
 
         const content =
-          `export * from './common-types';\n` +
-          barrel(filePaths.typings, outputDir)
+          `export * from './common.types';\n` +
+          barrel(filePaths.typings, typingsOutputDir)
 
         fs.writeFileSync(indexPath, content, {
           mode: 0o755,
@@ -151,7 +164,7 @@ export default {
         if (generateClasses) {
           const classIndexPath = path.join(classOutputDir, 'index.ts')
 
-          const content = barrel(filePaths.classes, classOutputDir)
+          const content = barrel(filePaths.classes, classOutputDir, true)
 
           fs.writeFileSync(classIndexPath, content, {
             mode: 0o755,
@@ -166,7 +179,7 @@ export default {
         //   prettierConfigPath,
         // )
 
-        // Logger.success(`Successfully created index file saved in ${outputDir}`)
+        // Logger.success(`Successfully created index file saved in ${typingsOutputDir}`)
         break
       default:
         Logger.error(

@@ -12,4 +12,4 @@ Represents the types of languages supported.
 
 ## Defined in
 
-[language.types.ts:4](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/types/src/language.types.ts#L4)
+[language.types.ts:4](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/language.types.ts#L4)

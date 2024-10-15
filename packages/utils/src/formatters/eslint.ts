@@ -2,8 +2,8 @@ import path from 'path'
 
 import { ESLint } from 'eslint'
 
-import { loadConfigFile } from '../files'
-import { Logger } from '../logger'
+import { loadConfigFile } from '../files.utils'
+import { Logger } from '../logger.utils'
 
 /**
  * Loads ESLint configuration from the provided options.

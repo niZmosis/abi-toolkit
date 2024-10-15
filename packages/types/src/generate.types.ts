@@ -78,11 +78,13 @@ export type BaseConfigContext = {
  */
 export type TypingsConfigContext = {
   /** Output directory. Defaults to './ethereum-abi-types' */
-  outputDir: string
+  typingsOutputDir: string
   /** The file name to use for the generated typings. Only used for single file input. Defaults to name of the ABI file */
-  outputFileName: string
-  /** Whether to prefix the name of the type with the `outputFileName`, eg. ('MyTokenContract' or 'PrefixNameContract') vs 'Contract'. Defaults to false */
-  prefixTypes: boolean
+  typingsOutputFileName: string
+  /** The suffix to append to the file name of the generated typings. eg. (my-abi.types.ts vs my-abi.ts). Defaults to "types" */
+  typingsOutputFileSuffix: string
+  /** Whether to prefix the name of the type with the `typingsOutputFileName`, eg. ('MyTokenContract' or 'PrefixNameContract') vs 'Contract'. Defaults to false */
+  typingsPrefixTypes: boolean
 }
 
 /**
@@ -91,8 +93,12 @@ export type TypingsConfigContext = {
 export type ClassConfigContext = {
   /** Whether to generate classes for the generated typings */
   generateClasses: boolean
-  /** The output directory for the class. If not set it will use the outputDir. */
+  /** The output directory for the class. If not set it will use the `typingsOutputDir`. */
   classOutputDir: string
+  /** The file name to use for the generated class. Only used for single file input. Defaults to name of the ABI file */
+  classOutputFileName: string
+  /** The suffix to append to the file name of the generated classes. eg. (my-abi.contract.ts vs my-abi.ts). Defaults to "contract" */
+  classOutputFileSuffix: string
   /** Whether to integrate ethereum-multicall into the class */
   classMulticall: boolean
 }

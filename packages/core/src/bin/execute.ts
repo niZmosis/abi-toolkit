@@ -47,11 +47,11 @@ export async function execute(packageVersion: string): Promise<void> {
   const { command, options } = context ?? {}
   const {
     inputDirOrPath,
-    outputDir,
+    typingsOutputDir,
     framework,
     includeFiles,
     excludeFiles,
-    outputFileName,
+    typingsOutputFileName,
     makeIndexFile,
     generateClasses,
     eslintConfigPath,
@@ -153,15 +153,15 @@ export async function execute(packageVersion: string): Promise<void> {
       }
 
       const fileName =
-        // `outputFileName` is only used if the input was a single file
+        // `typingsOutputFileName` is only used if the input was a single file
         filePathContexts.length === 1
-          ? outputFileName || frameworkContractName || ''
+          ? typingsOutputFileName || frameworkContractName || ''
           : frameworkContractName ||
             path.basename(filePath, path.extname(filePath))
 
       if (results?.typingsResult) {
         generatedFilePaths.typings.push(
-          path.join(outputDir || defaultOutputDir, `${fileName}.ts`),
+          path.join(typingsOutputDir || defaultOutputDir, `${fileName}.ts`),
         )
 
         stats.generatedFiles++
@@ -218,9 +218,9 @@ export async function execute(packageVersion: string): Promise<void> {
 
   Logger.info('Formatting and linting files...')
 
-  // Format all files in outputDir
+  // Format all files in typingsOutputDir
   await formatAndLintFiles(
-    outputDir,
+    typingsOutputDir,
     eslintOptions,
     eslintConfigPath,
     prettierOptions,

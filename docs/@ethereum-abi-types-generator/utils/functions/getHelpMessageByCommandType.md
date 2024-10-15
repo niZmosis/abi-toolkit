@@ -22,4 +22,4 @@ The command type
 
 ## Defined in
 
-[help.ts:124](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/help.ts#L124)
+help.utils.ts:124

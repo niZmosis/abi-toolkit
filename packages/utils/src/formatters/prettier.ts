@@ -2,8 +2,8 @@ import fs from 'fs-extra'
 import prettier, { type Options as PrettierOptions } from 'prettier'
 
 import 'reflect-metadata'
-import { loadConfigFile } from '../files'
-import { Logger } from '../logger'
+import { loadConfigFile } from '../files.utils'
+import { Logger } from '../logger.utils'
 
 /**
  * Loads Prettier configuration from the provided options.

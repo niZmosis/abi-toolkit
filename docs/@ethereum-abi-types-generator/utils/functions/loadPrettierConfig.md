@@ -37,4 +37,4 @@ A promise that resolves to the Prettier options.
 
 ## Defined in
 
-[formatters/prettier.ts:98](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/formatters/prettier.ts#L98)
+[formatters/prettier.ts:98](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/utils/src/formatters/prettier.ts#L98)

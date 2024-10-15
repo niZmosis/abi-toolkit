@@ -24,4 +24,4 @@ True if the object is a JSON fragment, false otherwise.
 
 ## Defined in
 
-[abi.ts:60](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/abi.ts#L60)
+abi.utils.ts:60

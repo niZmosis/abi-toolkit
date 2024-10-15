@@ -28,7 +28,7 @@ Represents an event response for Web3.
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:296](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L296)
+[packages/converter-typescript/src/types/web3-contract-context.ts:296](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L296)
 
 #### on(type, handler)
 
@@ -46,7 +46,7 @@ Represents an event response for Web3.
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:297](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L297)
+[packages/converter-typescript/src/types/web3-contract-context.ts:297](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L297)
 
 #### on(type, handler)
 
@@ -64,4 +64,4 @@ Represents an event response for Web3.
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:298](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L298)
+[packages/converter-typescript/src/types/web3-contract-context.ts:298](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L298)

@@ -8,7 +8,7 @@
 
 > **formatAbiName**(`name`): `string`
 
-Formats the abi name
+Formats the abi name to camelCase
 
 ## Parameters
 
@@ -22,4 +22,4 @@ The abi name
 
 ## Defined in
 
-[files.ts:374](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/files.ts#L374)
+files.utils.ts:393

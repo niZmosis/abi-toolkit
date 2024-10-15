@@ -105,8 +105,8 @@ export class EthersClassFactory {
     context: GeneratorContext
   }): string {
     // Determine the relative path from the class output directory to the typings directory
-    const classOutputDir = context.classOutputDir || context.outputDir
-    const typingsOutputDir = context.outputDir
+    const classOutputDir = context.classOutputDir || context.typingsOutputDir
+    const typingsOutputDir = context.typingsOutputDir
 
     const relativePath = path.relative(classOutputDir, typingsOutputDir)
 
@@ -257,7 +257,6 @@ export class EthersClassFactory {
 
   private getInputType(input: any): string {
     // Map Solidity types to TypeScript types
-    // This is a simplified example; you may need to handle complex types
     switch (input.type) {
       case 'uint256':
       case 'uint8':

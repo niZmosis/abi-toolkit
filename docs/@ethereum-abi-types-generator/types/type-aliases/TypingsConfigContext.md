@@ -12,24 +12,30 @@ Configuration options for generating typings.
 
 ## Type declaration
 
-### outputDir
+### typingsOutputDir
 
-> **outputDir**: `string`
+> **typingsOutputDir**: `string`
 
 Output directory. Defaults to './ethereum-abi-types'
 
-### outputFileName
+### typingsOutputFileName
 
-> **outputFileName**: `string`
+> **typingsOutputFileName**: `string`
 
 The file name to use for the generated typings. Only used for single file input. Defaults to name of the ABI file
 
-### prefixTypes
+### typingsOutputFileSuffix
 
-> **prefixTypes**: `boolean`
+> **typingsOutputFileSuffix**: `string`
 
-Whether to prefix the name of the type with the `outputFileName`, eg. ('MyTokenContract' or 'PrefixNameContract') vs 'Contract'. Defaults to false
+The suffix to append to the file name of the generated typings. eg. (my-abi.types.ts vs my-abi.ts). Defaults to "types"
+
+### typingsPrefixTypes
+
+> **typingsPrefixTypes**: `boolean`
+
+Whether to prefix the name of the type with the `typingsOutputFileName`, eg. ('MyTokenContract' or 'PrefixNameContract') vs 'Contract'. Defaults to false
 
 ## Defined in
 
-[generate.types.ts:79](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/types/src/generate.types.ts#L79)
+[generate.types.ts:79](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/generate.types.ts#L79)

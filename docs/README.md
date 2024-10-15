@@ -21,10 +21,11 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
 - [Tsconfig Compile Time Issues](#tsconfig-compile-time-issues)
 - [Usage](#usage)
   - [Configuration](#configuration)
-  - [Input/Output](#inputoutput)
   - [Library Options](#library-options)
   - [Framework Options](#framework-options)
   - [Generation Options](#generation-options)
+  - [ABI Options](#abi-options)
+  - [Class Options](#class-options)
   - [Watching Options](#watching-options)
   - [File Inclusion/Exclusion](#file-inclusionexclusion)
   - [Formatting Options](#formatting-options)
@@ -42,6 +43,7 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
   - [Uniswap Full Example](#uniswap-full-example-ethers)
   - [Example](#example-ethers)
   - [Full Example](#full-example-ethers)
+- [Tests](#tests)
 - [Motivation](#motivation)
 - [ethereum-abi-types-generator vs TypeChain](#ethereum-abi-types-generator-vs-typechain)
 - [Issues](#issues)
@@ -138,11 +140,6 @@ There are two ways to use this package: via the CLI or via a configuration file.
 
 - **`--config`**: Path to config file.
 
-### **Input/Output**
-
-- **`--inputDirOrPath`**: Directory of ABI files or a single ABI file path.
-- **`--outputDir`**: Output directory. Defaults to `./ethereum-abi-types`.
-
 ### **Library Options**
 
 - **`--library`**: Library to use. Choices are:
@@ -164,14 +161,28 @@ There are two ways to use this package: via the CLI or via a configuration file.
 
 ### **Generation Options**
 
+- **`--inputDirOrPath`**: Directory of ABI files or a single ABI file path.
 - **`--makeOutputDir`**: Make the output directory if it does not exist.
 - **`--makeIndexFile`**: Generate an index (barrel) file exporting all the generated typings.
-- **`--outputFileName`**: The file name to use for the generated typings. Only used for single file input. Defaults to name of the ABI file.
-- **`--prefixTypes`**: Whether to prefix the name of the type with the `outputFileName` (e.g., `"MyTokenContract"` or `"PrefixNameContract"` vs `"Contract"`).
 - **`--preventOverwrite`**: Prevent overwriting existing files.
 - **`--verbatimModuleSyntax`**: Use verbatim module syntax (eg: 'import type { Contract } from "ethers"').
 - **`--language`**: Language to generate. Choices are:
   - `typescript`
+
+### **ABI Options**
+
+- **`--typingsOutputDir`**: Output directory. Defaults to `./ethereum-abi-types`.
+- **`--typingsOutputFileName`**: The file name to use for the generated typings. Only used for single file input. Defaults to name of the ABI file.
+- **`--typingsOutputFileSuffix`**: The suffix to append to the file name of the generated typings. e.g., (my-abi.types.ts vs my-abi.ts). Defaults to "types".
+- **`--typingsPrefixTypes`**: Whether to prefix the name of the type with the `typingsOutputFileName` (e.g., `"MyTokenContract"` or `"PrefixNameContract"` vs `"Contract"`).
+
+### **Class Options**
+
+- **`--generateClasses`**: Whether to generate classes for the generated typings.
+- **`--classOutputDir`**: The output directory for the class. If not set, it will use the `typingsOutputDir`.
+- **`--classOutputFileName`**: The file name to use for the generated class. Only used for single file input. Defaults to name of the ABI file.
+- **`--classOutputFileSuffix`**: The suffix to append to the file name of the generated classes. e.g., (my-abi.contract.ts vs my-abi.ts). Defaults to "contract".
+- **`--classMulticall`**: Whether to integrate ethereum-multicall into the class.
 
 ### **Watching Options**
 
@@ -250,7 +261,7 @@ abi-types-generator generate --inputDirOrPath=DIR_OR_FILE_PATH --config=./custom
 #### **Specify Output Directory**
 
 ```bash
-abi-types-generator generate --inputDirOrPath=./abis --outputDir=./types
+abi-types-generator generate --inputDirOrPath=./abis --typingsOutputDir=./types
 ```
 
 #### **Use a Specific Library**
@@ -282,7 +293,7 @@ abi-types-generator truffle
 *NOTE: This will only work for single file input.*
 
 ```bash
-abi-types-generator generate --inputDirOrPath=./myAbi.json --outputFileName=MyPrefixName
+abi-types-generator generate --inputDirOrPath=./myAbi.json --typingsOutputFileName=MyPrefixName
 ```
 
 #### **Prevent Overwriting**
@@ -326,7 +337,7 @@ Minimal:
 {
   "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
   "inputDirOrPath": "./abis",
-  "outputDir": "./types",
+  "typingsOutputDir": "./types",
   "library": "web3"
 }
 ```
@@ -337,14 +348,14 @@ Full:
 {
   "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
   "inputDirOrPath": "./abis",
-  "outputDir": "./types",
+  "typingsOutputDir": "./types",
   "library": "ethers_v5",
   "libraryImportAlias": "",
   "framework": "none",
   "makeOutputDir": true,
   "makeIndexFile": true,
-  "outputFileName": "",
-  "prefixTypes": false,
+  "typingsOutputFileName": "",
+  "typingsPrefixTypes": false,
   "watch": false,
   "includeFiles": [],
   "excludeFiles": [],
@@ -373,7 +384,7 @@ abi-types-generator generate --config ./custom-config.json
 You can override any option in the configuration file with the CLI:
 
 ```bash
-abi-types-generator generate --inputDirOrPath=./otherAbis --outputDir=./types --library=web3 --watch
+abi-types-generator generate --inputDirOrPath=./otherAbis --typingsOutputDir=./types --library=web3 --watch
 ```
 
 ---
@@ -499,7 +510,7 @@ The cli tool will generate all your typings for you and expose them in the gener
 Lets say i run the cli command:
 
 ```ts
-abi-types-generator --inputDirOrPath=./abi-examples/fake-contract-abi.json  --output=./generated-typings --outputFileName=fake-contract
+abi-types-generator --inputDirOrPath=./abi-examples/fake-contract-abi.json  --output=./generated-typings --typingsOutputFileName=fake-contract
 ```
 
 This will generate an `ts` file of `./generated-typings/fake-contract.ts` which has all your strongly typed methods and events.
@@ -805,6 +816,17 @@ const example = async () => {
 };
 
 example();
+```
+
+## Tests
+
+The whole repo is covered in tests output below:
+
+```shell
+Test Files  7 passed (7)
+Tests  216 passed (216)
+Start at  11:32:54
+Duration  723ms (transform 644ms, setup 0ms, collect 2.66s, tests 72ms, environment 1ms, prepare 570ms)
 ```
 
 ## Motivation

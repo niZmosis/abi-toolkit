@@ -1,7 +1,7 @@
 import path from 'path'
 
 import type { GeneratorContext } from '@ethereum-abi-types-generator/types'
-import { libraryMap } from '@ethereum-abi-types-generator/utils'
+import { buildFileName, libraryMap } from '@ethereum-abi-types-generator/utils'
 import fs, { type FSWatcher } from 'fs-extra'
 import { describe, it, expect, vi } from 'vitest'
 
@@ -10,13 +10,14 @@ import { TypingsGenerator } from '../src/factories/typings/typings-generator'
 
 const generatorContext = {
   library: 'web3',
-  inputPath: "'abi.json'",
+  inputPath: "'mock-contract.abi.json'",
   abiItems: abiJson,
-  outputDir: "'badOutputDir'",
   verbatimModuleSyntax: false,
   makeOutputDir: false,
   watch: false,
   preventOverwrite: false,
+  typingsOutputDir: "'badOutputDir'",
+  typingsOutputFileSuffix: 'types',
 } as GeneratorContext
 
 type typingsGeneratorOptionsType = {
@@ -67,7 +68,7 @@ const callSuccessTypingsGeneratorInstance = async (
 
   pathDirnameSpy = vi
     .spyOn(path, 'dirname')
-    .mockReturnValue(generatorContext.outputDir ?? '')
+    .mockReturnValue(generatorContext.typingsOutputDir ?? '')
   pathResolveSpy = vi.spyOn(path, 'resolve')
 
   // prettierFormatSpy = vi.spyOn(prettier, 'format')
@@ -86,10 +87,12 @@ describe('TypingsGenerator', async () => {
     expect(generator._context.inputPath).toEqual(generatorContext.inputPath)
   })
 
-  it('should clear all quotes from generatorContext.outputDir', async () => {
+  it('should clear all quotes from generatorContext.typingsOutputDir', async () => {
     const generator = await callSuccessTypingsGeneratorInstance()
     // @ts-ignore
-    expect(generator._context.outputDir).toEqual(generatorContext.outputDir)
+    expect(generator._context.typingsOutputDir).toEqual(
+      generatorContext.typingsOutputDir,
+    )
   })
 
   it('should throw an error if output path does not exist', async () => {
@@ -127,16 +130,16 @@ describe('TypingsGenerator', async () => {
     )
   })
 
-  it('should not call path.dirname if `this._context.outputDir` is defined', async () => {
+  it('should not call path.dirname if `this._context.typingsOutputDir` is defined', async () => {
     await callSuccessTypingsGeneratorInstance()
     expect(pathDirnameSpy).toHaveBeenCalledTimes(0)
   })
 
-  it('should call path.dirname 3 times if `this._context.outputDir` is not defined', async () => {
+  it('should call path.dirname 3 times if `this._context.typingsOutputDir` is not defined', async () => {
     const generatorContextClone = structuredClone(generatorContext)
     expect(generatorContextClone).toBeDefined()
 
-    generatorContextClone!.outputDir = ''
+    generatorContextClone!.typingsOutputDir = ''
 
     await callSuccessTypingsGeneratorInstance(
       defaultTypingsGeneratorOptions,
@@ -145,15 +148,15 @@ describe('TypingsGenerator', async () => {
     expect(pathDirnameSpy).toHaveBeenCalledTimes(3)
   })
 
-  // it('should call path.resolve 5 times if `this._context.outputDir` is defined', async () => {
+  // it('should call path.resolve 5 times if `this._context.typingsOutputDir` is defined', async () => {
   //   await callSuccessTypingsGeneratorInstance()
   //   expect(pathResolveSpy).toHaveBeenCalledTimes(5)
   // })
 
-  it('should call path.resolve if `this._context.outputDir` is not defined', async () => {
+  it('should call path.resolve if `this._context.typingsOutputDir` is not defined', async () => {
     const generatorContextClone = structuredClone(generatorContext)
     expect(generatorContextClone).toBeDefined()
-    generatorContextClone!.outputDir = ''
+    generatorContextClone!.typingsOutputDir = ''
 
     await callSuccessTypingsGeneratorInstance(
       defaultTypingsGeneratorOptions,
@@ -245,7 +248,7 @@ describe('TypingsGenerator', async () => {
       let content = args[1]
       let metadata = args[2]
 
-      expect(filePath.endsWith('common-types.ts')).toBe(true)
+      expect(filePath.endsWith('common.types.ts')).toBe(true)
       expect(content).toBeDefined()
       expect(metadata).toEqual({
         mode: 493,
@@ -258,7 +261,13 @@ describe('TypingsGenerator', async () => {
       metadata = args[2]
 
       expect(
-        filePath.endsWith(`${generatorContext.inputPath.split('.')[0]}.ts`),
+        filePath.endsWith(
+          buildFileName({
+            fileName: generatorContext.inputPath.split('.')[0] ?? '',
+            suffix: generatorContext.typingsOutputFileSuffix,
+            extension: 'ts',
+          }),
+        ),
       ).toBe(true)
       expect(content).toBeDefined()
       expect(metadata).toEqual({
@@ -589,7 +598,7 @@ describe('TypingsGenerator', async () => {
       let content = args[1]
       let metadata = args[2]
 
-      expect(filePath.endsWith('common-types.ts')).toBe(true)
+      expect(filePath.endsWith('common.types.ts')).toBe(true)
       expect(content).toBeDefined()
       expect(metadata).toEqual({
         mode: 493,
@@ -602,7 +611,13 @@ describe('TypingsGenerator', async () => {
       metadata = args[2]
 
       expect(
-        filePath.endsWith(`${generatorContext.inputPath.split('.')[0]}.ts`),
+        filePath.endsWith(
+          buildFileName({
+            fileName: generatorContext.inputPath.split('.')[0] ?? '',
+            suffix: generatorContext.typingsOutputFileSuffix,
+            extension: 'ts',
+          }),
+        ),
       ).toBe(true)
       expect(content).toBeDefined()
       expect(metadata).toEqual({
@@ -1218,7 +1233,7 @@ describe('TypingsGenerator', async () => {
       let content = args[1]
       let metadata = args[2]
 
-      expect(filePath.endsWith('common-types.ts')).toBe(true)
+      expect(filePath.endsWith('common.types.ts')).toBe(true)
       expect(content).toBeDefined()
       expect(metadata).toEqual({
         mode: 493,
@@ -1231,7 +1246,13 @@ describe('TypingsGenerator', async () => {
       metadata = args[2]
 
       expect(
-        filePath.endsWith(`${generatorContext.inputPath.split('.')[0]}.ts`),
+        filePath.endsWith(
+          buildFileName({
+            fileName: generatorContext.inputPath.split('.')[0] ?? '',
+            suffix: generatorContext.typingsOutputFileSuffix,
+            extension: 'ts',
+          }),
+        ),
       ).toBe(true)
       expect(content).toBeDefined()
       expect(metadata).toEqual({

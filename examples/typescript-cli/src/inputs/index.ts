@@ -37,3 +37,11 @@ export class AbiExamples {
   // used for giffs and fake contract example
   public static YOUR_CONTRACT_ADDRESS = AbiExamples.funContractAddress
 }
+
+export * as Erc20ABI from './erc20.abi'
+export * as PulseXRouterABI from './pulseX-router.abi'
+export * as UniswapPairV2ABI from './uniswap-pair-v2.abi'
+export * as UniswapQuoterV3ABI from './uniswap-quoter-v3.abi'
+export * as UniswapRouterV2ABI from './uniswap-router-v2.abi'
+export * as UniswapRouterV3ABI from './uniswap-router-v3.abi'
+export * as WrappedABI from './wrapped.abi'

@@ -20,4 +20,4 @@ Build the executing path
 
 ## Defined in
 
-[files.ts:93](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/files.ts#L93)
+files.utils.ts:112

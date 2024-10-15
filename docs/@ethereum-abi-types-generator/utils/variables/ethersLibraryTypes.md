@@ -12,4 +12,4 @@ Array of supported ethers library versions.
 
 ## Defined in
 
-[library.ts:15](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/library.ts#L15)
+library.utils.ts:15

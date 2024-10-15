@@ -42,7 +42,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:92](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L92)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:92](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L92)
 
 ***
 
@@ -56,7 +56,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:105](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L105)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:105](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L105)
 
 ***
 
@@ -74,7 +74,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:96](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L96)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:96](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L96)
 
 ***
 
@@ -88,7 +88,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:106](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L106)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:106](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L106)
 
 ***
 
@@ -106,7 +106,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:99](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L99)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:99](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L99)
 
 ***
 
@@ -116,7 +116,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:127](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L127)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:127](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L127)
 
 ***
 
@@ -126,7 +126,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:126](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L126)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:126](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L126)
 
 ***
 
@@ -140,7 +140,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:93](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L93)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:93](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L93)
 
 ***
 
@@ -158,7 +158,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:102](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L102)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:102](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L102)
 
 ***
 
@@ -172,7 +172,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:95](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L95)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:95](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L95)
 
 ***
 
@@ -186,7 +186,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:94](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L94)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:94](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L94)
 
 ## Methods
 
@@ -204,7 +204,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:131](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L131)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:131](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L131)
 
 ***
 
@@ -224,7 +224,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:157](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L157)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:157](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L157)
 
 ***
 
@@ -242,7 +242,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:145](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L145)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:145](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L145)
 
 ***
 
@@ -265,7 +265,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:142](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L142)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:142](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L142)
 
 ***
 
@@ -279,7 +279,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:128](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L128)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:128](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L128)
 
 ***
 
@@ -303,7 +303,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:108](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L108)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:108](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L108)
 
 ***
 
@@ -325,7 +325,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:107](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L107)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:107](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L107)
 
 ***
 
@@ -347,7 +347,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:109](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L109)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:109](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L109)
 
 ***
 
@@ -369,7 +369,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:110](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L110)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:110](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L110)
 
 ***
 
@@ -389,7 +389,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:149](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L149)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:149](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L149)
 
 ***
 
@@ -409,7 +409,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:153](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L153)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:153](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L153)
 
 ***
 
@@ -431,7 +431,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:168](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L168)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:168](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L168)
 
 ***
 
@@ -449,7 +449,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:161](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L161)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:161](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L161)
 
 ***
 
@@ -469,4 +469,4 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:164](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L164)
+[packages/converter-typescript/src/types/ethers-v6-contract-context.ts:164](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v6-contract-context.ts#L164)

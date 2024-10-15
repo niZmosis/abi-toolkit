@@ -20,4 +20,4 @@ Gets the abi json
 
 ## Defined in
 
-[files.ts:247](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/files.ts#L247)
+files.utils.ts:266

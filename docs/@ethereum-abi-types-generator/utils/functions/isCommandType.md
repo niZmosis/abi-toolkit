@@ -24,4 +24,4 @@ True if the value is a supported command type, false otherwise.
 
 ## Defined in
 
-[command.ts:43](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/command.ts#L43)
+command.utils.ts:43

@@ -172,4 +172,4 @@ The type of events
 
 ## Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:12](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L12)
+[packages/converter-typescript/src/types/web3-contract-context.ts:12](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L12)

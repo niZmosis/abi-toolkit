@@ -22,7 +22,19 @@ Whether to integrate ethereum-multicall into the class
 
 > **classOutputDir**: `string`
 
-The output directory for the class. If not set it will use the outputDir.
+The output directory for the class. If not set it will use the `typingsOutputDir`.
+
+### classOutputFileName
+
+> **classOutputFileName**: `string`
+
+The file name to use for the generated class. Only used for single file input. Defaults to name of the ABI file
+
+### classOutputFileSuffix
+
+> **classOutputFileSuffix**: `string`
+
+The suffix to append to the file name of the generated classes. eg. (my-abi.contract.ts vs my-abi.ts). Defaults to "contract"
 
 ### generateClasses
 
@@ -32,4 +44,4 @@ Whether to generate classes for the generated typings
 
 ## Defined in
 
-[generate.types.ts:91](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/types/src/generate.types.ts#L91)
+[generate.types.ts:93](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/generate.types.ts#L93)

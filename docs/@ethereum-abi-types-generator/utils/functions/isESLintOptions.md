@@ -24,4 +24,4 @@ A boolean indicating if the object is ESLint.Options
 
 ## Defined in
 
-[formatters/eslint.ts:218](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/formatters/eslint.ts#L218)
+[formatters/eslint.ts:218](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/utils/src/formatters/eslint.ts#L218)

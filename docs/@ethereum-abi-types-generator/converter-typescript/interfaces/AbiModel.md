@@ -34,7 +34,7 @@ The enum of event names
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:84](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L84)
+[packages/converter-typescript/src/types/web3-contract-context.ts:84](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L84)
 
 ***
 
@@ -52,7 +52,7 @@ The enum of event names
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:88](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L88)
+[packages/converter-typescript/src/types/web3-contract-context.ts:88](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L88)
 
 ***
 
@@ -66,7 +66,7 @@ The enum of event names
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:86](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L86)
+[packages/converter-typescript/src/types/web3-contract-context.ts:86](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L86)
 
 ***
 
@@ -84,7 +84,7 @@ The enum of event names
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:78](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L78)
+[packages/converter-typescript/src/types/web3-contract-context.ts:78](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L78)
 
 ***
 
@@ -98,7 +98,7 @@ The enum of event names
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:80](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L80)
+[packages/converter-typescript/src/types/web3-contract-context.ts:80](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L80)
 
 ***
 
@@ -116,7 +116,7 @@ The enum of event names
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:90](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L90)
+[packages/converter-typescript/src/types/web3-contract-context.ts:90](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L90)
 
 ***
 
@@ -134,4 +134,4 @@ The enum of event names
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:82](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L82)
+[packages/converter-typescript/src/types/web3-contract-context.ts:82](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L82)

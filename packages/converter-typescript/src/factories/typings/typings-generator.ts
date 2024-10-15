@@ -22,6 +22,7 @@ import {
   libraryTypes,
   Logger,
   solidityTypeMap,
+  buildFileName,
 } from '@ethereum-abi-types-generator/utils'
 import fs from 'fs-extra'
 
@@ -113,8 +114,11 @@ export class TypingsGenerator {
    */
   private clearAllQuotesFromContextInfo(): void {
     this._context.inputPath = this._context.inputPath.replace(/\'/g, '')
-    if (this._context.outputDir) {
-      this._context.outputDir = this._context.outputDir.replace(/\'/g, '')
+    if (this._context.typingsOutputDir) {
+      this._context.typingsOutputDir = this._context.typingsOutputDir.replace(
+        /\'/g,
+        '',
+      )
     }
   }
 
@@ -154,8 +158,8 @@ export class TypingsGenerator {
    * @returns The output path directory.
    */
   private getOutputPathDirectory(): string {
-    if (this._context.outputDir) {
-      return this._context.outputDir
+    if (this._context.typingsOutputDir) {
+      return this._context.typingsOutputDir
     }
 
     return path.dirname(this.getAbiFileFullPathLocation())
@@ -167,16 +171,31 @@ export class TypingsGenerator {
    */
   private buildOutputLocation(): string {
     const name =
-      this._context.outputFileName ||
+      this._context.typingsOutputFileName ||
       getAbiFileLocationRawName(this._context.inputPath)
 
-    const outputDir = this.getOutputPathDirectory()
+    // Remove the `.abi` extension if it exists to prevent something like 'my-contract.abi.types.ts'
+    const fileName = this._context.typingsOutputFileSuffix
+      ? name.replace('.abi', '')
+      : name
 
-    if (outputDir.substring(outputDir.length - 1) === '/') {
-      return `${outputDir}${name}.ts`
+    const typingsOutputDir = this.getOutputPathDirectory()
+
+    if (typingsOutputDir.substring(typingsOutputDir.length - 1) === '/') {
+      return `${typingsOutputDir}${buildFileName({
+        fileName,
+        suffix: this._context.typingsOutputFileSuffix,
+        extension: 'ts',
+      })}`
     }
 
-    return buildExecutingPath(`${outputDir}/${name}.ts`)
+    return buildExecutingPath(
+      `${typingsOutputDir}/${buildFileName({
+        fileName,
+        suffix: this._context.typingsOutputFileSuffix,
+        extension: 'ts',
+      })}`,
+    )
   }
 
   /**
@@ -231,7 +250,12 @@ export class TypingsGenerator {
    * Generate the common.types.ts file
    */
   private async generateCommonTypesFile(): Promise<void> {
-    const { library, verbatimModuleSyntax, libraryImportAlias } = this._context
+    const {
+      library,
+      verbatimModuleSyntax,
+      libraryImportAlias,
+      typingsOutputFileSuffix,
+    } = this._context
 
     let importType = ''
 
@@ -351,8 +375,15 @@ export type MethodReturnContext = MethodPayableReturnContext`
     
     ${content}`
 
-    const outputDir = this.getOutputPathDirectory()
-    const commonTypesPath = path.join(outputDir, 'common-types.ts')
+    const typingsOutputDir = this.getOutputPathDirectory()
+    const commonTypesPath = path.join(
+      typingsOutputDir,
+      buildFileName({
+        fileName: 'common',
+        suffix: typingsOutputFileSuffix,
+        extension: 'ts',
+      }),
+    )
     // const formattedContent = await formatAndLintCode(
     //   commonTypesContent,
     //   this._context.eslintOptions,
@@ -451,12 +482,15 @@ export type MethodReturnContext = MethodPayableReturnContext`
    * @returns The abi name.
    */
   private getAbiName(force: boolean = false): string {
-    if (!force && (!this._context.prefixTypes || this._context.prefixTypes)) {
+    if (
+      !force &&
+      (!this._context.typingsPrefixTypes || this._context.typingsPrefixTypes)
+    ) {
       return ''
     }
 
-    if (this._context.outputFileName) {
-      return formatAbiName(this._context.outputFileName)
+    if (this._context.typingsOutputFileName) {
+      return formatAbiName(this._context.typingsOutputFileName)
     }
 
     return formatAbiName(getAbiFileLocationRawName(this._context.inputPath))

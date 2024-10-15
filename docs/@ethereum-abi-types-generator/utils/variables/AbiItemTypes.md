@@ -12,4 +12,4 @@ Array of supported ABI item types.
 
 ## Defined in
 
-[abi.ts:7](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/abi.ts#L7)
+abi.utils.ts:7

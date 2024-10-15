@@ -7,6 +7,7 @@ import type {
 } from '@ethereum-abi-types-generator/types'
 import {
   buildExecutingPath,
+  buildFileName,
   formatAbiName,
   getAbiFileLocationRawName,
   isDirectory,
@@ -69,28 +70,30 @@ export class ClassGenerator {
   private getOutputPathDirectory(): string {
     return (
       this._context.classOutputDir ||
-      this._context.outputDir ||
+      this._context.typingsOutputDir ||
       path.dirname(this.getTypingsFileFullPathLocation())
     )
   }
 
   private buildOutputLocation(): string {
     const name =
-      this._context.outputFileName ||
+      this._context.typingsOutputFileName ||
       getAbiFileLocationRawName(this._context.inputPath)
 
-    const outputDir = this.getOutputPathDirectory()
+    const typingsOutputDir = this.getOutputPathDirectory()
 
-    if (outputDir.substring(outputDir.length - 1) === '/') {
-      return `${outputDir}${name}-factory.ts`
+    if (typingsOutputDir.substring(typingsOutputDir.length - 1) === '/') {
+      return `${typingsOutputDir}${buildFileName({ fileName: name, suffix: this._context.classOutputFileSuffix, extension: 'ts' })}`
     }
 
-    return buildExecutingPath(`${outputDir}/${name}-factory.ts`)
+    return buildExecutingPath(
+      `${typingsOutputDir}/${buildFileName({ fileName: name, suffix: this._context.classOutputFileSuffix, extension: 'ts' })}`,
+    )
   }
 
   private getAbiName(): string {
-    if (this._context.outputFileName) {
-      return formatAbiName(this._context.outputFileName)
+    if (this._context.typingsOutputFileName) {
+      return formatAbiName(this._context.typingsOutputFileName)
     }
 
     return formatAbiName(getAbiFileLocationRawName(this._context.inputPath))
@@ -98,12 +101,12 @@ export class ClassGenerator {
 
   private getTypingsFileFullPathLocation(): string {
     const name =
-      this._context.outputFileName ||
+      this._context.typingsOutputFileName ||
       getAbiFileLocationRawName(this._context.inputPath)
 
-    const outputDir = this._context.outputDir
+    const typingsOutputDir = this._context.typingsOutputDir
 
-    return buildExecutingPath(`${outputDir}/${name}.ts`)
+    return buildExecutingPath(`${typingsOutputDir}/${name}.ts`)
   }
 
   private buildClassContent(): string {

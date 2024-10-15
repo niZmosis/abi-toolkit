@@ -24,4 +24,4 @@ True if the ABI item accepts Ether, false otherwise.
 
 ## Defined in
 
-[abi.ts:48](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/abi.ts#L48)
+abi.utils.ts:48

@@ -16,4 +16,4 @@ The Solidity type to map
 
 ## Defined in
 
-[solidity.ts:28](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/solidity.ts#L28)
+solidity.utils.ts:28

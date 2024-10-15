@@ -16,7 +16,7 @@ Represents estimate gas options for a Web3 contract method.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:188](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L188)
+[packages/converter-typescript/src/types/web3-contract-context.ts:188](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L188)
 
 ***
 
@@ -26,7 +26,7 @@ Represents estimate gas options for a Web3 contract method.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:189](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L189)
+[packages/converter-typescript/src/types/web3-contract-context.ts:189](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L189)
 
 ***
 
@@ -36,4 +36,4 @@ Represents estimate gas options for a Web3 contract method.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:190](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L190)
+[packages/converter-typescript/src/types/web3-contract-context.ts:190](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L190)

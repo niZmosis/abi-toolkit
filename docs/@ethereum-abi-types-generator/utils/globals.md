@@ -39,6 +39,7 @@
 ## Functions
 
 - [buildExecutingPath](functions/buildExecutingPath.md)
+- [buildFileName](functions/buildFileName.md)
 - [buildUpHelpMessage](functions/buildUpHelpMessage.md)
 - [capitalize](functions/capitalize.md)
 - [convertAbiFileToAbiItems](functions/convertAbiFileToAbiItems.md)

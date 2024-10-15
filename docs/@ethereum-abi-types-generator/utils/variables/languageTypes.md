@@ -12,4 +12,4 @@ Array of supported language types.
 
 ## Defined in
 
-[language.ts:6](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/language.ts#L6)
+language.utils.ts:6

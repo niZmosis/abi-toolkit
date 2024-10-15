@@ -1,12 +1,12 @@
 import { describe, it, expect } from 'vitest'
 
-import { commandMap } from '../src/command'
+import { commandMap } from '../src/command.utils'
 import {
   buildUpHelpMessage,
   generateHelpMessages,
   getHelpMessageByCommandType,
-} from '../src/help'
-import { capitalize, removeAllWhiteSpace } from '../src/strings'
+} from '../src/help.utils'
+import { capitalize, removeAllWhiteSpace } from '../src/strings.utils'
 
 describe('Helpers', () => {
   describe('capitalize', () => {

@@ -37,7 +37,7 @@ export class Web3Factory implements TypingsFactory {
     import${verbatimModuleSyntax ? ' type' : ''} BigNumber from 'bignumber.js';
     import${verbatimModuleSyntax ? ' type' : ''} { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "@ethereum-abi-types-generator/converter-typescript";
 
-    import${verbatimModuleSyntax ? ' type' : ''} { MethodPayableReturnContext, MethodConstantReturnContext, MethodReturnContext } from './common-types';
+    import${verbatimModuleSyntax ? ' type' : ''} { MethodPayableReturnContext, MethodConstantReturnContext, MethodReturnContext } from './common.types';
 
     export type ${abiName}ContractContext = Web3ContractContext<
       ${abiName || 'Contract'},

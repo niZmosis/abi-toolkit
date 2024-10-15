@@ -11,8 +11,8 @@ import {
   formatFilesPrettier,
   loadPrettierConfigs,
 } from './prettier'
-import { getAllFilePathsFromDirectory } from '../files'
-import { Logger } from '../logger'
+import { getAllFilePathsFromDirectory } from '../files.utils'
+import { Logger } from '../logger.utils'
 
 /**
  * Formats and lints the given code.
@@ -64,7 +64,7 @@ export async function formatAndLintCode(
 /**
  * Formats and lints the generated files in the specified output directory and its subdirectories.
  *
- * @param outputDir - The output directory containing the generated files.
+ * @param typingsOutputDir - The output directory containing the generated files.
  * @param eslintOptions - The ESLint options.
  * @param eslintConfigPath - The ESLint config file path.
  * @param prettierOptions - The Prettier options.
@@ -72,13 +72,13 @@ export async function formatAndLintCode(
  * @returns A promise that resolves when the formatting and linting are complete.
  */
 export async function formatAndLintFiles(
-  outputDir: string,
+  typingsOutputDir: string,
   eslintOptions?: ESLint.Options,
   eslintConfigPath?: string,
   prettierOptions?: PrettierOptions,
   prettierConfigPath?: string,
 ): Promise<void> {
-  const filePaths = getAllFilePathsFromDirectory(outputDir)
+  const filePaths = getAllFilePathsFromDirectory(typingsOutputDir)
 
   for await (const config of loadEslintConfigs({
     eslintOptions,

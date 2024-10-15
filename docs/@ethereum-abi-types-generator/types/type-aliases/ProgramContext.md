@@ -36,4 +36,4 @@ Any subcommands
 
 ## Defined in
 
-[generate.types.ts:123](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/types/src/generate.types.ts#L123)
+[generate.types.ts:129](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/generate.types.ts#L129)

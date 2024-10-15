@@ -41,7 +41,7 @@ export class EthersFactory implements TypingsFactory {
           import${verbatimModuleSyntax ? ' type' : ''} { Arrayish, BigNumber, BigNumberish, Interface } from "${libraryImportAlias || 'ethers'}/utils";
           import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContext } from "@ethereum-abi-types-generator/converter-typescript";
 
-          import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common-types';
+          import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common.types';
 
           export type ContractContext = EthersContractContext<
             ${abiName || 'Contract'},
@@ -58,7 +58,7 @@ export class EthersFactory implements TypingsFactory {
                     BigNumberish } from "${libraryImportAlias || 'ethers'}";
            import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV5 } from "@ethereum-abi-types-generator/converter-typescript";
 
-          import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common-types';
+          import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common.types';
 
            export type ContractContext = EthersContractContextV5<
             ${abiName || 'Contract'},
@@ -75,7 +75,7 @@ export class EthersFactory implements TypingsFactory {
                     BigNumberish } from "${libraryImportAlias || 'ethers'}";
            import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV6 } from "@ethereum-abi-types-generator/converter-typescript";
 
-           import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common-types';
+           import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common.types';
 
            export type ContractContext = EthersContractContextV6<
             ${abiName || 'Contract'},

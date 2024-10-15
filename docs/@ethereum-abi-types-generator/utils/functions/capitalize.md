@@ -22,4 +22,4 @@ The value
 
 ## Defined in
 
-[strings.ts:5](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/utils/src/strings.ts#L5)
+strings.utils.ts:5
