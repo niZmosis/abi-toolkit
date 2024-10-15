@@ -19,6 +19,7 @@
     // Diagnostics
     "noUnusedLocals": true,
     "noUnusedParameters": true,
+    "noUncheckedIndexedAccess": true,
     // Additional Checks
     "forceConsistentCasingInFileNames": true,
     "noFallthroughCasesInSwitch": true,

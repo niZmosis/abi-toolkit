@@ -10,6 +10,9 @@
     "abi",
     "typescript"
   ],
+  "bugs": {
+    "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
+  },
   "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
   "author": "joshstevens19@hotmail.co.uk",
   "license": "ISC",
@@ -20,15 +23,16 @@
     "prettier": "prettier --write .",
     "build:docs": "typedoc",
     "test": "vitest run",
+    "test:watch": "vitest watch",
     "test:converter:ts": "vitest ./packages/converter-typescript/tests",
     "test:core": "vitest ./packages/core/tests",
     "test:utils": "vitest ./packages/utils/tests",
     "test:single": "vitest ./packages/core/tests/execute.spec.ts",
-    "test:watch": "vitest watch",
     "test:coverage": "vitest run --coverage",
     "build": "lerna run build",
     "start": "lerna run start --parallel --ignore 'examples'",
     "rebuild": "pnpm clean && pnpm build",
+    "restart": "pnpm clean && pnpm start",
     "prepack": "pnpm build",
     "publish": "lerna run prepublish && lerna publish from-package --yes",
     "publish:dry": "lerna run prepublish && lerna publish from-package --yes --dry-run"

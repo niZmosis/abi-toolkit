@@ -20,15 +20,14 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
 - [Installation](#installation)
 - [Tsconfig Compile Time Issues](#tsconfig-compile-time-issues)
 - [Usage](#usage)
-  - [Common Options](#common-options)
-    - [Configuration](#configuration)
-    - [Input/Output](#inputoutput)
-    - [Library Options](#library-options)
-    - [Framework Options](#framework-options)
-    - [Generation Options](#generation-options)
-    - [Watching Options](#watching-options)
-    - [File Inclusion/Exclusion](#file-inclusionexclusion)
-    - [Formatting Options](#formatting-options)
+  - [Configuration](#configuration)
+  - [Input/Output](#inputoutput)
+  - [Library Options](#library-options)
+  - [Framework Options](#framework-options)
+  - [Generation Options](#generation-options)
+  - [Watching Options](#watching-options)
+  - [File Inclusion/Exclusion](#file-inclusionexclusion)
+  - [Formatting Options](#formatting-options)
 - [Generator CLI](#generator-cli)
   - [Available Commands](#available-commands)
   - [CLI Examples](#cli-examples)
@@ -44,52 +43,53 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
   - [Example](#example-ethers)
   - [Full Example](#full-example-ethers)
 - [Motivation](#motivation)
-- [⚔️ ethereum-abi-types-generator vs TypeChain](#️-ethereum-abi-types-generator-vs-typechain)
+- [ethereum-abi-types-generator vs TypeChain](#ethereum-abi-types-generator-vs-typechain)
 - [Issues](#issues)
 - [Thanks And Support](#thanks-and-support)
 - [License](#license)
 
 ## Features
 
-- 🚀 **Generate TypeScript Typings from ABI Files**: Convert your Ethereum smart contract ABIs into fully typed TypeScript interfaces, including support for complex types like nested tuples and multi-dimensional arrays. Supporting both JSON and JSONFragment[] files.
+🚀 **Generate TypeScript Typings from ABI Files**: Convert your Ethereum smart contract ABIs into fully typed TypeScript interfaces, including support for complex types like nested tuples and multi-dimensional arrays. Supporting both JSON and JSONFragment[] files.
 
-- 🔎 **Automatic Regeneration with Watch Mode**: Enable watch mode to automatically regenerate typings whenever your ABI files change, ensuring your types are always up-to-date.
+🔎 **Automatic Regeneration with Watch Mode**: Enable watch mode to automatically regenerate typings whenever your ABI files change, ensuring your types are always up-to-date.
 
-- ⚙️ **Highly Configurable via CLI and Config Files**: Customize the tool using command-line arguments or a configuration file, allowing for flexible integration into any project setup.
+⚙️ **Highly Configurable via CLI and Config Files**: Customize the tool using command-line arguments or a configuration file, allowing for flexible integration into any project setup.
 
-- 🔌 **Supports Multiple Ethereum Libraries and Frameworks**:
-  - **Libraries**:
-    - Web3.js (1.x and 2.x)
-    - Ethers.js (v4, v5, and v6)
-  - **Frameworks**:
-    - Truffle
-    - Hardhat
+🔌 **Supports Multiple Ethereum Libraries and Frameworks**:
 
-- 🧩 **Comprehensive Type Support**: Handles all Solidity types, including advanced types like nested tuples and multi-dimensional arrays, to ensure accurate type definitions.
+- **Libraries**:
+  - Web3.js (1.x and 2.x)
+  - Ethers.js (v4, v5, and v6)
+- **Frameworks**:
+  - Truffle
+  - Hardhat
 
-- 📚 **Automatic Documentation Generation**: Generates detailed documentation for each contract method and event directly from the ABI, including parameter types, state mutability, and more.
+🧩 **Comprehensive Type Support**: Handles all Solidity types, including advanced types like nested tuples and multi-dimensional arrays, to ensure accurate type definitions.
 
-- 🛠 **Index File Generation**: Optionally generate an index file that exports all generated typings for easier imports and better project organization.
+📚 **Automatic Documentation Generation**: Generates detailed documentation for each contract method and event directly from the ABI, including parameter types, state mutability, and more.
 
-- ✨ **Code Formatting with Prettier and ESLint**: Automatically formats and lints generated code using Prettier and ESLint, with support for custom configuration paths and options.
+🛠 **Index File Generation**: Optionally generate an index file that exports all generated typings for easier imports and better project organization.
 
-- 📦 **Zero Runtime Dependencies**: Produces pure TypeScript interfaces without adding any runtime dependencies to your project.
+✨ **Code Formatting with Prettier and ESLint**: Automatically formats and lints generated code using Prettier and ESLint, with support for custom configuration paths and options.
 
-- 🔄 **ESM Export Alias Support**: Supports ECMAScript Module (ESM) export aliases for all generated typing files, allowing for flexible import strategies.
+📦 **Zero Runtime Dependencies**: Produces pure TypeScript interfaces without adding any runtime dependencies to your project.
 
-- 🗂 **Selective File Inclusion/Exclusion**: Specify which ABI files to include or exclude, giving you granular control over the generation process.
+🔄 **ESM Export Alias Support**: Supports ECMAScript Module (ESM) export aliases for all generated typing files, allowing for flexible import strategies.
 
-- 🔐 **Overwrite Protection**: Optionally prevent overwriting existing files to safeguard manual changes.
+🗂 **Selective File Inclusion/Exclusion**: Specify which ABI files to include or exclude, giving you granular control over the generation process.
 
-- 🌐 **Multi-Language Support**: Designed to support multiple target languages, starting with TypeScript, with plans for future expansion.
+🔐 **Overwrite Protection**: Optionally prevent overwriting existing files to safeguard manual changes.
 
-- ⚡ **Performance Optimized**: Efficiently handles large projects with many contracts, ensuring fast generation times.
+🌐 **Multi-Language Support**: Designed to support multiple target languages, starting with TypeScript, with plans for future expansion.
 
-- 🛡 **Event Typing and Filtering**: Generates accurate typings for contract events, including event filters and listener methods.
+⚡ **Performance Optimized**: Efficiently handles large projects with many contracts, ensuring fast generation times.
 
-- 🤝 **Easy Integration with Build Tools**: Seamlessly integrate into your build process or scripts, enhancing your development workflow.
+🛡 **Event Typing and Filtering**: Generates accurate typings for contract events, including event filters and listener methods.
 
-- 💎 **Open Source and Community-Driven**: Join the community on GitHub to contribute, report issues, or request features.
+🤝 **Easy Integration with Build Tools**: Seamlessly integrate into your build process or scripts, enhancing your development workflow.
+
+💎 **Open Source and Community-Driven**: Join the community on GitHub to contribute, report issues, or request features.
 
 ## Supported Libraries / Frameworks
 
@@ -100,14 +100,28 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
 
 ## Installation
 
+Install the core package:
+
 ```bash
-npm i ethereum-abi-types-generator -D
+npm i @ethereum-abi-types-generator/core -D
 # or
-yarn add ethereum-abi-types-generator -D
+yarn add @ethereum-abi-types-generator/core -D
 # or
-pnpm add ethereum-abi-types-generator -D
+pnpm add @ethereum-abi-types-generator/core -D
 # or
-bun add ethereum-abi-types-generator -d
+bun add @ethereum-abi-types-generator/core -d
+```
+
+Install the language package you want to use:
+
+```bash
+npm i @ethereum-abi-types-generator/converter-typescript -D
+# or
+yarn add @ethereum-abi-types-generator/converter-typescript -D
+# or
+pnpm add @ethereum-abi-types-generator/converter-typescript -D
+# or
+bun add @ethereum-abi-types-generator/converter-typescript -d
 ```
 
 ## Tsconfig compile time issues
@@ -119,8 +133,6 @@ If you get compile time errors due to it waiting `web3` dependencies when using 
 There are two ways to use this package: via the CLI or via a configuration file.
 
 *NOTE: If using a configuration file, you can also use the CLI flags to override the configs options.*
-
-## **Common Options**
 
 ### **Configuration**
 
@@ -803,7 +815,7 @@ The idea was to not have to make the developer wrap any kind of `web3` or `ether
 
 The ABI file is the source of truth for all contract calls, so by building types from this file, we can be assured our types are correct.
 
-## ⚔️ ethereum-abi-types-generator vs TypeChain
+## ethereum-abi-types-generator vs TypeChain
 
 The main differences between ethereum-abi-types-generator and TypeChain are:
 
@@ -829,4 +841,4 @@ Direct donations (any token accepted) - Eth address: `0x699c2daD091ffcF18f3cd9E8
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](_media/LICENSE) file for details.
+This project is licensed under the ISC License - see the [LICENSE](_media/LICENSE) file for details.

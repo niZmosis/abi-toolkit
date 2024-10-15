@@ -383,40 +383,48 @@ export type MethodReturnContext = MethodPayableReturnContext`
     let properties = ''
 
     for (let i = 0; i < abiItems.length; i++) {
-      switch (abiItems[i].type) {
+      const abiItem = abiItems[i]
+
+      if (!abiItem) continue
+
+      switch (abiItem.type) {
         case abiItemsMap.constructor:
-          properties += this.buildInterfacePropertyDocs(abiItems[i])
+          properties += this.buildInterfacePropertyDocs(abiItem)
           this._methodNames.push('new')
-          properties += `'new'${this.buildParametersAndReturnTypes(abiItems[i])};`
+          properties += `'new'${this.buildParametersAndReturnTypes(abiItem)};`
           break
 
         case abiItemsMap.function:
-          properties += this.buildInterfacePropertyDocs(abiItems[i])
-          this._methodNames.push(abiItems[i].name)
-          properties += `${abiItems[i].name}${this.buildParametersAndReturnTypes(abiItems[i])};`
+          properties += this.buildInterfacePropertyDocs(abiItem)
+          this._methodNames.push(abiItem.name)
+          properties += `${abiItem.name}${this.buildParametersAndReturnTypes(abiItem)};`
           break
 
         case abiItemsMap.event:
-          const eventInputs = abiItems[i].inputs
+          const eventInputs = abiItem.inputs
 
           if (eventInputs && eventInputs.length > 0) {
-            const eventInterfaceName = `${capitalize(abiItems[i].name)}EventEmittedResponse`
+            const eventInterfaceName = `${capitalize(abiItem.name)}EventEmittedResponse`
 
             let eventTypeProperties = ''
 
             for (let e = 0; e < eventInputs.length; e++) {
+              const abiInput = eventInputs[e]
+
+              if (!abiInput) continue
+
               const eventTsType = TypeScriptHelpers.getSolidityInputTsType({
-                abiInput: eventInputs[e],
+                abiInput,
                 library: this._context.library,
                 suffix: 'EventEmittedResponse',
               })
 
-              eventTypeProperties += `${eventInputs[e].name || `param${e}`}: ${eventTsType};`
+              eventTypeProperties += `${abiInput.name || `param${e}`}: ${eventTsType};`
 
-              if (eventInputs[e].type === solidityTypeMap.tuple) {
+              if (abiInput.type === solidityTypeMap.tuple) {
                 this.buildTupleParametersInterface({
-                  nameOverride: `event_${abiItems[i].name}`,
-                  abiInput: eventInputs[e],
+                  nameOverride: `event_${abiItem.name}`,
+                  abiInput,
                   suffix: 'EventEmittedResponse',
                 })
               }
@@ -428,7 +436,7 @@ export type MethodReturnContext = MethodPayableReturnContext`
             })
           }
 
-          this._events.push(abiItems[i].name)
+          this._events.push(abiItem.name)
 
           break
       }
@@ -538,15 +546,19 @@ export type MethodReturnContext = MethodPayableReturnContext`
 
     if (abiItem.inputs) {
       for (let i = 0; i < abiItem.inputs.length; i++) {
-        let inputName = abiItem.inputs[i].name
+        const abiInput = abiItem.inputs[i]
+
+        if (!abiInput) continue
+
+        let inputName = abiInput.name
         // handle mapping inputs
         if (inputName.length === 0) {
           inputName = `parameter${i}`
         }
 
         paramsDocs += `\r\n* @param ${inputName} Type: ${
-          abiItem.inputs[i].type
-        }, Indexed: ${abiItem.inputs[i].indexed || 'false'}`
+          abiInput.type
+        }, Indexed: ${abiInput.indexed || 'false'}`
       }
     }
 
@@ -578,26 +590,30 @@ export type MethodReturnContext = MethodPayableReturnContext`
     let input = '('
     if (abiItem.inputs) {
       for (let i = 0; i < abiItem.inputs.length; i++) {
+        const abiInput = abiItem.inputs[i]
+
+        if (!abiInput) continue
+
         if (input.length > 1) {
           input += ', '
         }
 
-        let inputName = abiItem.inputs[i].name
+        let inputName = abiInput.name
         // handle mapping inputs
         if (inputName.length === 0) {
           inputName = `parameter${i}`
         }
 
-        if (abiItem.inputs[i].type.includes(solidityTypeMap.tuple)) {
+        if (abiInput.type.includes(solidityTypeMap.tuple)) {
           input += `${inputName}: ${this.buildTupleParametersInterface({
             nameOverride: inputName,
-            abiInput: abiItem.inputs[i],
+            abiInput,
             suffix: 'Request',
             methodName: abiItem.name,
           })}`
         } else {
           input += `${inputName}: ${TypeScriptHelpers.getSolidityInputTsType({
-            abiInput: abiItem.inputs[i],
+            abiInput,
             library: this._context.library,
             suffix: 'Request',
           })}`
@@ -644,17 +660,27 @@ export type MethodReturnContext = MethodPayableReturnContext`
 
     let properties = ''
 
+    if (!abiInput.components) {
+      throw new Error(
+        `No components found for tuple ${abiInput.type} in ${methodName}`,
+      )
+    }
+
     // Iterate over all components in the tuple
-    for (let i = 0; i < abiInput.components!.length; i++) {
-      const isNestedTuple = !!abiInput.components![i].components
+    for (let i = 0; i < abiInput.components.length; i++) {
+      const component = abiInput.components[i]
+
+      if (!component) continue
+
+      const isNestedTuple = !!component?.components
 
       if (isNestedTuple) {
-        const componentName = abiInput.components![i].name || `result${i}`
+        const componentName = component.name || `result${i}`
 
         // Make a new interface for the nested tuple
         const nestedInterfaceName = this.buildTupleParametersInterface({
           nameOverride: componentName,
-          abiInput: abiInput.components![i],
+          abiInput: component,
           suffix,
           methodName,
         })
@@ -663,14 +689,14 @@ export type MethodReturnContext = MethodPayableReturnContext`
         properties += `${componentName}: ${nestedInterfaceName};`
       } else {
         const inputTsType = TypeScriptHelpers.getSolidityInputTsType({
-          abiInput: abiInput.components![i],
+          abiInput: component,
           library: this._context.library,
           suffix: 'Request',
           methodName,
         })
 
         // Add the property to the current interface
-        properties += `${abiInput.components![i].name}: ${inputTsType};`
+        properties += `${component.name}: ${inputTsType};`
       }
     }
 
@@ -710,15 +736,19 @@ export type MethodReturnContext = MethodPayableReturnContext`
 
     // Iterate over all components in the tuple
     for (let i = 0; i < abiOutput.components!.length; i++) {
-      const isNestedTuple = !!abiOutput.components![i].components
+      const component = abiOutput.components?.[i]
+
+      if (!component) continue
+
+      const isNestedTuple = !!component.components
 
       // check for deep tuples in tuple in tuples
       if (isNestedTuple) {
-        const componentName = abiOutput.components![i].name || `result${i}`
+        const componentName = component.name || `result${i}`
 
         // Make a new interface for the nested tuple
         const nestedInterfaceName = this.buildTupleResponseInterface({
-          abiOutput: abiOutput.components![i],
+          abiOutput: component,
           // methodName,
         })
 
@@ -731,12 +761,12 @@ export type MethodReturnContext = MethodPayableReturnContext`
         }
       } else {
         const outputTsType = TypeScriptHelpers.getSolidityOutputTsType({
-          abiOutput: abiOutput.components![i],
+          abiOutput: component,
           library: this._context.library,
         })
 
         // Add the property to the current interface
-        properties += `${abiOutput.components![i].name}: ${outputTsType};`
+        properties += `${component.name}: ${outputTsType};`
 
         // Add a prop with the name as the index to the current interface
         if (isEthersLibrary(this._context.library)) {
@@ -765,18 +795,24 @@ export type MethodReturnContext = MethodPayableReturnContext`
 
     if (abiItem.outputs && abiItem.outputs.length > 0) {
       if (abiItem.outputs.length === 1) {
+        const abiOutput = abiItem.outputs[0]
+
+        if (!abiOutput) {
+          return ''
+        }
+
         output += this.buildMethodReturnContext({
           abiName: this.getAbiName(),
           type: TypeScriptHelpers.getSolidityOutputTsType({
-            abiOutput: abiItem.outputs[0],
+            abiOutput,
             library: this._context.library,
           }),
           abiItem,
         })
 
-        if (abiItem.outputs[0].type.includes(solidityTypeMap.tuple)) {
+        if (abiOutput.type.includes(solidityTypeMap.tuple)) {
           this.buildTupleResponseInterface({
-            abiOutput: abiItem.outputs[0],
+            abiOutput,
             methodName: abiItem.name,
           })
         }
@@ -790,6 +826,8 @@ export type MethodReturnContext = MethodPayableReturnContext`
 
           for (let i = 0; i < abiItem.outputs.length; i++) {
             const abiItemOutput = abiItem.outputs[i]
+
+            if (!abiItemOutput) continue
 
             const outputTsType = TypeScriptHelpers.getSolidityOutputTsType({
               abiOutput: abiItemOutput,
@@ -809,7 +847,7 @@ export type MethodReturnContext = MethodPayableReturnContext`
 
             if (abiItemOutput.type.includes(solidityTypeMap.tuple)) {
               this.buildTupleResponseInterface({
-                abiOutput: abiItem.outputs[i],
+                abiOutput: abiItemOutput,
                 methodName: abiItem.name,
               })
             }

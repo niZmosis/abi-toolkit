@@ -62,17 +62,25 @@ export class Web3Factory implements TypingsFactory {
   }): string {
     let eventProperties = ''
     for (let i = 0; i < abiItems.length; i++) {
-      if (abiItems[i].type === abiItemsMap.event) {
+      const abiItem = abiItems[i]
+
+      if (!abiItem) continue
+
+      if (abiItem.type === abiItemsMap.event) {
         let filtersProperties = '{'
-        for (let a = 0; a < abiItems[i].inputs!.length; a++) {
-          if (abiItems[i].inputs![a].indexed === true) {
+        for (let a = 0; a < abiItem.inputs!.length; a++) {
+          const abiInput = abiItem.inputs?.[a]
+
+          if (!abiInput) continue
+
+          if (abiInput.indexed === true) {
             const parameterType = TypeScriptHelpers.getSolidityInputTsType({
-              abiInput: abiItems[i].inputs![a],
+              abiInput,
               library: libraryMap.web3,
               suffix: 'EventEmittedResponse',
             })
             filtersProperties += `${
-              abiItems[i].inputs![a].name
+              abiInput.name
             }?: ${parameterType} | ${parameterType}[],`
           }
         }
@@ -88,7 +96,7 @@ export class Web3Factory implements TypingsFactory {
          }
          `
 
-        eventProperties += `${abiItems[i].name}(parameters: ${parameters}, callback?: (error: Error, event: EventData) => void): EventResponse;`
+        eventProperties += `${abiItem.name}(parameters: ${parameters}, callback?: (error: Error, event: EventData) => void): EventResponse;`
       }
     }
 

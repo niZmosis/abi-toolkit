@@ -104,8 +104,12 @@ export class EthersFactory implements TypingsFactory {
     let eventProperties = ''
 
     for (let i = 0; i < abiItems.length; i++) {
-      if (abiItems[i].type === abiItemsMap.event) {
-        const inputs = abiItems[i].inputs || []
+      const abiItem = abiItems[i]
+
+      if (!abiItem) continue
+
+      if (abiItem.type === abiItemsMap.event) {
+        const inputs = abiItem.inputs || []
         const params = inputs
           .map(
             (input, index) =>
@@ -113,7 +117,7 @@ export class EthersFactory implements TypingsFactory {
           )
           .join(', ')
 
-        eventProperties += `${abiItems[i].name}(${params}): EventFilter;\n`
+        eventProperties += `${abiItem.name}(${params}): EventFilter;\n`
       }
     }
 

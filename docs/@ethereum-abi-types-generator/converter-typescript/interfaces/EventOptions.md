@@ -16,7 +16,7 @@ Represents event options for Web3.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:287](https://github.com/niZmosis/ethereum-abi-types-generator/blob/51c0ac8a6ea35330201860f8469daa0efc6ae8f2/packages/converter-typescript/src/types/web3-contract-context.ts#L287)
+[packages/converter-typescript/src/types/web3-contract-context.ts:287](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L287)
 
 ***
 
@@ -26,7 +26,7 @@ Represents event options for Web3.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:288](https://github.com/niZmosis/ethereum-abi-types-generator/blob/51c0ac8a6ea35330201860f8469daa0efc6ae8f2/packages/converter-typescript/src/types/web3-contract-context.ts#L288)
+[packages/converter-typescript/src/types/web3-contract-context.ts:288](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L288)
 
 ***
 
@@ -36,7 +36,7 @@ Represents event options for Web3.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:289](https://github.com/niZmosis/ethereum-abi-types-generator/blob/51c0ac8a6ea35330201860f8469daa0efc6ae8f2/packages/converter-typescript/src/types/web3-contract-context.ts#L289)
+[packages/converter-typescript/src/types/web3-contract-context.ts:289](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L289)
 
 ***
 
@@ -46,4 +46,4 @@ Represents event options for Web3.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:290](https://github.com/niZmosis/ethereum-abi-types-generator/blob/51c0ac8a6ea35330201860f8469daa0efc6ae8f2/packages/converter-typescript/src/types/web3-contract-context.ts#L290)
+[packages/converter-typescript/src/types/web3-contract-context.ts:290](https://github.com/niZmosis/ethereum-abi-types-generator/blob/34014c6ac1a58a7622fbd21e7421270aae38bf36/packages/converter-typescript/src/types/web3-contract-context.ts#L290)

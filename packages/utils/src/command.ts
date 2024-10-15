@@ -172,6 +172,11 @@ export async function getProgramArguments(
   // Get the commands
   const command = positionalArgs[0]
 
+  if (!command) {
+    Logger.error('No command provided')
+    process.exit(1)
+  }
+
   if (!Object.keys(commandMap).includes(command)) {
     Logger.error(`Command ${command} is not supported`)
     process.exit(1)

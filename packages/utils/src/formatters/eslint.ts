@@ -182,7 +182,7 @@ export async function formatCodeWithEslint(
 
   // const formatter = await eslint.loadFormatter('stylish')
   // await formatter.format(results)
-  if (results.length > 0 && results[0].output) {
+  if (results?.length && results[0]?.output) {
     return results[0].output
   }
 

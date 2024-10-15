@@ -317,7 +317,7 @@ export default class TypeScriptHelpers {
 
     const bits = clonedType.replace(solidityType, '').split('[')[0]
     const totalBits = Number(bits)
-    if (bits.length > 0 && !isNaN(totalBits)) {
+    if (bits?.length && !isNaN(totalBits)) {
       if (library === 'ethers_v6') {
         return totalBits <= 48 ? 'number' : 'bigint'
       }
@@ -340,7 +340,7 @@ export default class TypeScriptHelpers {
 
     const bits = clonedType.replace(solidityType, '').split('[')[0]
     const totalBits = Number(bits)
-    if (bits.length > 0 && !isNaN(totalBits)) {
+    if (bits?.length && !isNaN(totalBits)) {
       return totalBits <= 48 ? 'string | number' : 'string'
     }
 
@@ -365,10 +365,14 @@ export default class TypeScriptHelpers {
     split.shift()
     let buildType = ''
     for (let i = 0; i < split.length; i++) {
+      const item = split[i]
+
+      if (!item) continue
+
       // we can only put fixed sizes on the first fixed length
       // array rest has to be `[]` due to TS limited support
-      if (i === 0 && split[i].length > 1) {
-        const arrayLength = Number(split[i].split(']')[0])
+      if (i === 0 && item.length > 1) {
+        const arrayLength = Number(item.split(']')[0])
         let index = 0
         buildType = '['
         while (index <= arrayLength) {
