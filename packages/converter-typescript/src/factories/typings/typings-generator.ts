@@ -23,6 +23,7 @@ import {
   Logger,
   solidityTypeMap,
   buildFileName,
+  isQuoteExactMethod,
 } from '@ethereum-abi-types-generator/utils'
 import fs from 'fs-extra'
 
@@ -416,7 +417,9 @@ export type MethodReturnContext = MethodPayableReturnContext`
     for (let i = 0; i < abiItems.length; i++) {
       const abiItem = abiItems[i]
 
-      if (!abiItem) continue
+      if (!abiItem) {
+        continue
+      }
 
       switch (abiItem.type) {
         case abiItemsMap.constructor:
@@ -442,7 +445,9 @@ export type MethodReturnContext = MethodPayableReturnContext`
             for (let e = 0; e < eventInputs.length; e++) {
               const abiInput = eventInputs[e]
 
-              if (!abiInput) continue
+              if (!abiInput) {
+                continue
+              }
 
               const eventTsType = TypeScriptHelpers.getSolidityInputTsType({
                 abiInput,
@@ -552,14 +557,19 @@ export type MethodReturnContext = MethodPayableReturnContext`
       case 'web3':
         return TypeScriptHelpers.buildInterface(
           eventsInterfaceName,
-          this._web3Factory.buildEventInterfaceProperties({ abiItems }),
+          this._web3Factory.buildEventInterfaceProperties({
+            abiItems,
+          }),
         )
       case 'ethers_v4':
       case 'ethers_v5':
       case 'ethers_v6':
         return TypeScriptHelpers.buildInterface(
           eventsInterfaceName,
-          this._ethersFactory.buildEventInterfaceProperties({ abiItems }),
+          this._ethersFactory.buildEventInterfaceProperties({
+            library: this._context.library,
+            abiItems,
+          }),
         )
       default:
         throw new Error(
@@ -582,7 +592,9 @@ export type MethodReturnContext = MethodPayableReturnContext`
       for (let i = 0; i < abiItem.inputs.length; i++) {
         const abiInput = abiItem.inputs[i]
 
-        if (!abiInput) continue
+        if (!abiInput) {
+          continue
+        }
 
         let inputName = abiInput.name
         // handle mapping inputs
@@ -626,7 +638,9 @@ export type MethodReturnContext = MethodPayableReturnContext`
       for (let i = 0; i < abiItem.inputs.length; i++) {
         const abiInput = abiItem.inputs[i]
 
-        if (!abiInput) continue
+        if (!abiInput) {
+          continue
+        }
 
         if (input.length > 1) {
           input += ', '
@@ -667,7 +681,7 @@ export type MethodReturnContext = MethodPayableReturnContext`
   }
 
   /**
-   * Build the object request parameter interface
+   * Build the tuple parameters interface
    * @param nameOverride The abi item name
    * @param abiInput The abi input
    * @param suffix The suffix
@@ -677,12 +691,12 @@ export type MethodReturnContext = MethodPayableReturnContext`
   private buildTupleParametersInterface({
     abiInput,
     nameOverride,
-    suffix,
+    suffix = 'Request',
     methodName,
   }: {
     abiInput: AbiInput
     nameOverride: string
-    suffix?: 'Request' | 'Response' | 'EventEmittedResponse'
+    suffix?: 'Request' | 'EventEmittedResponse'
     methodName?: string
   }): string {
     const interfaceName = TypeScriptHelpers.buildInterfaceName({
@@ -704,7 +718,9 @@ export type MethodReturnContext = MethodPayableReturnContext`
     for (let i = 0; i < abiInput.components.length; i++) {
       const component = abiInput.components[i]
 
-      if (!component) continue
+      if (!component) {
+        continue
+      }
 
       const isNestedTuple = !!component?.components
 
@@ -720,17 +736,17 @@ export type MethodReturnContext = MethodPayableReturnContext`
         })
 
         // Add the nested tuple as a property to the current interface
-        properties += `${componentName}: ${nestedInterfaceName};`
+        properties += `${componentName}: ${nestedInterfaceName};\n`
       } else {
         const inputTsType = TypeScriptHelpers.getSolidityInputTsType({
           abiInput: component,
           library: this._context.library,
-          suffix: 'Request',
+          suffix,
           methodName,
         })
 
         // Add the property to the current interface
-        properties += `${component.name}: ${inputTsType};`
+        properties += `${component.name}: ${inputTsType};\n`
       }
     }
 
@@ -749,8 +765,8 @@ export type MethodReturnContext = MethodPayableReturnContext`
 
   /**
    * Build the object response parameter interface
-   * @param name The abi item name
    * @param abiOutput The abi output
+   * @param methodName The method name
    * @returns The object response parameter interface.
    */
   private buildTupleResponseInterface({
@@ -772,26 +788,27 @@ export type MethodReturnContext = MethodPayableReturnContext`
     for (let i = 0; i < abiOutput.components!.length; i++) {
       const component = abiOutput.components?.[i]
 
-      if (!component) continue
+      if (!component) {
+        continue
+      }
 
       const isNestedTuple = !!component.components
 
-      // check for deep tuples in tuple in tuples
       if (isNestedTuple) {
         const componentName = component.name || `result${i}`
 
         // Make a new interface for the nested tuple
         const nestedInterfaceName = this.buildTupleResponseInterface({
           abiOutput: component,
-          // methodName,
+          methodName,
         })
 
         // Add the nested tuple as a property to the current interface
-        properties += `${componentName}: ${nestedInterfaceName};`
+        properties += `${componentName}: ${nestedInterfaceName};\n`
 
-        // Add a prop with the name as the index to the current interface
+        // Add numeric index for ethers
         if (isEthersLibrary(this._context.library)) {
-          properties += `${i}: ${nestedInterfaceName};`
+          properties += `${i}: ${nestedInterfaceName};\n`
         }
       } else {
         const outputTsType = TypeScriptHelpers.getSolidityOutputTsType({
@@ -799,24 +816,27 @@ export type MethodReturnContext = MethodPayableReturnContext`
           library: this._context.library,
         })
 
-        // Add the property to the current interface
-        properties += `${component.name}: ${outputTsType};`
+        // Add named property
+        properties += `${component.name}: ${outputTsType};\n`
 
-        // Add a prop with the name as the index to the current interface
+        // Add numeric index for ethers
         if (isEthersLibrary(this._context.library)) {
-          properties += `${i}: ${outputTsType};`
+          properties += `${i}: ${outputTsType};\n`
         }
       }
     }
 
     // Add the interface to the return types
-    this.addReturnTypeInterface({ interfaceName, interfaceContext: properties })
+    this.addReturnTypeInterface({
+      interfaceName,
+      interfaceContext: properties,
+    })
 
     if (abiOutput.type.includes('[')) {
       return `${interfaceName}[]`
     }
 
-    return `${interfaceName}`
+    return interfaceName
   }
 
   /**
@@ -828,6 +848,7 @@ export type MethodReturnContext = MethodPayableReturnContext`
     let output = ''
 
     if (abiItem.outputs && abiItem.outputs.length > 0) {
+      // Case 1: Single Output
       if (abiItem.outputs.length === 1) {
         const abiOutput = abiItem.outputs[0]
 
@@ -850,59 +871,68 @@ export type MethodReturnContext = MethodPayableReturnContext`
             methodName: abiItem.name,
           })
         }
-      } else {
-        if (isNeverModifyBlockchainState(abiItem)) {
-          const interfaceName = TypeScriptHelpers.buildInterfaceName({
-            inputOrOutput: abiItem,
-          })
+      }
+      // Case 2: Multiple Outputs
+      else {
+        if (
+          isNeverModifyBlockchainState(abiItem) ||
+          isQuoteExactMethod(abiItem)
+        ) {
+          const interfaceName = `${abiItem.name.charAt(0).toUpperCase()}${abiItem.name.slice(1)}Response`
 
           let outputProperties = ''
 
           for (let i = 0; i < abiItem.outputs.length; i++) {
-            const abiItemOutput = abiItem.outputs[i]
+            const abiOutput = abiItem.outputs[i]
 
-            if (!abiItemOutput) continue
+            if (!abiOutput) {
+              continue
+            }
 
             const outputTsType = TypeScriptHelpers.getSolidityOutputTsType({
-              abiOutput: abiItemOutput,
+              abiOutput,
               library: this._context.library,
             })
 
-            let propertyName = abiItemOutput.name
+            let propertyName = abiOutput.name
             if (propertyName.length === 0) {
               propertyName = `result${i}`
             }
 
-            outputProperties += `${propertyName}: ${outputTsType};`
+            outputProperties += `${propertyName}: ${outputTsType};\n`
 
+            // Add numeric index for ethers
             if (isEthersLibrary(this._context.library)) {
-              outputProperties += `${i}: ${outputTsType};`
+              outputProperties += `${i}: ${outputTsType};\n`
             }
 
-            if (abiItemOutput.type.includes(solidityTypeMap.tuple)) {
+            if (abiOutput.type.includes(solidityTypeMap.tuple)) {
               this.buildTupleResponseInterface({
-                abiOutput: abiItemOutput,
+                abiOutput,
                 methodName: abiItem.name,
               })
             }
           }
 
+          // Add length property for ethers with multiple outputs
           if (isEthersLibrary(this._context.library)) {
-            outputProperties += `length: ${abiItem.outputs.length};`
+            outputProperties += `length: ${abiItem.outputs.length};\n`
           }
 
+          // Create the interface for multiple outputs
           this.addReturnTypeInterface({
             interfaceName,
             interfaceContext: outputProperties,
           })
 
+          // Build return context
           output += this.buildMethodReturnContext({
             abiName: this.getAbiName(),
             type: interfaceName,
             abiItem,
           })
         } else {
-          // if its not a constant you will have no type so don't build any interfaces
+          // Non-constant functions with multiple outputs just get the basic return context
           output += this.buildMethodReturnContext({
             abiName: this.getAbiName(),
             type: '',
@@ -910,7 +940,9 @@ export type MethodReturnContext = MethodPayableReturnContext`
           })
         }
       }
-    } else {
+    }
+    // Case 3: No Outputs
+    else {
       output += this.buildMethodReturnContext({
         abiName: this.getAbiName(),
         type: 'void',

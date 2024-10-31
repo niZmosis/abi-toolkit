@@ -9,11 +9,11 @@
     "abi",
     "typescript"
   ],
-  "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
-  "author": "joshstevens19@hotmail.co.uk",
+  "homepage": "https://github.com/niZmosis/ethereum-abi-types-generator#readme",
+  "author": "niZmosis",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
+    "url": "https://github.com/niZmosis/ethereum-abi-types-generator/issues"
   },
   "bin": {
     "abi-types-generator": "./dist/bin/generator-cli.js"
@@ -25,7 +25,7 @@
     "README.md",
     "LICENSE"
   ],
-  "repository": "github:joshstevens19/ethereum-abi-types-generator",
+  "repository": "github:niZmosis/ethereum-abi-types-generator",
   "publishConfig": {
     "access": "public"
   },

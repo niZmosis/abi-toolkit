@@ -1,7 +1,7 @@
 import type { EthersContractContextV5 } from '@ethereum-abi-types-generator/converter-typescript'
 import type {
   ContractTransaction,
-  BytesLike as Arrayish,
+  BytesLike,
   BigNumber,
   BigNumberish,
 } from 'ethersv5'
@@ -56,7 +56,7 @@ export interface TupleInputOnlyORequest {
   address: string
   timestamps: [BigNumberish, BigNumberish, BigNumberish]
 }
-export interface TupleInputAndOutput {
+export interface TupleInputAndOutputResponse {
   affiliate: string
   0: string
   offerID: string
@@ -69,7 +69,7 @@ export interface TupleInputAndOutput {
   4: [number, number, number, number, number, number]
   length: 5
 }
-export interface TupleNoInputNames {
+export interface TupleNoInputNamesResponse {
   affiliate: string
   0: string
   offerID: string
@@ -82,7 +82,7 @@ export interface TupleNoInputNames {
   4: [number, number, number, number, number, number]
   length: 5
 }
-export interface TupleWithParametersNames {
+export interface TupleWithParametersNamesResponse {
   affiliate: string
   0: string
   offerID: string
@@ -119,7 +119,7 @@ export interface Contract {
     exchangeAddress: string,
     internalAddress: string,
     overrides?: ContractCallOverrides,
-  ): Promise<TupleInputAndOutput>
+  ): Promise<TupleInputAndOutputResponse>
   /**
    * Payable: false
    * Constant: true
@@ -132,7 +132,7 @@ export interface Contract {
     parameter0: string,
     parameter1: string,
     overrides?: ContractCallOverrides,
-  ): Promise<TupleNoInputNames>
+  ): Promise<TupleNoInputNamesResponse>
   /**
    * Payable: false
    * Constant: true
@@ -145,7 +145,7 @@ export interface Contract {
     address1: string,
     address2: string,
     overrides?: ContractCallOverrides,
-  ): Promise<TupleWithParametersNames>
+  ): Promise<TupleWithParametersNamesResponse>
   /**
    * Payable: true
    * Constant: false
@@ -154,7 +154,7 @@ export interface Contract {
    * @param inputData Type: bytes32[2], Indexed: false
    */
   byteArrayInputExample(
-    inputData: [Arrayish, Arrayish, Arrayish],
+    inputData: [BytesLike, BytesLike, BytesLike],
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -197,8 +197,8 @@ export interface Contract {
    * @param _supply Type: uint256, Indexed: false
    */
   'new'(
-    _name: Arrayish,
-    _symbol: Arrayish,
+    _name: BytesLike,
+    _symbol: BytesLike,
     _decimals: BigNumberish,
     _supply: BigNumberish,
     overrides?: ContractTransactionOverrides,

@@ -74,23 +74,23 @@ export interface CartesianResponse {
   y: BigNumber
   1: BigNumber
 }
-export interface CenterResponse {
+export interface GetCometCenterResponse {
   x: BigNumber
   0: BigNumber
   y: BigNumber
   1: BigNumber
 }
-export interface LastResponse {
+export interface GetCometLastResponse {
   distance: number
   0: number
   angle: BigNumber
   1: BigNumber
 }
-export interface OrbitResponse {
-  center: CenterResponse
-  0: CenterResponse
-  last: LastResponse
-  1: LastResponse
+export interface GetCometOrbitResponse {
+  center: GetCometCenterResponse
+  0: GetCometCenterResponse
+  last: GetCometLastResponse
+  1: GetCometLastResponse
   rotationSpeed: number
   2: number
   lastUpdate: BigNumber
@@ -99,8 +99,8 @@ export interface OrbitResponse {
 export interface CometResponse {
   id: string
   0: string
-  orbit: OrbitResponse
-  1: OrbitResponse
+  orbit: GetCometOrbitResponse
+  1: GetCometOrbitResponse
   token: string
   2: string
   unit: BigNumber
@@ -110,11 +110,33 @@ export interface CometResponse {
   solarSystemID: BigNumber
   5: BigNumber
 }
+export interface GetStakingCometCenterResponse {
+  x: BigNumber
+  0: BigNumber
+  y: BigNumber
+  1: BigNumber
+}
+export interface GetStakingCometLastResponse {
+  distance: number
+  0: number
+  angle: BigNumber
+  1: BigNumber
+}
+export interface GetStakingCometOrbitResponse {
+  center: GetStakingCometCenterResponse
+  0: GetStakingCometCenterResponse
+  last: GetStakingCometLastResponse
+  1: GetStakingCometLastResponse
+  rotationSpeed: number
+  2: number
+  lastUpdate: BigNumber
+  3: BigNumber
+}
 export interface StakingCometResponse {
   id: string
   0: string
-  orbit: OrbitResponse
-  1: OrbitResponse
+  orbit: GetStakingCometOrbitResponse
+  1: GetStakingCometOrbitResponse
   token: string
   2: string
   balance: BigNumber
@@ -134,7 +156,29 @@ export interface StakingCometResponse {
   solarSystemID: BigNumber
   10: BigNumber
 }
-export interface CometsFrom {
+export interface CometsFromCenterResponse {
+  x: BigNumber
+  0: BigNumber
+  y: BigNumber
+  1: BigNumber
+}
+export interface CometsFromLastResponse {
+  distance: number
+  0: number
+  angle: BigNumber
+  1: BigNumber
+}
+export interface CometsFromOrbitResponse {
+  center: CometsFromCenterResponse
+  0: CometsFromCenterResponse
+  last: CometsFromLastResponse
+  1: CometsFromLastResponse
+  rotationSpeed: number
+  2: number
+  lastUpdate: BigNumber
+  3: BigNumber
+}
+export interface CometsFromResponse {
   result0: CometResponse[]
   0: CometResponse[]
   result1: StakingCometResponse[]
@@ -238,7 +282,7 @@ export interface Contract {
   cometsFrom(
     solarSystemID: BigNumberish,
     overrides?: ContractCallOverrides,
-  ): Promise<CometsFrom>
+  ): Promise<CometsFromResponse>
   /**
    * Payable: false
    * Constant: true

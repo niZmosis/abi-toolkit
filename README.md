@@ -41,10 +41,7 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
   - [Example](#example-ethers)
   - [Full Example](#full-example-ethers)
 - [Tests](#tests)
-- [Motivation](#motivation)
-- [ethereum-abi-types-generator vs TypeChain](#ethereum-abi-types-generator-vs-typechain)
 - [Issues](#issues)
-- [Thanks And Support](#thanks-and-support)
 - [Contributing](#contributing)
 - [License](#license)
 
@@ -510,13 +507,13 @@ describe('Example test', function () {
 
 ### Uniswap full example (Web3)
 
-[Uniswap Contract Strongly Typed Example](https://github.com/joshstevens19/ethereum-abi-types-generator/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
+[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/ethereum-abi-types-generator/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
 The cli tool will generate all your typings for you and expose them in the generated file. Its super easy to start using strongly typed interfaces for all your ABI calls.
 
-Lets say i run the cli command:
+Lets say we run the cli command:
 
 ```ts
 abi-types-generator --inputDirOrPath=./abi-examples/fake-contract-abi.json  --output=./generated-typings --typingsOutputFileName=fake-contract
@@ -614,7 +611,7 @@ const example = async () => {
 
   console.log(result);
 
-  // full typings on your events with even the filter indexs which will
+  // full typings on your events with even the filter indexes which will
   // not compile if supply it incorrectly and only expose the correct ones for you
   contract.events
     .Event1({ filter: { token: '0x00' } })
@@ -641,13 +638,13 @@ example();
 
 ### Uniswap full example (Ethers)
 
-[Uniswap Contract Strongly Typed Example](https://github.com/joshstevens19/ethereum-abi-types-generator/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
+[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/ethereum-abi-types-generator/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
 The cli tool will generate all your typings for you and expose them in the generated file. Its super easy to start using strongly typed interfaces for all your ABI calls.
 
-Lets say i run the cli command:
+Lets say we run the cli command:
 
 Ethers v4
 
@@ -728,7 +725,7 @@ const example = async () => {
 
   console.log(simpleCall);
 
-  // you can use the same etherjs flows to send and sign transactions
+  // you can use the same Ethers.js flows to send and sign transactions
   // `contract.connect` will return a `ContractContext` so will still have
   // all the typings exposed for you
   const privateKey =
@@ -829,7 +826,7 @@ example();
 
 ## Tests
 
-The whole repo is covered in tests output below:
+The whole repo is covered in tests output below.
 
 ```shell
 Test Files  7 passed (7)
@@ -838,37 +835,21 @@ Start at  11:32:54
 Duration  723ms (transform 644ms, setup 0ms, collect 2.66s, tests 72ms, environment 1ms, prepare 570ms)
 ```
 
-## Motivation
+## Related Toolkits
 
-Blockchain development in JavaScript is already super hard. You have all these tools like `truffle`, `ethers`, `web3` (the list goes on) which you have to get used to, and the learning curve is already quite high. On top of this, you have loads of other tools to get things to work as you need. TypeScript allows you to bring runtime errors into the compiler, but on contract calls, most developers have to either build their own types (meaning maintaining them and easily getting out of sync) or have no compile-time errors using the dreaded `any`, hoping and praying they don't break anything.
+Check out my other projects and forks for blockchain development!
 
-The idea was to not have to make the developer wrap any kind of `web3` or `ethers` instance or use a new tool to get this working. With a simple 1-line change, you can use all the same library interfaces that the developer is used to, but with `types` `auto-generated` for you to bring back compile-time errors on any contract calls with super ease.
-
-The ABI file is the source of truth for all contract calls, so by building types from this file, we can be assured our types are correct.
-
-## ethereum-abi-types-generator vs TypeChain
-
-The main differences between ethereum-abi-types-generator and TypeChain are:
-
-1. **No bundle size added**: This package uses only interfaces, adding nothing to your final bundle size.
-2. **Proper typed interfaces**: Generates and exports interfaces for both requests and responses, allowing you to use them throughout your app.
-3. **Use your familiar provider interface**: Just use web3 or ethers interface for every contract call, no need to learn a new process.
+| Toolkit | Description |
+|---------|-------------|
+| [provider-toolkit](https://github.com/niZmosis/provider-toolkit) | Web3 provider management and configuration tools |
+| [dex-toolkit](https://github.com/niZmosis/dex-toolkit) | A powerful and flexible toolkit designed for seamless integration with multiple decentralized exchanges (DEXs) across various blockchain networks |
+| [multicall-toolkit](https://github.com/niZmosis/multicall-toolkit) | Batch contract calls and state aggregation utilities |
+| [transaction-toolkit](https://github.com/niZmosis/transaction-toolkit) | Transaction building, simulation, and management tools |
+| [connector-toolkit](https://github.com/niZmosis/connector-toolkit) | Wallet connection and account management utilities |
 
 ## Issues
 
-Please raise any issues in the [GitHub repository](https://github.com/joshstevens19/ethereum-abi-types-generator/issues).
-
-## Thanks And Support
-
-This package is brought to you by [Josh Stevens](https://github.com/joshstevens19). If you want to support the development of this and other packages, or if this package has saved you a lot of development time, donations are welcome. By donating, you are supporting the maintenance and development of tools that make the Ethereum ecosystem better.
-
-### Direct donations
-
-Direct donations (any token accepted) - Eth address: `0x699c2daD091ffcF18f3cd9E8495929CA3a64dFe1`
-
-### Github sponsors
-
-[Sponsor me](https://github.com/sponsors/joshstevens19) via GitHub using fiat money.
+Please raise any issues in the [GitHub repository](https://github.com/niZmosis/ethereum-abi-types-generator/issues).
 
 ## Contributing
 

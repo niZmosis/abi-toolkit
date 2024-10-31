@@ -11,10 +11,10 @@
     "typescript"
   ],
   "bugs": {
-    "url": "https://github.com/joshstevens19/ethereum-abi-types-generator/issues"
+    "url": "https://github.com/niZmosis/ethereum-abi-types-generator/issues"
   },
-  "homepage": "https://github.com/joshstevens19/ethereum-abi-types-generator#readme",
-  "author": "joshstevens19@hotmail.co.uk",
+  "homepage": "https://github.com/niZmosis/ethereum-abi-types-generator#readme",
+  "author": "niZmosis",
   "license": "ISC",
   "type": "module",
   "scripts": {

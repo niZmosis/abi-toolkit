@@ -94,8 +94,6 @@ export default class TypeScriptHelpers {
         }
         break
       case 'ethers_v4':
-      case 'ethers_v5':
-      case 'ethers_v6':
         {
           if (abiInput.type.includes(solidityTypeMap.bytes)) {
             if (abiInput.type.includes('[')) {
@@ -106,6 +104,35 @@ export default class TypeScriptHelpers {
             }
 
             return 'Arrayish'
+          }
+
+          if (
+            abiInput.type.includes(solidityTypeMap.uint) ||
+            abiInput.type.includes(solidityTypeMap.int)
+          ) {
+            if (abiInput.type.includes('[')) {
+              return this.buildUpMultidimensionalArrayTypes(
+                abiInput.type,
+                'BigNumberish',
+              )
+            }
+
+            return 'BigNumberish'
+          }
+        }
+        break
+      case 'ethers_v5':
+      case 'ethers_v6':
+        {
+          if (abiInput.type.includes(solidityTypeMap.bytes)) {
+            if (abiInput.type.includes('[')) {
+              return this.buildUpMultidimensionalArrayTypes(
+                abiInput.type,
+                'BytesLike',
+              )
+            }
+
+            return 'BytesLike'
           }
 
           if (
@@ -367,7 +394,9 @@ export default class TypeScriptHelpers {
     for (let i = 0; i < split.length; i++) {
       const item = split[i]
 
-      if (!item) continue
+      if (!item) {
+        continue
+      }
 
       // we can only put fixed sizes on the first fixed length
       // array rest has to be `[]` due to TS limited support

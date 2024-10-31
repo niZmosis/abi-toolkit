@@ -75,33 +75,33 @@ export interface TraveledEventEmittedResponse {
   rotationSpeed: BigNumberish
   updateTime: BigNumberish
 }
-export interface CenterResponse {
+export interface GetPortalCenterResponse {
   x: BigNumber
   0: BigNumber
   y: BigNumber
   1: BigNumber
 }
-export interface LastResponse {
+export interface GetPortalLastResponse {
   distance: number
   0: number
   angle: BigNumber
   1: BigNumber
 }
-export interface System1OrbitResponse {
-  center: CenterResponse
-  0: CenterResponse
-  last: LastResponse
-  1: LastResponse
+export interface GetPortalSystem1OrbitResponse {
+  center: GetPortalCenterResponse
+  0: GetPortalCenterResponse
+  last: GetPortalLastResponse
+  1: GetPortalLastResponse
   rotationSpeed: number
   2: number
   lastUpdate: BigNumber
   3: BigNumber
 }
-export interface System2OrbitResponse {
-  center: CenterResponse
-  0: CenterResponse
-  last: LastResponse
-  1: LastResponse
+export interface GetPortalSystem2OrbitResponse {
+  center: GetPortalCenterResponse
+  0: GetPortalCenterResponse
+  last: GetPortalLastResponse
+  1: GetPortalLastResponse
   rotationSpeed: number
   2: number
   lastUpdate: BigNumber
@@ -116,10 +116,42 @@ export interface PortalResponse {
   2: BigNumber
   fees: BigNumber
   3: BigNumber
-  system1Orbit: System1OrbitResponse
-  4: System1OrbitResponse
-  system2Orbit: System2OrbitResponse
-  5: System2OrbitResponse
+  system1Orbit: GetPortalSystem1OrbitResponse
+  4: GetPortalSystem1OrbitResponse
+  system2Orbit: GetPortalSystem2OrbitResponse
+  5: GetPortalSystem2OrbitResponse
+}
+export interface GetPortalsCenterResponse {
+  x: BigNumber
+  0: BigNumber
+  y: BigNumber
+  1: BigNumber
+}
+export interface GetPortalsLastResponse {
+  distance: number
+  0: number
+  angle: BigNumber
+  1: BigNumber
+}
+export interface GetPortalsSystem1OrbitResponse {
+  center: GetPortalsCenterResponse
+  0: GetPortalsCenterResponse
+  last: GetPortalsLastResponse
+  1: GetPortalsLastResponse
+  rotationSpeed: number
+  2: number
+  lastUpdate: BigNumber
+  3: BigNumber
+}
+export interface GetPortalsSystem2OrbitResponse {
+  center: GetPortalsCenterResponse
+  0: GetPortalsCenterResponse
+  last: GetPortalsLastResponse
+  1: GetPortalsLastResponse
+  rotationSpeed: number
+  2: number
+  lastUpdate: BigNumber
+  3: BigNumber
 }
 export interface Contract {
   /**

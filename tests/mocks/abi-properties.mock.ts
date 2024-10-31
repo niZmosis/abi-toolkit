@@ -1,4 +1,4 @@
-import type { AbiItem } from '../../packages/types/src'
+import type { AbiItem } from '../../packages/types/src/abi.types'
 
 export class AbiPropertiesMock {
   public static get AbiItemsMock(): AbiItem[] {

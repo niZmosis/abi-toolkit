@@ -7,6 +7,7 @@ import {
   abiItemsMap,
   isAcceptsEther,
   isNeverModifyBlockchainState,
+  isQuoteExactMethod,
   libraryMap,
 } from '@ethereum-abi-types-generator/utils'
 
@@ -64,14 +65,18 @@ export class Web3Factory implements TypingsFactory {
     for (let i = 0; i < abiItems.length; i++) {
       const abiItem = abiItems[i]
 
-      if (!abiItem) continue
+      if (!abiItem) {
+        continue
+      }
 
       if (abiItem.type === abiItemsMap.event) {
         let filtersProperties = '{'
         for (let a = 0; a < abiItem.inputs!.length; a++) {
           const abiInput = abiItem.inputs?.[a]
 
-          if (!abiInput) continue
+          if (!abiInput) {
+            continue
+          }
 
           if (abiInput.indexed === true) {
             const parameterType = TypeScriptHelpers.getSolidityInputTsType({
@@ -121,7 +126,8 @@ export class Web3Factory implements TypingsFactory {
     type: string
     abiItem: AbiItem
   }): string {
-    if (isNeverModifyBlockchainState(abiItem)) {
+    // Constant, View or Pure
+    if (isNeverModifyBlockchainState(abiItem) || isQuoteExactMethod(abiItem)) {
       return `: ${abiName}MethodConstantReturnContext<${type}>`
     }
 

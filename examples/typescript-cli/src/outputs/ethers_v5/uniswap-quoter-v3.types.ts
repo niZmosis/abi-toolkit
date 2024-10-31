@@ -1,9 +1,5 @@
 import type { EthersContractContextV5 } from '@ethereum-abi-types-generator/converter-typescript'
-import type {
-  ContractTransaction,
-  BytesLike as Arrayish,
-  BigNumberish,
-} from 'ethersv5'
+import type { BytesLike, BigNumber, BigNumberish } from 'ethersv5'
 
 import type {
   ContractTransactionOverrides,
@@ -53,10 +49,10 @@ export interface Contract {
    * @param amountIn Type: uint256, Indexed: false
    */
   quoteExactInput(
-    path: Arrayish,
+    path: BytesLike,
     amountIn: BigNumberish,
     overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
+  ): Promise<BigNumber>
   /**
    * Payable: false
    * Constant: false
@@ -75,7 +71,7 @@ export interface Contract {
     amountIn: BigNumberish,
     sqrtPriceLimitX96: BigNumberish,
     overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
+  ): Promise<BigNumber>
   /**
    * Payable: false
    * Constant: false
@@ -85,10 +81,10 @@ export interface Contract {
    * @param amountOut Type: uint256, Indexed: false
    */
   quoteExactOutput(
-    path: Arrayish,
+    path: BytesLike,
     amountOut: BigNumberish,
     overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
+  ): Promise<BigNumber>
   /**
    * Payable: false
    * Constant: false
@@ -107,7 +103,7 @@ export interface Contract {
     amountOut: BigNumberish,
     sqrtPriceLimitX96: BigNumberish,
     overrides?: ContractTransactionOverrides,
-  ): Promise<ContractTransaction>
+  ): Promise<BigNumber>
   /**
    * Payable: false
    * Constant: true
@@ -120,7 +116,7 @@ export interface Contract {
   uniswapV3SwapCallback(
     amount0Delta: BigNumberish,
     amount1Delta: BigNumberish,
-    path: Arrayish,
+    path: BytesLike,
     overrides?: ContractCallOverrides,
   ): Promise<void>
 }

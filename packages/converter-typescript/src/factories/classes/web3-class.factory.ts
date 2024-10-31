@@ -152,7 +152,7 @@ export class Web3ClassFactory {
 
     if (classMulticall) {
       bodyLines.push(
-        `this._multicall = new Multicall({ web3Instance: this._web3, tryAggregate: true });`,
+        `this._multicall = new Multicall({ web3Instance: this._web3, tryAggregate: true, tryAggregate: true, enableBatching: true, maxCallDataSize: 100_000, maxCallsPerBatch: 50, });`,
       )
     }
 

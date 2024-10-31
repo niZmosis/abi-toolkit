@@ -1,7 +1,10 @@
 import path from 'path'
 
-import type { GeneratorContext } from '@ethereum-abi-types-generator/types'
-import { capitalize } from '@ethereum-abi-types-generator/utils'
+import type {
+  GeneratorContext,
+  Library,
+} from '@ethereum-abi-types-generator/types'
+import { capitalize, libraryMap } from '@ethereum-abi-types-generator/utils'
 
 export class EthersClassFactory {
   public buildClass({
@@ -216,7 +219,7 @@ export class EthersClassFactory {
   private buildMethod({
     abiItem,
     // abiName,
-    // context,
+    context,
   }: {
     abiItem: any
     abiName: string
@@ -232,7 +235,7 @@ export class EthersClassFactory {
 
     const params = methodParams.map((input: any, index: number) => {
       const inputName = input.name || `param${index}`
-      const inputType = this.getInputType(input)
+      const inputType = this.getInputType(context.library, input)
       return `${inputName}: ${inputType}`
     })
 
@@ -255,7 +258,7 @@ export class EthersClassFactory {
     return `${methodSignature} ${methodBody}`
   }
 
-  private getInputType(input: any): string {
+  private getInputType(library: Library, input: any): string {
     // Map Solidity types to TypeScript types
     switch (input.type) {
       case 'uint256':
@@ -268,7 +271,7 @@ export class EthersClassFactory {
         return 'boolean'
       case 'bytes':
       case 'bytes32':
-        return 'Arrayish'
+        return library === libraryMap.ethers_v4 ? 'Arrayish' : 'BytesLike'
       case 'string':
         return 'string'
       default:

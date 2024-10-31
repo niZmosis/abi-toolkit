@@ -41,7 +41,17 @@ export function isNeverModifyBlockchainState(abiItem: AbiItem): boolean {
 }
 
 /**
+ * Checks if an ABI item is of Uniswap Quoters quoteExact methods.
+ * @param abiItem - The ABI item to check.
+ * @returns True if the ABI item never modifies the blockchain state, false otherwise.
+ */
+export function isQuoteExactMethod(abiItem: AbiItem): boolean {
+  return abiItem.name?.startsWith('quoteExact') && !!abiItem.outputs?.length
+}
+
+/**
  * Checks if an ABI item accepts Ether.
+ * Used for Web3.js compatibility.
  * @param abiItem - The ABI item to check.
  * @returns True if the ABI item accepts Ether, false otherwise.
  */

@@ -61,7 +61,21 @@ export type SolidityType =
 export type SolidityTypeMap = { [key in SolidityType]: key }
 
 /**
- * Maps Solidity types to their corresponding TypeScript types.
+ * Maps Solidity types to their corresponding TypeScript types for Ethers.js V4.
+ */
+export type SolidityToTsTypeMapV4 = {
+  int: 'BigNumberish'
+  uint: 'BigNumberish'
+  address: 'string'
+  bool: 'boolean'
+  string: 'string'
+  bytes: 'Arrayish'
+  tuple: 'any'
+  function: 'string'
+}
+
+/**
+ * Maps Solidity types to their corresponding TypeScript types for Ethers.js V5 an V6.
  */
 export type SolidityToTsTypeMap = {
   int: 'BigNumberish'
@@ -69,7 +83,7 @@ export type SolidityToTsTypeMap = {
   address: 'string'
   bool: 'boolean'
   string: 'string'
-  bytes: 'Arrayish'
+  bytes: 'BytesLike'
   tuple: 'any'
   function: 'string'
 }

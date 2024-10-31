@@ -8,7 +8,7 @@ import type {
 import type { BigNumber, BigNumberish, EventFilter, Signer } from 'ethersv5'
 import type {
   AbiCoder,
-  BytesLike as Arrayish,
+  BytesLike,
   EventFragment,
   Fragment,
   FunctionFragment,
@@ -68,17 +68,17 @@ declare class InternalInterface<TMethodNames> {
   getEvent(nameOrSignatureOrTopic: string): EventFragment
   getSighash(functionFragment: FunctionFragment | string): string
   getEventTopic(eventFragment: EventFragment | string): string
-  _decodeParams(params: ParamType[], data: Arrayish): Result
+  _decodeParams(params: ParamType[], data: BytesLike): Result
   _encodeParams(params: ParamType[], values: any[]): string
   encodeDeploy(values?: any[]): string
-  decodeFunctionData(functionFragment: TMethodNames, data: Arrayish): Result
+  decodeFunctionData(functionFragment: TMethodNames, data: BytesLike): Result
   encodeFunctionData(
     functionFragment: FunctionFragment | TMethodNames,
     values?: any[],
   ): string
   decodeFunctionResult(
     functionFragment: FunctionFragment | TMethodNames,
-    data: Arrayish,
+    data: BytesLike,
   ): Result
   encodeFunctionResult(
     functionFragment: FunctionFragment | TMethodNames,
@@ -97,7 +97,7 @@ declare class InternalInterface<TMethodNames> {
   }
   decodeEventLog(
     eventFragment: EventFragment | string,
-    data: Arrayish,
+    data: BytesLike,
     topics?: string[],
   ): Result
   parseTransaction(tx: {

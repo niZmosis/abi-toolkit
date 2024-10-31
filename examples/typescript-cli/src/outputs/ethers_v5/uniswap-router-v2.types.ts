@@ -1,7 +1,7 @@
 import type { EthersContractContextV5 } from '@ethereum-abi-types-generator/converter-typescript'
 import type {
   ContractTransaction,
-  BytesLike as Arrayish,
+  BytesLike,
   BigNumber,
   BigNumberish,
 } from 'ethersv5'
@@ -269,8 +269,8 @@ export interface Contract {
     deadline: BigNumberish,
     approveMax: boolean,
     v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
+    r: BytesLike,
+    s: BytesLike,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -298,8 +298,8 @@ export interface Contract {
     deadline: BigNumberish,
     approveMax: boolean,
     v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
+    r: BytesLike,
+    s: BytesLike,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -329,8 +329,8 @@ export interface Contract {
     deadline: BigNumberish,
     approveMax: boolean,
     v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
+    r: BytesLike,
+    s: BytesLike,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
