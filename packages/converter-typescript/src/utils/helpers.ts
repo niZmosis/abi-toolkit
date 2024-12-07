@@ -188,7 +188,7 @@ export default class TypeScriptHelpers {
       return interfaceName
     }
 
-    throw new Error(`${abiInput.type} is not valid solidty type`)
+    throw new Error(`${abiInput.type} is not valid solidity type`)
   }
 
   /**
@@ -282,7 +282,7 @@ export default class TypeScriptHelpers {
       return 'string'
     }
 
-    throw new Error(`${abiOutput.type} is not valid solidty type 1`)
+    throw new Error(`${abiOutput.type} is not valid solidity type 1`)
   }
 
   /**
@@ -344,7 +344,7 @@ export default class TypeScriptHelpers {
 
     const bits = clonedType.replace(solidityType, '').split('[')[0]
     const totalBits = Number(bits)
-    if (bits?.length && !isNaN(totalBits)) {
+    if (!!bits?.length && !isNaN(totalBits)) {
       if (library === 'ethers_v6') {
         return totalBits <= 48 ? 'number' : 'bigint'
       }
@@ -367,7 +367,7 @@ export default class TypeScriptHelpers {
 
     const bits = clonedType.replace(solidityType, '').split('[')[0]
     const totalBits = Number(bits)
-    if (bits?.length && !isNaN(totalBits)) {
+    if (!!bits?.length && !isNaN(totalBits)) {
       return totalBits <= 48 ? 'string | number' : 'string'
     }
 

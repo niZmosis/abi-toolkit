@@ -1169,6 +1169,7 @@ describe('TypingsGenerator', async () => {
             type: 'function',
           },
         ],
+        library: libraryMap.ethers_v4,
       })
 
       expect(web3BuildEventInterfacePropertiesSpy).toHaveBeenCalledTimes(0)
@@ -1276,7 +1277,7 @@ describe('TypingsGenerator', async () => {
     //     removeAllWhiteSpace(
     //       await prettierFormat(`import { ContractTransaction,
     //                 ContractInterface,
-    //                 BytesLike as Arrayish,
+    //                 BytesLike,
     //                 BigNumber,
     //                 BigNumberish } from "ethers"
     //         import { EthersContractContextV5 } from "@ethereum-abi-types-generator/converter-typescript";
@@ -1809,6 +1810,7 @@ describe('TypingsGenerator', async () => {
             type: 'function',
           },
         ],
+        library: libraryMap.ethers_v5,
       })
 
       expect(web3BuildEventInterfacePropertiesSpy).toHaveBeenCalledTimes(0)

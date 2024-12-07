@@ -365,7 +365,7 @@ describe('TypeScriptHelpers', () => {
             'blah' as any,
             libraryMap.ethers_v4,
           )
-        }).toThrowError('blah is not valid solidty type')
+        }).toThrowError('blah is not valid solidity type')
       })
     })
 
@@ -728,7 +728,7 @@ describe('TypeScriptHelpers', () => {
             'blah' as any,
             libraryMap.web3,
           )
-        }).toThrowError('blah is not valid solidty type')
+        }).toThrowError('blah is not valid solidity type')
       })
     })
   })
@@ -1097,7 +1097,7 @@ describe('TypeScriptHelpers', () => {
             abiOutput: { type: 'blah' } as AbiOutput,
             library: libraryMap.ethers_v4,
           })
-        }).toThrowError('blah is not valid solidty type')
+        }).toThrowError('blah is not valid solidity type')
       })
     })
 
@@ -1464,7 +1464,7 @@ describe('TypeScriptHelpers', () => {
             abiOutput: { type: 'blah' } as AbiOutput,
             library: libraryMap.web3,
           })
-        }).toThrowError('blah is not valid solidty type')
+        }).toThrowError('blah is not valid solidity type')
       })
     })
   })

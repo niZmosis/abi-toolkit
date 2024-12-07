@@ -6,7 +6,7 @@ import type {
   Rustify,
 } from '@ethereum-abi-types-generator/types'
 import { languageTypes, Logger } from '@ethereum-abi-types-generator/utils'
-import { describe, it, expect, beforeEach, vi } from 'vitest'
+import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import generate from '../src/commands/generate'
 
@@ -43,6 +43,10 @@ describe('Generate', () => {
     }))
   })
 
+  afterEach(() => {
+    vi.restoreAllMocks()
+  })
+
   it('should have the abiFile object exported', () => {
     expect(command).toHaveProperty('abiFiles')
   })
@@ -52,7 +56,7 @@ describe('Generate', () => {
   })
 
   it('should call log an error if language is invalid', async () => {
-    const logErrorSpy = vi.spyOn(Logger, 'error')
+    const logErrorSpy = vi.spyOn(Logger, 'error').mockImplementation(() => {})
 
     const language = 'blah'
 

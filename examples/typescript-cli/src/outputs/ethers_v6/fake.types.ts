@@ -1,9 +1,5 @@
 import type { EthersContractContextV6 } from '@ethereum-abi-types-generator/converter-typescript'
-import type {
-  ContractTransaction,
-  BytesLike as Arrayish,
-  BigNumberish,
-} from 'ethersv6'
+import type { ContractTransaction, BytesLike, BigNumberish } from 'ethersv6'
 
 import type {
   EventFilter,
@@ -153,7 +149,7 @@ export interface Contract {
    * @param inputData Type: bytes32[2], Indexed: false
    */
   byteArrayInputExample(
-    inputData: [Arrayish, Arrayish, Arrayish],
+    inputData: [BytesLike, BytesLike, BytesLike],
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -196,8 +192,8 @@ export interface Contract {
    * @param _supply Type: uint256, Indexed: false
    */
   'new'(
-    _name: Arrayish,
-    _symbol: Arrayish,
+    _name: BytesLike,
+    _symbol: BytesLike,
     _decimals: BigNumberish,
     _supply: BigNumberish,
     overrides?: ContractTransactionOverrides,

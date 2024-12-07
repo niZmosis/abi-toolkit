@@ -67,7 +67,7 @@ describe('EthersFactory', () => {
         removeAllWhiteSpace(`
            import${verbatimModuleSyntax ? ' type' : ''} { ContractTransaction,
                     ContractInterface,
-                    BytesLike as Arrayish,
+                    BytesLike,
                     BigNumber,
                     BigNumberish } from "${libraryImportAlias || 'ethers'}";
            import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV5 } from "@ethereum-abi-types-generator/converter-typescript";
@@ -102,7 +102,7 @@ describe('EthersFactory', () => {
         removeAllWhiteSpace(`
            import${verbatimModuleSyntax ? ' type' : ''} { ContractTransaction,
                     ContractInterface,
-                    BytesLike as Arrayish,
+                    BytesLike,
                     BigNumberish } from "${libraryImportAlias || 'ethers'}";
            import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV6 } from "@ethereum-abi-types-generator/converter-typescript";
 
@@ -122,7 +122,10 @@ describe('EthersFactory', () => {
   describe('buildEventInterfaceProperties', () => {
     it('should return empty string if 0 length abi items', () => {
       expect(
-        ethersFactory.buildEventInterfaceProperties({ abiItems: [] }),
+        ethersFactory.buildEventInterfaceProperties({
+          library: 'ethers_v5',
+          abiItems: [],
+        }),
       ).toEqual('')
     })
 
@@ -130,6 +133,7 @@ describe('EthersFactory', () => {
       expect(
         removeAllWhiteSpace(
           ethersFactory.buildEventInterfaceProperties({
+            library: 'ethers_v5',
             abiItems: AbiPropertiesMock.AbiItemsMock,
           }),
         ),

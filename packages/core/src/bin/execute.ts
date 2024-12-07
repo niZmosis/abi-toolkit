@@ -121,7 +121,7 @@ export async function execute(packageVersion: string): Promise<void> {
       const { filePath, frameworkContractName, abiItems } = filePathContext
 
       if (
-        !!includeFiles.length &&
+        includeFiles.length > 0 &&
         !includeFiles.includes(path.basename(filePath))
       ) {
         Logger.warning(`Excluding file: ${path.basename(filePath)}`)
@@ -130,7 +130,7 @@ export async function execute(packageVersion: string): Promise<void> {
       }
 
       if (
-        !!excludeFiles.length &&
+        excludeFiles.length > 0 &&
         excludeFiles.includes(path.basename(filePath))
       ) {
         Logger.warning(`Excluding file: ${path.basename(filePath)}`)

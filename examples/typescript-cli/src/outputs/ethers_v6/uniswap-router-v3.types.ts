@@ -1,9 +1,5 @@
 import type { EthersContractContextV6 } from '@ethereum-abi-types-generator/converter-typescript'
-import type {
-  ContractTransaction,
-  BytesLike as Arrayish,
-  BigNumberish,
-} from 'ethersv6'
+import type { ContractTransaction, BytesLike, BigNumberish } from 'ethersv6'
 
 import type {
   ContractTransactionOverrides,
@@ -40,7 +36,7 @@ export type MethodNameMap = {
   [key in MethodNames]: string
 }
 export interface ExactInputParamsRequest {
-  path: Arrayish
+  path: BytesLike
   recipient: string
   deadline: BigNumberish
   amountIn: BigNumberish
@@ -57,7 +53,7 @@ export interface ExactInputSingleParamsRequest {
   sqrtPriceLimitX96: BigNumberish
 }
 export interface ExactOutputParamsRequest {
-  path: Arrayish
+  path: BytesLike
   recipient: string
   deadline: BigNumberish
   amountOut: BigNumberish
@@ -140,7 +136,7 @@ export interface Contract {
    * @param data Type: bytes[], Indexed: false
    */
   multicall(
-    data: Arrayish[],
+    data: BytesLike[],
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -169,8 +165,8 @@ export interface Contract {
     value: BigNumberish,
     deadline: BigNumberish,
     v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
+    r: BytesLike,
+    s: BytesLike,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -190,8 +186,8 @@ export interface Contract {
     nonce: BigNumberish,
     expiry: BigNumberish,
     v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
+    r: BytesLike,
+    s: BytesLike,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -211,8 +207,8 @@ export interface Contract {
     nonce: BigNumberish,
     expiry: BigNumberish,
     v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
+    r: BytesLike,
+    s: BytesLike,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -232,8 +228,8 @@ export interface Contract {
     value: BigNumberish,
     deadline: BigNumberish,
     v: BigNumberish,
-    r: Arrayish,
-    s: Arrayish,
+    r: BytesLike,
+    s: BytesLike,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**
@@ -282,7 +278,7 @@ export interface Contract {
   uniswapV3SwapCallback(
     amount0Delta: BigNumberish,
     amount1Delta: BigNumberish,
-    _data: Arrayish,
+    _data: BytesLike,
     overrides?: ContractTransactionOverrides,
   ): Promise<ContractTransaction>
   /**

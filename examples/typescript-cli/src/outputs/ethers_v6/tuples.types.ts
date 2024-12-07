@@ -1,9 +1,5 @@
 import type { EthersContractContextV6 } from '@ethereum-abi-types-generator/converter-typescript'
-import type {
-  ContractTransaction,
-  BytesLike as Arrayish,
-  BigNumberish,
-} from 'ethersv6'
+import type { ContractTransaction, BytesLike, BigNumberish } from 'ethersv6'
 
 import type { ContractTransactionOverrides } from './common.types'
 
@@ -20,7 +16,7 @@ export type MethodNameMap = {
   [key in MethodNames]: string
 }
 export interface PostWithSigNestedTuple2Request {
-  nestedTuple2Single0: Arrayish
+  nestedTuple2Single0: BytesLike
   nestedTuple2Single1: BigNumberish
 }
 export interface PostWithSigNestedTuple1Request {
@@ -35,16 +31,16 @@ export interface PostWithSigPostParamsRequest {
   profileId: BigNumberish
   contentURI: string
   actionModules: string[]
-  actionModulesInitDatas: Arrayish[]
+  actionModulesInitDatas: BytesLike[]
   referenceModule: string
-  referenceModuleInitData: Arrayish
+  referenceModuleInitData: BytesLike
   nestedTuple0: PostWithSigNestedTuple0Request
 }
 export interface PostWithSigSignatureRequest {
   signer: string
   v: BigNumberish
-  r: Arrayish
-  s: Arrayish
+  r: BytesLike
+  s: BytesLike
   deadline: BigNumberish
 }
 export interface Contract {

@@ -234,7 +234,23 @@ export class EthersFactory implements TypingsFactory {
     abiItem: AbiItem
   }): string {
     // Constant, View or Pure
-    if (isNeverModifyBlockchainState(abiItem) || isQuoteExactMethod(abiItem)) {
+    if (isNeverModifyBlockchainState(abiItem)) {
+      // Special case for decimals method
+      if (
+        abiItem.outputs?.length === 1 &&
+        abiItem.outputs[0]?.type === 'uint8' &&
+        abiItem.name === 'decimals'
+      ) {
+        // Decimals depending on the chain, may either return a number or BigNumber.
+        // Known BigNumber chains: Arbitrum, Avalanche, Base and BSC.
+        return `: Promise<number | BigNumber>`
+      }
+
+      return `: Promise<${type}>`
+    }
+
+    // Special case for quoteExact methods via Uniswap V3 protocol
+    if (isQuoteExactMethod(abiItem)) {
       return `: Promise<${type}>`
     }
 
@@ -244,7 +260,7 @@ export class EthersFactory implements TypingsFactory {
 
   /**
    * Add overrides to the parameters.
-   * https://docs.ethers.io/ethers.js/html/api-contract.html#overrides
+   * @link https://docs.ethers.io/ethers.js/html/api-contract.html#overrides
    *
    * @param options - The options for adding overrides to the parameters
    * @param options.parameters - The parameters

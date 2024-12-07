@@ -127,7 +127,23 @@ export class Web3Factory implements TypingsFactory {
     abiItem: AbiItem
   }): string {
     // Constant, View or Pure
-    if (isNeverModifyBlockchainState(abiItem) || isQuoteExactMethod(abiItem)) {
+    if (isNeverModifyBlockchainState(abiItem)) {
+      // Special case for decimals method
+      if (
+        abiItem.outputs?.length === 1 &&
+        abiItem.outputs[0]?.type === 'uint8' &&
+        abiItem.name === 'decimals'
+      ) {
+        // Decimals depending on the chain, may either return a number or BigNumber.
+        // Known BigNumber chains: Arbitrum, Avalanche, Base and BSC.
+        return `: ${abiName}MethodConstantReturnContext<number | BigNumber>`
+      }
+
+      return `: ${abiName}MethodConstantReturnContext<${type}>`
+    }
+
+    // Special case for quoteExact methods via Uniswap V3 protocol
+    if (isQuoteExactMethod(abiItem)) {
       return `: ${abiName}MethodConstantReturnContext<${type}>`
     }
 
