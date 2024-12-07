@@ -5,7 +5,7 @@ import type {
   GeneratorContext,
   ProgramContext,
   GeneratedResults,
-} from '@ethereum-abi-types-generator/types'
+} from '@abi-toolkit/types'
 import {
   buildFileName,
   defaultOutputDir,
@@ -13,7 +13,7 @@ import {
   getAbiFileLocationRawName,
   languageTypes,
   Logger,
-} from '@ethereum-abi-types-generator/utils'
+} from '@abi-toolkit/utils'
 import fs from 'fs-extra'
 
 /**
@@ -79,13 +79,10 @@ export default {
 
     switch (language) {
       case 'ts':
-        return generateForLanguage(
-          '@ethereum-abi-types-generator/converter-typescript',
-          options,
-        )
+        return generateForLanguage('@abi-toolkit/converter-typescript', options)
       // case 'rs':
       //   await generateForLanguage(
-      //     '@ethereum-abi-types-generator/converter-rust',
+      //     '@abi-toolkit/converter-rust',
       //     options,
       //   )
       //   break

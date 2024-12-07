@@ -1,6 +1,6 @@
 {
-  "name": "@ethereum-abi-types-generator/types",
-  "version": "2.0.0",
+  "name": "@abi-toolkit/types",
+  "version": "1.0.0",
   "description": "Generate types from an ethereum ABI json file.",
   "keywords": [
     "ethereum",
@@ -9,11 +9,11 @@
     "abi",
     "typescript"
   ],
-  "homepage": "https://github.com/niZmosis/ethereum-abi-types-generator#readme",
+  "homepage": "https://github.com/niZmosis/abi-toolkit#readme",
   "author": "niZmosis",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/niZmosis/ethereum-abi-types-generator/issues"
+    "url": "https://github.com/niZmosis/abi-toolkit/issues"
   },
   "files": [
     "dist/*",
@@ -21,7 +21,7 @@
     "./README.md",
     "./LICENSE"
   ],
-  "repository": "github:niZmosis/ethereum-abi-types-generator",
+  "repository": "github:niZmosis/abi-toolkit",
   "publishConfig": {
     "access": "public"
   },

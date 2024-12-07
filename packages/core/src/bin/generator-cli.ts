@@ -4,7 +4,7 @@ import 'reflect-metadata'
 
 import path from 'path'
 
-import { Logger } from '@ethereum-abi-types-generator/utils'
+import { Logger } from '@abi-toolkit/utils'
 import fs from 'fs-extra'
 
 import { execute } from './execute'

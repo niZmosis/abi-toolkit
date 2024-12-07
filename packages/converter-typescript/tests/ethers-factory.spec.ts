@@ -3,7 +3,7 @@ import {
   isNeverModifyBlockchainState,
   libraryMap,
   removeAllWhiteSpace,
-} from '@ethereum-abi-types-generator/utils'
+} from '@abi-toolkit/utils'
 import { describe, it, expect, beforeEach } from 'vitest'
 
 import { AbiPropertiesMock } from '../../../tests/mocks/abi-properties.mock'
@@ -36,7 +36,7 @@ describe('EthersFactory', () => {
         removeAllWhiteSpace(`
           import${verbatimModuleSyntax ? ' type' : ''} { ContractTransaction } from "${libraryImportAlias || 'ethers'}";
           import${verbatimModuleSyntax ? ' type' : ''} { Arrayish, BigNumber, BigNumberish, Interface } from "${libraryImportAlias || 'ethers'}/utils";
-          import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV4 } from "@ethereum-abi-types-generator/converter-typescript";
+          import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV4 } from "@abi-toolkit/converter-typescript";
 
           import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common.types';
 
@@ -70,7 +70,7 @@ describe('EthersFactory', () => {
                     BytesLike,
                     BigNumber,
                     BigNumberish } from "${libraryImportAlias || 'ethers'}";
-           import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV5 } from "@ethereum-abi-types-generator/converter-typescript";
+           import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV5 } from "@abi-toolkit/converter-typescript";
 
           import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common.types';
 
@@ -104,7 +104,7 @@ describe('EthersFactory', () => {
                     ContractInterface,
                     BytesLike,
                     BigNumberish } from "${libraryImportAlias || 'ethers'}";
-           import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV6 } from "@ethereum-abi-types-generator/converter-typescript";
+           import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV6 } from "@abi-toolkit/converter-typescript";
 
            import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common.types';
 

@@ -1,6 +1,6 @@
 import path from 'path'
 
-import type { AbiFilePathContext } from '@ethereum-abi-types-generator/types'
+import type { AbiFilePathContext } from '@abi-toolkit/types'
 import {
   defaultOutputDir,
   getAbiFiles,
@@ -13,7 +13,7 @@ import {
   getDirectoryPathForFramework,
   commandMap,
   defaultClassOutputDir,
-} from '@ethereum-abi-types-generator/utils'
+} from '@abi-toolkit/utils'
 import { yellow, green } from 'colors'
 
 import commands from '../commands'

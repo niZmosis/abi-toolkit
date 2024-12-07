@@ -4,14 +4,14 @@ import type {
   GenerateResponse,
   GeneratorContext,
   Rustify,
-} from '@ethereum-abi-types-generator/types'
+} from '@abi-toolkit/types'
 import {
   buildExecutingPath,
   buildFileName,
   formatAbiName,
   getAbiFileLocationRawName,
   isDirectory,
-} from '@ethereum-abi-types-generator/utils'
+} from '@abi-toolkit/utils'
 import fs from 'fs-extra'
 
 import { EthersClassFactory } from './ethers-class.factory'

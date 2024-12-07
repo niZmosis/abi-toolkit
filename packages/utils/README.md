@@ -11,27 +11,27 @@ To install the `utils` package, you can use any of the following package manager
 #### npm
 
 ```bash
-npm install @ethereum-abi-types-generator/utils
+npm install @abi-toolkit/utils
 ```
 
 #### yarn
 
 ```bash
-yarn add @ethereum-abi-types-generator/utils
+yarn add @abi-toolkit/utils
 ```
 
 #### pnpm
 
 ```bash
-pnpm add @ethereum-abi-types-generator/utils
+pnpm add @abi-toolkit/utils
 ```
 
 #### bun
 
 ```bash
-bun add @ethereum-abi-types-generator/utils
+bun add @abi-toolkit/utils
 ```
 
 ## Links
 
-- [Github](https://github.com/niZmosis/ethereum-abi-types-generator)
+- [Github](https://github.com/niZmosis/abi-toolkit)

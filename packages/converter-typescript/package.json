@@ -1,6 +1,6 @@
 {
-  "name": "@ethereum-abi-types-generator/converter-typescript",
-  "version": "2.0.0",
+  "name": "@abi-toolkit/converter-typescript",
+  "version": "1.0.0",
   "description": "Generate types from an ethereum ABI json file.",
   "keywords": [
     "ethereum",
@@ -9,11 +9,11 @@
     "abi",
     "typescript"
   ],
-  "homepage": "https://github.com/niZmosis/ethereum-abi-types-generator#readme",
+  "homepage": "https://github.com/niZmosis/abi-toolkit#readme",
   "author": "niZmosis",
   "license": "ISC",
   "bugs": {
-    "url": "https://github.com/niZmosis/ethereum-abi-types-generator/issues"
+    "url": "https://github.com/niZmosis/abi-toolkit/issues"
   },
   "files": [
     "dist/*",
@@ -21,7 +21,7 @@
     "./README.md",
     "./LICENSE"
   ],
-  "repository": "github:niZmosis/ethereum-abi-types-generator",
+  "repository": "github:niZmosis/abi-toolkit",
   "publishConfig": {
     "access": "public"
   },
@@ -34,7 +34,7 @@
     "start": "tsc -w -p tsconfig.build.json"
   },
   "dependencies": {
-    "@ethereum-abi-types-generator/utils": "workspace:*",
+    "@abi-toolkit/utils": "workspace:*",
     "bignumber.js": "9.1.2",
     "bn.js": "5.2.1",
     "ethersv4": "npm:ethers@^4.0.47",
@@ -44,7 +44,7 @@
     "path": "0.12.7"
   },
   "devDependencies": {
-    "@ethereum-abi-types-generator/types": "workspace:*",
+    "@abi-toolkit/types": "workspace:*",
     "@ethersproject/providers": "5.7.2",
     "@types/bn.js": "5.1.5",
     "@types/fs-extra": "11.0.4"

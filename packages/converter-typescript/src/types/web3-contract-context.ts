@@ -1,4 +1,4 @@
-import type { AbiInput, AbiOutput } from '@ethereum-abi-types-generator/types'
+import type { AbiInput, AbiOutput } from '@abi-toolkit/types'
 import BigNumber from 'bignumber.js'
 import BN from 'bn.js'
 

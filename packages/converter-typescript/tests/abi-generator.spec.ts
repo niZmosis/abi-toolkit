@@ -1,7 +1,7 @@
 import path from 'path'
 
-import type { GeneratorContext } from '@ethereum-abi-types-generator/types'
-import { buildFileName, libraryMap } from '@ethereum-abi-types-generator/utils'
+import type { GeneratorContext } from '@abi-toolkit/types'
+import { buildFileName, libraryMap } from '@abi-toolkit/utils'
 import fs, { type FSWatcher } from 'fs-extra'
 import { describe, it, expect, vi } from 'vitest'
 
@@ -640,7 +640,7 @@ describe('TypingsGenerator', async () => {
     //     removeAllWhiteSpace(
     //       await prettierFormat(`import { ContractTransaction } from 'ethers';
     //         import { Arrayish, BigNumber, BigNumberish, Interface } from 'ethers/utils';
-    //         import { EthersContractContextV4 } from 'ethereum-abi-types-generator';
+    //         import { EthersContractContextV4 } from 'abi-toolkit';
     //         export type ContractContext = EthersContractContextV4<
     //           Abi,
     //           AbiEventsContext,
@@ -1280,7 +1280,7 @@ describe('TypingsGenerator', async () => {
     //                 BytesLike,
     //                 BigNumber,
     //                 BigNumberish } from "ethers"
-    //         import { EthersContractContextV5 } from "@ethereum-abi-types-generator/converter-typescript";
+    //         import { EthersContractContextV5 } from "@abi-toolkit/converter-typescript";
     //         export type ContractContext = EthersContractContextV5<
     //           Abi,
     //           AbiMethodNames,

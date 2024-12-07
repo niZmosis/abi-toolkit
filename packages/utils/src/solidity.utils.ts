@@ -1,4 +1,4 @@
-import type { SolidityTypeMap } from '@ethereum-abi-types-generator/types'
+import type { SolidityTypeMap } from '@abi-toolkit/types'
 
 /**
  * Maps a Solidity type to its corresponding string

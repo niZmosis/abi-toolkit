@@ -1,4 +1,4 @@
-import type { EthersContractContextV4 } from '@ethereum-abi-types-generator/converter-typescript'
+import type { EthersContractContextV4 } from '@abi-toolkit/converter-typescript'
 import type { ContractTransaction } from 'ethersv4'
 import type { Arrayish, BigNumberish } from 'ethersv4/utils'
 

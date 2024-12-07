@@ -1,15 +1,11 @@
-import type {
-  AbiItem,
-  Library,
-  TypingsFactory,
-} from '@ethereum-abi-types-generator/types'
+import type { AbiItem, Library, TypingsFactory } from '@abi-toolkit/types'
 import {
   abiItemsMap,
   isAcceptsEther,
   isNeverModifyBlockchainState,
   isQuoteExactMethod,
   libraryMap,
-} from '@ethereum-abi-types-generator/utils'
+} from '@abi-toolkit/utils'
 
 import TypeScriptHelpers from '../../utils/helpers'
 
@@ -36,7 +32,7 @@ export class Web3Factory implements TypingsFactory {
   }): string {
     return `import${verbatimModuleSyntax ? ' type' : ''} BN from "bn.js";
     import${verbatimModuleSyntax ? ' type' : ''} BigNumber from 'bignumber.js';
-    import${verbatimModuleSyntax ? ' type' : ''} { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "@ethereum-abi-types-generator/converter-typescript";
+    import${verbatimModuleSyntax ? ' type' : ''} { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "@abi-toolkit/converter-typescript";
 
     import${verbatimModuleSyntax ? ' type' : ''} { MethodPayableReturnContext, MethodConstantReturnContext, MethodReturnContext } from './common.types';
 

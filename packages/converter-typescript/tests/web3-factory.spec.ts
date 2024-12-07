@@ -2,7 +2,7 @@ import {
   isAcceptsEther,
   isNeverModifyBlockchainState,
   removeAllWhiteSpace,
-} from '@ethereum-abi-types-generator/utils'
+} from '@abi-toolkit/utils'
 import { describe, it, expect, beforeEach } from 'vitest'
 
 import { AbiPropertiesMock } from '../../../tests/mocks/abi-properties.mock'
@@ -30,7 +30,7 @@ describe('Web3Factory', () => {
       ).toEqual(
         removeAllWhiteSpace(`import${verbatimModuleSyntax ? ' type' : ''} BN from "bn.js";
     import${verbatimModuleSyntax ? ' type' : ''} BigNumber from 'bignumber.js';
-    import${verbatimModuleSyntax ? ' type' : ''} { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "@ethereum-abi-types-generator/converter-typescript";
+    import${verbatimModuleSyntax ? ' type' : ''} { PromiEvent, TransactionReceipt, EventResponse, EventData, Web3ContractContext } from "@abi-toolkit/converter-typescript";
 
     import${verbatimModuleSyntax ? ' type' : ''} { MethodPayableReturnContext, MethodConstantReturnContext, MethodReturnContext } from './common.types';
 

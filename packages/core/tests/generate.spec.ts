@@ -1,11 +1,11 @@
-import { TypingsGenerator } from '@ethereum-abi-types-generator/converter-typescript'
+import { TypingsGenerator } from '@abi-toolkit/converter-typescript'
 import type {
   GenerateResponse,
   GeneratorContext,
   ProgramContext,
   Rustify,
-} from '@ethereum-abi-types-generator/types'
-import { languageTypes, Logger } from '@ethereum-abi-types-generator/utils'
+} from '@abi-toolkit/types'
+import { languageTypes, Logger } from '@abi-toolkit/utils'
 import { describe, it, expect, beforeEach, afterEach, vi } from 'vitest'
 
 import generate from '../src/commands/generate'

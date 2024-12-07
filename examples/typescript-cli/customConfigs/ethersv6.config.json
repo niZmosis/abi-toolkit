@@ -1,5 +1,5 @@
 {
-  "$schema": "../node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "$schema": "../node_modules/@abi-toolkit/core/schemas/abi-toolkit-1.0.0.json",
   "inputDirOrPath": "./src/inputs",
   "typingsOutputDir": "./src/outputs/ethers_v6",
   "makeOutputDir": true,

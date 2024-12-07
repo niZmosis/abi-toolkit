@@ -1,7 +1,7 @@
 import path from 'path'
 
-import type { GeneratorContext } from '@ethereum-abi-types-generator/types'
-import { capitalize } from '@ethereum-abi-types-generator/utils'
+import type { GeneratorContext } from '@abi-toolkit/types'
+import { capitalize } from '@abi-toolkit/utils'
 
 export class Web3ClassFactory {
   public buildClass({

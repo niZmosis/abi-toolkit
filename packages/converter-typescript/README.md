@@ -9,27 +9,27 @@ This package generates the typings for the contracts.
 ### npm
 
 ```bash
-npm install @ethereum-abi-types-generator/converter-typescript
+npm install @abi-toolkit/converter-typescript
 ```
 
 ### yarn
 
 ```bash
-yarn add @ethereum-abi-types-generator/converter-typescript
+yarn add @abi-toolkit/converter-typescript
 ```
 
 ### pnpm
 
 ```bash
-pnpm add @ethereum-abi-types-generator/converter-typescript
+pnpm add @abi-toolkit/converter-typescript
 ```
 
 ### bun
 
 ```bash
-bun add @ethereum-abi-types-generator/converter-typescript
+bun add @abi-toolkit/converter-typescript
 ```
 
 ## Links
 
-- [Github](https://github.com/niZmosis/ethereum-abi-types-generator)
+- [Github](https://github.com/niZmosis/abi-toolkit)

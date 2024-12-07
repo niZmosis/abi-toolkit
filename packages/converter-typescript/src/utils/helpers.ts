@@ -1,13 +1,6 @@
-import type {
-  Library,
-  AbiInput,
-  AbiOutput,
-} from '@ethereum-abi-types-generator/types'
-import type { SolidityNumberType } from '@ethereum-abi-types-generator/types'
-import {
-  capitalize,
-  solidityTypeMap,
-} from '@ethereum-abi-types-generator/utils'
+import type { Library, AbiInput, AbiOutput } from '@abi-toolkit/types'
+import type { SolidityNumberType } from '@abi-toolkit/types'
+import { capitalize, solidityTypeMap } from '@abi-toolkit/utils'
 
 export default class TypeScriptHelpers {
   /**

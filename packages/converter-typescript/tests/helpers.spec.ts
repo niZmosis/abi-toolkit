@@ -1,5 +1,5 @@
-import type { AbiOutput } from '@ethereum-abi-types-generator/types'
-import { libraryMap } from '@ethereum-abi-types-generator/utils'
+import type { AbiOutput } from '@abi-toolkit/types'
+import { libraryMap } from '@abi-toolkit/utils'
 import { describe, it, expect } from 'vitest'
 
 import TypeScriptHelpers from '../src/utils/helpers'

@@ -2,7 +2,7 @@ import type {
   EventResponse,
   EventData,
   Web3ContractContext,
-} from '@ethereum-abi-types-generator/converter-typescript'
+} from '@abi-toolkit/converter-typescript'
 
 import type {
   MethodConstantReturnContext,

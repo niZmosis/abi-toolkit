@@ -1,10 +1,7 @@
 import path from 'path'
 
-import type {
-  GeneratorContext,
-  Library,
-} from '@ethereum-abi-types-generator/types'
-import { capitalize, libraryMap } from '@ethereum-abi-types-generator/utils'
+import type { GeneratorContext, Library } from '@abi-toolkit/types'
+import { capitalize, libraryMap } from '@abi-toolkit/utils'
 
 export class EthersClassFactory {
   public buildClass({

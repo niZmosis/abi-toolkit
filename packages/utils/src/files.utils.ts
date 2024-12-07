@@ -10,7 +10,7 @@ import type {
   AbiInput,
   AbiOutput,
   StateMutabilityType,
-} from '@ethereum-abi-types-generator/types'
+} from '@abi-toolkit/types'
 import type { JsonFragment } from '@ethersproject/abi'
 import fs from 'fs-extra'
 

@@ -1,4 +1,4 @@
-import type { Language } from '@ethereum-abi-types-generator/types'
+import type { Language } from '@abi-toolkit/types'
 
 /**
  * Array of supported language types.

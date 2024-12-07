@@ -9,27 +9,27 @@ This package provides TypeScript types and interfaces for generating types from 
 ### npm
 
 ```bash
-npm install @ethereum-abi-types-generator/types
+npm install @abi-toolkit/types
 ```
 
 ### yarn
 
 ```bash
-yarn add @ethereum-abi-types-generator/types
+yarn add @abi-toolkit/types
 ```
 
 ### pnpm
 
 ```bash
-pnpm add @ethereum-abi-types-generator/types
+pnpm add @abi-toolkit/types
 ```
 
 ### bun
 
 ```bash
-bun add @ethereum-abi-types-generator/types
+bun add @abi-toolkit/types
 ```
 
 ## Links
 
-- [Github](https://github.com/niZmosis/ethereum-abi-types-generator)
+- [Github](https://github.com/niZmosis/abi-toolkit)

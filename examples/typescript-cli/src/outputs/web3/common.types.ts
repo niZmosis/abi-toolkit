@@ -1,7 +1,7 @@
 import type {
   PromiEvent,
   TransactionReceipt,
-} from '@ethereum-abi-types-generator/converter-typescript'
+} from '@abi-toolkit/converter-typescript'
 import type { BigNumber } from 'bignumber.js'
 import type BN from 'bn.js'
 

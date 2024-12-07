@@ -1,7 +1,7 @@
-# ethereum-abi-types-generator
+# abi-toolkit
 
-[![npm version](https://badge.fury.io/js/ethereum-abi-types-generator.svg)](https://badge.fury.io/js/ethereum-abi-types-generator)
-![downloads](https://img.shields.io/npm/dw/ethereum-abi-types-generator)
+[![npm version](https://badge.fury.io/js/abi-toolkit.svg)](https://badge.fury.io/js/abi-toolkit)
+![downloads](https://img.shields.io/npm/dw/abi-toolkit)
 
 Generate TypeScript typings for all your Ethereum ABI contract methods and events with 1-liner integrations for `web3` and `ethers`. Never have runtime errors again - bring them into compile-time errors in 2 minutes! 🎉
 
@@ -40,7 +40,7 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
   - [Example](#example-ethers)
   - [Full Example](#full-example-ethers)
 - [Motivation](#motivation)
-- [ethereum-abi-types-generator vs TypeChain](#ethereum-abi-types-generator-vs-typechain)
+- [abi-toolkit vs TypeChain](#abi-toolkit-vs-typechain)
 - [Issues](#issues)
 - [Thanks And Support](#thanks-and-support)
 - [License](#license)
@@ -100,25 +100,25 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
 Install the core package:
 
 ```bash
-npm i @ethereum-abi-types-generator/core -D
+npm i @abi-toolkit/core -D
 # or
-yarn add @ethereum-abi-types-generator/core -D
+yarn add @abi-toolkit/core -D
 # or
-pnpm add @ethereum-abi-types-generator/core -D
+pnpm add @abi-toolkit/core -D
 # or
-bun add @ethereum-abi-types-generator/core -d
+bun add @abi-toolkit/core -d
 ```
 
 Install the language package you want to use:
 
 ```bash
-npm i @ethereum-abi-types-generator/converter-typescript -D
+npm i @abi-toolkit/converter-typescript -D
 # or
-yarn add @ethereum-abi-types-generator/converter-typescript -D
+yarn add @abi-toolkit/converter-typescript -D
 # or
-pnpm add @ethereum-abi-types-generator/converter-typescript -D
+pnpm add @abi-toolkit/converter-typescript -D
 # or
-bun add @ethereum-abi-types-generator/converter-typescript -d
+bun add @abi-toolkit/converter-typescript -d
 ```
 
 ## Tsconfig compile time issues
@@ -330,7 +330,7 @@ Minimal:
 
 ```json
 {
-  "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "$schema": "./node_modules/@abi-toolkit/core/schemas/abi-toolkit-1.0.0.json",
   "inputDirOrPath": "./abis",
   "typingsOutputDir": "./types",
   "library": "web3"
@@ -341,7 +341,7 @@ Full:
 
 ```json
 {
-  "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "$schema": "./node_modules/@abi-toolkit/core/schemas/abi-toolkit-1.0.0.json",
   "inputDirOrPath": "./abis",
   "typingsOutputDir": "./types",
   "library": "ethers_v5",
@@ -496,7 +496,7 @@ describe('Example test', function () {
 
 ### Uniswap full example (Web3)
 
-[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/ethereum-abi-types-generator/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
+[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/abi-toolkit/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
@@ -627,7 +627,7 @@ example();
 
 ### Uniswap full example (Ethers)
 
-[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/ethereum-abi-types-generator/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
+[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/abi-toolkit/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
@@ -821,9 +821,9 @@ The idea was to not have to make the developer wrap any kind of `web3` or `ether
 
 The ABI file is the source of truth for all contract calls, so by building types from this file, we can be assured our types are correct.
 
-## ethereum-abi-types-generator vs TypeChain
+## abi-toolkit vs TypeChain
 
-The main differences between ethereum-abi-types-generator and TypeChain are:
+The main differences between abi-toolkit and TypeChain are:
 
 1. **No bundle size added**: This package uses only interfaces, adding nothing to your final bundle size.
 2. **Proper typed interfaces**: Generates and exports interfaces for both requests and responses, allowing you to use them throughout your app.
@@ -831,7 +831,7 @@ The main differences between ethereum-abi-types-generator and TypeChain are:
 
 ## Issues
 
-Please raise any issues in the [GitHub repository](https://github.com/niZmosis/ethereum-abi-types-generator/issues).
+Please raise any issues in the [GitHub repository](https://github.com/niZmosis/abi-toolkit/issues).
 
 ## Thanks And Support
 

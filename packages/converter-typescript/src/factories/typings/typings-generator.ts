@@ -7,7 +7,7 @@ import type {
   GenerateResponse,
   GeneratorContext,
   Rustify,
-} from '@ethereum-abi-types-generator/types'
+} from '@abi-toolkit/types'
 import {
   abiItemsMap,
   buildExecutingPath,
@@ -24,7 +24,7 @@ import {
   solidityTypeMap,
   buildFileName,
   isQuoteExactMethod,
-} from '@ethereum-abi-types-generator/utils'
+} from '@abi-toolkit/utils'
 import fs from 'fs-extra'
 
 import { EthersFactory } from './ethers-typings.factory'
@@ -264,7 +264,7 @@ export class TypingsGenerator {
       case 'web3':
         importType = `import${verbatimModuleSyntax ? ' type' : ''} { BigNumber } from 'bignumber.js'
         import${verbatimModuleSyntax ? ' type' : ''} BN from 'bn.js'
-        import${verbatimModuleSyntax ? ' type' : ''} { PromiEvent, TransactionReceipt } from "@ethereum-abi-types-generator/converter-typescript";`
+        import${verbatimModuleSyntax ? ' type' : ''} { PromiEvent, TransactionReceipt } from "@abi-toolkit/converter-typescript";`
         break
       case 'ethers_v4':
         importType = `import${verbatimModuleSyntax ? ' type' : ''} { BigNumber } from '${libraryImportAlias || 'ethers'}/utils'`

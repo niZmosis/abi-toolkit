@@ -1,17 +1,14 @@
-import {
-  getProgramArguments,
-  Logger,
-  commandMap,
-} from '@ethereum-abi-types-generator/utils'
-import * as utilsModule from '@ethereum-abi-types-generator/utils'
+import { getProgramArguments, Logger, commandMap } from '@abi-toolkit/utils'
+import * as utilsModule from '@abi-toolkit/utils'
 import { describe, it, expect, vi, type Mock } from 'vitest'
 
 import { execute } from '../src/bin/execute'
 
-vi.mock('@ethereum-abi-types-generator/utils', async () => {
-  const actual = await vi.importActual<
-    typeof import('@ethereum-abi-types-generator/utils')
-  >('@ethereum-abi-types-generator/utils')
+vi.mock('@abi-toolkit/utils', async () => {
+  const actual =
+    await vi.importActual<typeof import('@abi-toolkit/utils')>(
+      '@abi-toolkit/utils',
+    )
   return {
     ...actual,
     getProgramArguments: vi.fn(),

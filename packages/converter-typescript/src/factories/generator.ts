@@ -1,7 +1,4 @@
-import type {
-  GeneratedResults,
-  GeneratorContext,
-} from '@ethereum-abi-types-generator/types'
+import type { GeneratedResults, GeneratorContext } from '@abi-toolkit/types'
 
 import { ClassGenerator } from './classes/class-generator'
 import { TypingsGenerator } from './typings/typings-generator'

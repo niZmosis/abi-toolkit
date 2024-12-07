@@ -1,4 +1,4 @@
-import type { Web3ContractContext } from '@ethereum-abi-types-generator/converter-typescript'
+import type { Web3ContractContext } from '@abi-toolkit/converter-typescript'
 
 import type {
   MethodConstantReturnContext,

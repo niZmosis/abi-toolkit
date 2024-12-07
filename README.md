@@ -1,7 +1,7 @@
-# ethereum-abi-types-generator
+# abi-toolkit
 
-[![npm version](https://badge.fury.io/js/ethereum-abi-types-generator.svg)](https://badge.fury.io/js/ethereum-abi-types-generator)
-![downloads](https://img.shields.io/npm/dw/ethereum-abi-types-generator)
+[![npm version](https://badge.fury.io/js/abi-toolkit.svg)](https://badge.fury.io/js/abi-toolkit)
+![downloads](https://img.shields.io/npm/dw/abi-toolkit)
 
 Generate TypeScript typings for all your Ethereum ABI contract methods and events with 1-liner integrations for `web3` and `ethers`. Never have runtime errors again - bring them into compile-time errors in 2 minutes! 🎉
 
@@ -99,35 +99,35 @@ A CLI tool that allows you to convert an ABI JSON file into fully loaded interfa
 
 | Package | Description |
 | --- | --- |
-| [`@ethereum-abi-types-generator/core`](/packages/core) | Core module for CLI and programmatic usage. |
-| [`@ethereum-abi-types-generator/types`](/packages/types) | Type definitions for the entire toolkit. |
-| [`@ethereum-abi-types-generator/utils`](/packages/utils) | A collection of helper functions and utilities. |
-| [`@ethereum-abi-types-generator/converter-typescript`](/packages/converter-typescript) | Generates typings and classes for the Typescript language. |
+| [`@abi-toolkit/core`](/packages/core) | Core module for CLI and programmatic usage. |
+| [`@abi-toolkit/types`](/packages/types) | Type definitions for the entire toolkit. |
+| [`@abi-toolkit/utils`](/packages/utils) | A collection of helper functions and utilities. |
+| [`@abi-toolkit/converter-typescript`](/packages/converter-typescript) | Generates typings and classes for the Typescript language. |
 
 ## Installation
 
 Install the core package:
 
 ```bash
-npm i @ethereum-abi-types-generator/core -D
+npm i @abi-toolkit/core -D
 # or
-yarn add @ethereum-abi-types-generator/core -D
+yarn add @abi-toolkit/core -D
 # or
-pnpm add @ethereum-abi-types-generator/core -D
+pnpm add @abi-toolkit/core -D
 # or
-bun add @ethereum-abi-types-generator/core -d
+bun add @abi-toolkit/core -d
 ```
 
 Install the language package you want to use:
 
 ```bash
-npm i @ethereum-abi-types-generator/converter-typescript -D
+npm i @abi-toolkit/converter-typescript -D
 # or
-yarn add @ethereum-abi-types-generator/converter-typescript -D
+yarn add @abi-toolkit/converter-typescript -D
 # or
-pnpm add @ethereum-abi-types-generator/converter-typescript -D
+pnpm add @abi-toolkit/converter-typescript -D
 # or
-bun add @ethereum-abi-types-generator/converter-typescript -d
+bun add @abi-toolkit/converter-typescript -d
 ```
 
 *Note: Installing `@ethereum-multicall/core` will install `utils` and `types`.*
@@ -341,7 +341,7 @@ Minimal:
 
 ```json
 {
-  "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "$schema": "./node_modules/@abi-toolkit/core/schemas/abi-toolkit-1.0.0.json",
   "inputDirOrPath": "./abis",
   "typingsOutputDir": "./types",
   "library": "web3"
@@ -352,7 +352,7 @@ Full:
 
 ```json
 {
-  "$schema": "./node_modules/@ethereum-abi-types-generator/core/schemas/ethereum-abi-types-generator-1.0.0.json",
+  "$schema": "./node_modules/@abi-toolkit/core/schemas/abi-toolkit-1.0.0.json",
   "inputDirOrPath": "./abis",
   "typingsOutputDir": "./types",
   "library": "ethers_v5",
@@ -507,7 +507,7 @@ describe('Example test', function () {
 
 ### Uniswap full example (Web3)
 
-[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/ethereum-abi-types-generator/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
+[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/abi-toolkit/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
@@ -638,7 +638,7 @@ example();
 
 ### Uniswap full example (Ethers)
 
-[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/ethereum-abi-types-generator/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
+[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/abi-toolkit/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
@@ -849,7 +849,7 @@ Check out my other projects and forks for blockchain development!
 
 ## Issues
 
-Please raise any issues in the [GitHub repository](https://github.com/niZmosis/ethereum-abi-types-generator/issues).
+Please raise any issues in the [GitHub repository](https://github.com/niZmosis/abi-toolkit/issues).
 
 ## Contributing
 

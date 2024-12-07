@@ -62,21 +62,21 @@ importers:
 
   examples/app:
     dependencies:
+      '@abi-toolkit/converter-typescript':
+        specifier: workspace:*
+        version: link:../../packages/converter-typescript
+      '@abi-toolkit/core':
+        specifier: workspace:*
+        version: link:../../packages/core
+      '@abi-toolkit/utils':
+        specifier: workspace:*
+        version: link:../../packages/utils
       '@emotion/react':
         specifier: 11.13.3
         version: 11.13.3(@types/react@18.3.5)(react@18.3.1)
       '@emotion/styled':
         specifier: 11.13.0
         version: 11.13.0(@emotion/react@11.13.3(@types/react@18.3.5)(react@18.3.1))(@types/react@18.3.5)(react@18.3.1)
-      '@ethereum-abi-types-generator/converter-typescript':
-        specifier: workspace:*
-        version: link:../../packages/converter-typescript
-      '@ethereum-abi-types-generator/core':
-        specifier: workspace:*
-        version: link:../../packages/core
-      '@ethereum-abi-types-generator/utils':
-        specifier: workspace:*
-        version: link:../../packages/utils
       '@monaco-editor/react':
         specifier: 4.6.0
         version: 4.6.0(monaco-editor@0.51.0)(react-dom@18.3.1(react@18.3.1))(react@18.3.1)
@@ -96,7 +96,7 @@ importers:
         specifier: 18.3.1
         version: 18.3.1(react@18.3.1)
     devDependencies:
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
         version: link:../../packages/types
       '@types/react':
@@ -120,13 +120,13 @@ importers:
 
   examples/typescript-cli:
     dependencies:
-      '@ethereum-abi-types-generator/converter-typescript':
+      '@abi-toolkit/converter-typescript':
         specifier: workspace:*
         version: link:../../packages/converter-typescript
-      '@ethereum-abi-types-generator/core':
+      '@abi-toolkit/core':
         specifier: workspace:*
         version: link:../../packages/core
-      '@ethereum-abi-types-generator/utils':
+      '@abi-toolkit/utils':
         specifier: workspace:*
         version: link:../../packages/utils
       bignumber.js:
@@ -148,7 +148,7 @@ importers:
         specifier: 1.2.7
         version: 1.2.7
     devDependencies:
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
         version: link:../../packages/types
       '@types/bn.js':
@@ -157,7 +157,7 @@ importers:
 
   packages/converter-typescript:
     dependencies:
-      '@ethereum-abi-types-generator/utils':
+      '@abi-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
       bignumber.js:
@@ -182,7 +182,7 @@ importers:
         specifier: 0.12.7
         version: 0.12.7
     devDependencies:
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
         version: link:../types
       '@ethersproject/providers':
@@ -197,7 +197,7 @@ importers:
 
   packages/core:
     dependencies:
-      '@ethereum-abi-types-generator/utils':
+      '@abi-toolkit/utils':
         specifier: workspace:*
         version: link:../utils
       colors:
@@ -216,10 +216,10 @@ importers:
         specifier: 17.7.2
         version: 17.7.2
     devDependencies:
-      '@ethereum-abi-types-generator/converter-typescript':
+      '@abi-toolkit/converter-typescript':
         specifier: workspace:*
         version: link:../converter-typescript
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
         version: link:../types
       '@types/fs-extra':
@@ -249,7 +249,7 @@ importers:
         specifier: 17.7.2
         version: 17.7.2
     devDependencies:
-      '@ethereum-abi-types-generator/types':
+      '@abi-toolkit/types':
         specifier: workspace:*
         version: link:../types
       '@ethersproject/abi':

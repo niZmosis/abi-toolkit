@@ -1,4 +1,4 @@
-import type { EatConfigContext } from '@ethereum-abi-types-generator/types'
+import type { EatConfigContext } from '@abi-toolkit/types'
 import type { ESLint } from 'eslint'
 import type { Options as PrettierOptions } from 'prettier'
 

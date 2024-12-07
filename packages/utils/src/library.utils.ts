@@ -3,7 +3,7 @@ import type {
   EthersLibrary,
   Web3Library,
   Framework,
-} from '@ethereum-abi-types-generator/types'
+} from '@abi-toolkit/types'
 
 // ------------------------
 // Ethers library types

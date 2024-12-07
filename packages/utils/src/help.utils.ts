@@ -1,13 +1,10 @@
-import type {
-  CommandType,
-  HelpMessage,
-} from '@ethereum-abi-types-generator/types'
+import type { CommandType, HelpMessage } from '@abi-toolkit/types'
 import { cyan } from 'colors'
 
 import { languageTypes } from './language.utils'
 import { libraryTypes } from './library.utils'
 
-const command = 'ethereum-abi-types-generator <command>'
+const command = 'abi-toolkit <command>'
 const customConfig = '--config=./customConfigs/ethersv5.config.json'
 const inputDirOrPath = '--inputDirOrPath=DIR_OR_FILE_PATH'
 const typingsOutputDir = '--typingsOutputDir=PATH_DIRECTORY'
