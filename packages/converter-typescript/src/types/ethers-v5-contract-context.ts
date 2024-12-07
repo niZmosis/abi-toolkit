@@ -38,13 +38,13 @@ export type EthersContractContextV5<
  * Represents a contract function that returns a promise.
  * @template T The type of the promise result
  */
-type ContractFunction<T = any> = (...args: any[]) => Promise<T>
+export type ContractFunctionV5<T = any> = (...args: any[]) => Promise<T>
 
 /**
  * Represents the internal interface of an Ethers v5 contract.
  * @template TMethodNames The names of the contract methods
  */
-declare class InternalInterface<TMethodNames> {
+export declare class InternalInterfaceV5<TMethodNames> {
   readonly fragments: Fragment[]
   readonly errors: {
     [name: string]: any
@@ -114,17 +114,17 @@ declare class InternalInterface<TMethodNames> {
  */
 export interface ContractVersionV5<TMethodNames> {
   readonly address: string
-  readonly interface: InternalInterface<TMethodNames>
+  readonly interface: InternalInterfaceV5<TMethodNames>
   readonly signer: Signer
   readonly provider: Provider
   readonly callStatic: {
-    [name: string]: ContractFunction
+    [name: string]: ContractFunctionV5
   }
   readonly estimateGas: {
-    [name: string]: ContractFunction<BigNumber>
+    [name: string]: ContractFunctionV5<BigNumber>
   }
   readonly populateTransaction: {
-    [name: string]: ContractFunction<{
+    [name: string]: ContractFunctionV5<{
       to?: string
       from?: string
       nonce?: number

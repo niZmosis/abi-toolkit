@@ -32,7 +32,7 @@ The event interface properties as a string
 
 #### Defined in
 
-[factory.types.ts:32](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/factory.types.ts#L32)
+[factory.types.ts:32](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/types/src/factory.types.ts#L32)
 
 ***
 
@@ -72,7 +72,7 @@ The library interfaces as a string
 
 #### Defined in
 
-[factory.types.ts:14](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/factory.types.ts#L14)
+[factory.types.ts:14](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/types/src/factory.types.ts#L14)
 
 ***
 
@@ -108,4 +108,4 @@ The method return context as a string
 
 #### Defined in
 
-[factory.types.ts:42](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/factory.types.ts#L42)
+[factory.types.ts:42](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/types/src/factory.types.ts#L42)

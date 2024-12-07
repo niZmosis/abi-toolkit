@@ -32,7 +32,6 @@
 - [libraryMap](variables/libraryMap.md)
 - [libraryTypes](variables/libraryTypes.md)
 - [solidityTypeMap](variables/solidityTypeMap.md)
-- [solidityTypeToTsTypeMap](variables/solidityTypeToTsTypeMap.md)
 - [web3LibraryMap](variables/web3LibraryMap.md)
 - [web3LibraryTypes](variables/web3LibraryTypes.md)
 
@@ -70,6 +69,7 @@
 - [isLanguage](functions/isLanguage.md)
 - [isLibrary](functions/isLibrary.md)
 - [isNeverModifyBlockchainState](functions/isNeverModifyBlockchainState.md)
+- [isQuoteExactMethod](functions/isQuoteExactMethod.md)
 - [isWeb3Library](functions/isWeb3Library.md)
 - [loadAbiContent](functions/loadAbiContent.md)
 - [loadConfigFile](functions/loadConfigFile.md)
@@ -77,7 +77,6 @@
 - [loadJsonFile](functions/loadJsonFile.md)
 - [loadPrettierConfig](functions/loadPrettierConfig.md)
 - [loadPrettierConfigs](functions/loadPrettierConfigs.md)
-- [mapSolidityTypeToTypescriptString](functions/mapSolidityTypeToTypescriptString.md)
 - [removeAllWhiteSpace](functions/removeAllWhiteSpace.md)
 - [stripComments](functions/stripComments.md)
 - [transformJsonFragmentToAbiItems](functions/transformJsonFragmentToAbiItems.md)

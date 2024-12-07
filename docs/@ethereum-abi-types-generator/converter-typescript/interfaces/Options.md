@@ -16,7 +16,7 @@ Represents options for a Web3 contract.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:118](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L118)
+[packages/converter-typescript/src/types/web3-contract-context.ts:118](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L118)
 
 ***
 
@@ -26,4 +26,4 @@ Represents options for a Web3 contract.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:119](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L119)
+[packages/converter-typescript/src/types/web3-contract-context.ts:119](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L119)

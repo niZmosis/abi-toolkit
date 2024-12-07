@@ -20,10 +20,13 @@ import { capitalize } from './strings.utils'
 
 /**
  * Construct a file name with the given suffix and extension
- * @params parameters to build the file name
+ *
+ * @param params - parameters to build the file name
  * @param params.fileName The file name
  * @param params.suffix The suffix
  * @param params.extension The extension
+ *
+ * @returns The file name with the suffix and extension
  */
 export function buildFileName({
   fileName,
@@ -41,6 +44,7 @@ export function buildFileName({
  * Strips comments from a given JSON content.
  *
  * @param content - The JSON content as a string.
+ *
  * @returns The JSON content without comments.
  */
 export function stripComments(content: string): string {
@@ -56,7 +60,9 @@ export function stripComments(content: string): string {
  * Loads a JSON file and parses its content.
  *
  * @template T - The expected type of the parsed JSON content.
+ *
  * @param filePath - The path to the JSON file.
+ *
  * @returns The parsed JSON content, or null if the file does not exist or fails to parse.
  */
 export async function loadJsonFile(filePath: string): Promise<string | null> {
@@ -74,6 +80,16 @@ export async function loadJsonFile(filePath: string): Promise<string | null> {
   return null
 }
 
+/**
+ * Loads a JSON file and parses its content.
+ *
+ * @template T - The expected type of the parsed JSON content.
+ *
+ * @param configPath - The path to the JSON file.
+ * @param useResolvedPath - Whether to use the resolved path or the original path.
+ *
+ * @returns The parsed JSON content, or null if the file does not exist or fails to parse.
+ */
 export async function loadConfigFile<T>(
   configPath: string,
   useResolvedPath = true,
@@ -128,6 +144,15 @@ export function getDirectoryPathForFramework(framework: Framework): string {
   }
 }
 
+/**
+ * Transform a JsonFragment file to a valid JSON file
+ *
+ * @param params - The parameters
+ * @param params.abiFilePath - The ABI file path
+ * @param params.content - The content of the ABI file
+ *
+ * @returns The ABI items
+ */
 export async function transformJsonFragmentToAbiItems({
   abiFilePath,
   content,
@@ -410,6 +435,7 @@ export function getAbiFileLocationRawName(inputPath: string): string {
 
 /**
  * Get all the abi files and extract the .abi property if it's a Hardhat or Truffle framework
+ *
  * @param params The arguments
  * @param params.dirOrPath The directory or file path
  * @param params.framework The framework

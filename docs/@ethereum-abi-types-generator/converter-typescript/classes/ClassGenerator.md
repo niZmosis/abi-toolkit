@@ -22,7 +22,7 @@
 
 #### Defined in
 
-[packages/converter-typescript/src/factories/classes/class-generator.ts:24](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/factories/classes/class-generator.ts#L24)
+[packages/converter-typescript/src/factories/classes/class-generator.ts:24](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/factories/classes/class-generator.ts#L24)
 
 ## Methods
 
@@ -36,4 +36,4 @@
 
 #### Defined in
 
-[packages/converter-typescript/src/factories/classes/class-generator.ts:26](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/factories/classes/class-generator.ts#L26)
+[packages/converter-typescript/src/factories/classes/class-generator.ts:26](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/factories/classes/class-generator.ts#L26)

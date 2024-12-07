@@ -36,11 +36,11 @@ describe('EthersFactory', () => {
         removeAllWhiteSpace(`
           import${verbatimModuleSyntax ? ' type' : ''} { ContractTransaction } from "${libraryImportAlias || 'ethers'}";
           import${verbatimModuleSyntax ? ' type' : ''} { Arrayish, BigNumber, BigNumberish, Interface } from "${libraryImportAlias || 'ethers'}/utils";
-          import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContext } from "@ethereum-abi-types-generator/converter-typescript";
+          import${verbatimModuleSyntax ? ' type' : ''} { EthersContractContextV4 } from "@ethereum-abi-types-generator/converter-typescript";
 
           import${verbatimModuleSyntax ? ' type' : ''} { EventFilter, ContractTransactionOverrides, ContractCallOverrides } from './common.types';
 
-          export type ContractContext = EthersContractContext<
+          export type ContractContext = EthersContractContextV4<
             ${abiName || 'Contract'},
             ${abiName}EventsContext,
             ${abiName}Events

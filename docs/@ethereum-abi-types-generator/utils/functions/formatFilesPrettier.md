@@ -32,4 +32,4 @@ Will throw an error if the Prettier configuration file is not found.
 
 ## Defined in
 
-[formatters/prettier.ts:206](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/utils/src/formatters/prettier.ts#L206)
+[formatters/prettier.ts:206](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/formatters/prettier.ts#L206)

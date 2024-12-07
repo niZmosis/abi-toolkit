@@ -28,7 +28,7 @@ The generator context containing configuration options.
 
 #### Defined in
 
-[packages/converter-typescript/src/factories/typings/typings-generator.ts:50](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/factories/typings/typings-generator.ts#L50)
+[packages/converter-typescript/src/factories/typings/typings-generator.ts:51](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/factories/typings/typings-generator.ts#L51)
 
 ## Methods
 
@@ -46,4 +46,4 @@ A promise that resolves to the generated response or an error message.
 
 #### Defined in
 
-[packages/converter-typescript/src/factories/typings/typings-generator.ts:57](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/factories/typings/typings-generator.ts#L57)
+[packages/converter-typescript/src/factories/typings/typings-generator.ts:58](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/factories/typings/typings-generator.ts#L58)

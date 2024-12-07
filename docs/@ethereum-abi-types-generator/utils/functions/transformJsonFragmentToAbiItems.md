@@ -6,20 +6,30 @@
 
 # Function: transformJsonFragmentToAbiItems()
 
-> **transformJsonFragmentToAbiItems**(`__namedParameters`): `Promise`\<[`Rustify`](../../types/type-aliases/Rustify.md)\<[`AbiItem`](../../types/type-aliases/AbiItem.md)[], `string`\>\>
+> **transformJsonFragmentToAbiItems**(`params`): `Promise`\<[`Rustify`](../../types/type-aliases/Rustify.md)\<[`AbiItem`](../../types/type-aliases/AbiItem.md)[], `string`\>\>
+
+Transform a JsonFragment file to a valid JSON file
 
 ## Parameters
 
-• **\_\_namedParameters**
+• **params**
 
-• **\_\_namedParameters.abiFilePath**: `string`
+The parameters
 
-• **\_\_namedParameters.content**: `string`
+• **params.abiFilePath**: `string`
+
+The ABI file path
+
+• **params.content**: `string`
+
+The content of the ABI file
 
 ## Returns
 
 `Promise`\<[`Rustify`](../../types/type-aliases/Rustify.md)\<[`AbiItem`](../../types/type-aliases/AbiItem.md)[], `string`\>\>
 
+The ABI items
+
 ## Defined in
 
-files.utils.ts:131
+[files.utils.ts:156](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/files.utils.ts#L156)

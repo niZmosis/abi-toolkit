@@ -11,7 +11,7 @@
 
 Generate TypeScript typings for all your Ethereum ABI contract methods and events with 1-liner integrations for `web3` and `ethers`. Never have runtime errors again - bring them into compile-time errors in 2 minutes! 🎉
 
-![GIF Demo](./images/gif-demo.gif)
+![GIF Demo](../../_media/gif-demo.gif)
 
 A CLI tool that allows you to convert an ABI JSON file into fully loaded interface types.
 
@@ -502,7 +502,7 @@ describe('Example test', function () {
 
 ### Uniswap full example (Web3)
 
-[Uniswap Contract Strongly Typed Example](https://github.com/joshstevens19/ethereum-abi-types-generator/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
+[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/ethereum-abi-types-generator/blob/master/examples/web3/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
@@ -633,7 +633,7 @@ example();
 
 ### Uniswap full example (Ethers)
 
-[Uniswap Contract Strongly Typed Example](https://github.com/joshstevens19/ethereum-abi-types-generator/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
+[Uniswap Contract Strongly Typed Example](https://github.com/niZmosis/ethereum-abi-types-generator/blob/master/examples/ethers/uniswap-example/uniswap-contract-strongly-typed-example.ts)
 
 Below is just a fake contract example just so you can understand how the typings improve your development.
 
@@ -837,11 +837,11 @@ The main differences between ethereum-abi-types-generator and TypeChain are:
 
 ## Issues
 
-Please raise any issues in the [GitHub repository](https://github.com/joshstevens19/ethereum-abi-types-generator/issues).
+Please raise any issues in the [GitHub repository](https://github.com/niZmosis/ethereum-abi-types-generator/issues).
 
 ## Thanks And Support
 
-This package is brought to you by [Josh Stevens](https://github.com/joshstevens19). If you want to support the development of this and other packages, or if this package has saved you a lot of development time, donations are welcome. By donating, you are supporting the maintenance and development of tools that make the Ethereum ecosystem better.
+This package is brought to you by [Josh Stevens](https://github.com/niZmosis). If you want to support the development of this and other packages, or if this package has saved you a lot of development time, donations are welcome. By donating, you are supporting the maintenance and development of tools that make the Ethereum ecosystem better.
 
 ### Direct donations
 
@@ -849,7 +849,7 @@ Direct donations (any token accepted) - Eth address: `0x699c2daD091ffcF18f3cd9E8
 
 ### Github sponsors
 
-[Sponsor me](https://github.com/sponsors/joshstevens19) via GitHub using fiat money.
+[Sponsor me](https://github.com/sponsors/niZmosis) via GitHub using fiat money.
 
 ## License
 

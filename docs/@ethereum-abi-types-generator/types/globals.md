@@ -41,6 +41,7 @@
 - [SolidityNumberType](type-aliases/SolidityNumberType.md)
 - [SolidityStringType](type-aliases/SolidityStringType.md)
 - [SolidityToTsTypeMap](type-aliases/SolidityToTsTypeMap.md)
+- [SolidityToTsTypeMapV4](type-aliases/SolidityToTsTypeMapV4.md)
 - [SolidityTupleType](type-aliases/SolidityTupleType.md)
 - [SolidityType](type-aliases/SolidityType.md)
 - [SolidityTypeMap](type-aliases/SolidityTypeMap.md)

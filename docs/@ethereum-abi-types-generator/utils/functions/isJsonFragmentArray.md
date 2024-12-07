@@ -24,4 +24,4 @@ True if the array of objects are JSON fragments, false otherwise.
 
 ## Defined in
 
-abi.utils.ts:77
+[abi.utils.ts:87](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/abi.utils.ts#L87)

@@ -28,13 +28,13 @@ export type EthersContractContextV6<
 > = EthersContractV6<TMethods, TMethodNames, TEventsContext, TEventType> &
   TMethods
 
-type ContractFunction<T = any> = (...args: any[]) => Promise<T>
+export type ContractFunctionV6<T = any> = (...args: any[]) => Promise<T>
 
 /**
  * Represents the internal interface of an Ethers v6 contract.
  * @template TMethodNames The names of the contract methods
  */
-declare class InternalInterface<TMethodNames> {
+export declare class InternalInterfaceV6<TMethodNames> {
   readonly fragments: any[]
   readonly errors: Record<string, any>
   readonly events: Record<string, any>
@@ -90,17 +90,17 @@ declare class InternalInterface<TMethodNames> {
  */
 export interface ContractVersionV6<TMethodNames> {
   readonly address: string
-  readonly interface: InternalInterface<TMethodNames>
+  readonly interface: InternalInterfaceV6<TMethodNames>
   readonly signer: Signer
   readonly provider: Provider
   readonly callStatic: {
-    [name: string]: ContractFunction
+    [name: string]: ContractFunctionV6
   }
   readonly estimateGas: {
-    [name: string]: ContractFunction<bigint>
+    [name: string]: ContractFunctionV6<bigint>
   }
   readonly populateTransaction: {
-    [name: string]: ContractFunction<TransactionRequest>
+    [name: string]: ContractFunctionV6<TransactionRequest>
   }
   readonly addressPromise: Promise<string>
   readonly deployTransaction: TransactionResponse

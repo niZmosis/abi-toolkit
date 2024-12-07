@@ -24,4 +24,4 @@ The parsed JSON content, or null if the file does not exist or fails to parse.
 
 ## Defined in
 
-files.utils.ts:62
+[files.utils.ts:68](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/files.utils.ts#L68)

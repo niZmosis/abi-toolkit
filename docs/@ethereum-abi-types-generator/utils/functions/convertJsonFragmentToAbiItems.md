@@ -24,4 +24,4 @@ The array of AbiItems
 
 ## Defined in
 
-files.utils.ts:336
+[files.utils.ts:361](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/files.utils.ts#L361)

@@ -26,7 +26,7 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:116](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L116)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:116](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L116)
 
 ***
 
@@ -36,7 +36,7 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:138](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L138)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:138](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L138)
 
 ***
 
@@ -46,11 +46,11 @@ The names of the contract methods
 
 #### Index Signature
 
- \[`name`: `string`\]: `ContractFunction`
+ \[`name`: `string`\]: [`ContractFunctionV5`](../type-aliases/ContractFunctionV5.md)
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:120](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L120)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:120](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L120)
 
 ***
 
@@ -60,7 +60,7 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:139](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L139)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:139](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L139)
 
 ***
 
@@ -70,21 +70,21 @@ The names of the contract methods
 
 #### Index Signature
 
- \[`name`: `string`\]: `ContractFunction`\<`BigNumber`\>
+ \[`name`: `string`\]: [`ContractFunctionV5`](../type-aliases/ContractFunctionV5.md)\<`BigNumber`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:123](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L123)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:123](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L123)
 
 ***
 
 ### interface
 
-> `readonly` **interface**: `InternalInterface`\<`TMethodNames`\>
+> `readonly` **interface**: [`InternalInterfaceV5`](../classes/InternalInterfaceV5.md)\<`TMethodNames`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:117](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L117)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:117](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L117)
 
 ***
 
@@ -94,11 +94,11 @@ The names of the contract methods
 
 #### Index Signature
 
- \[`name`: `string`\]: `ContractFunction`\<`object`\>
+ \[`name`: `string`\]: [`ContractFunctionV5`](../type-aliases/ContractFunctionV5.md)\<`object`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:126](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L126)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:126](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L126)
 
 ***
 
@@ -108,7 +108,7 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:119](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L119)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:119](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L119)
 
 ***
 
@@ -118,7 +118,7 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:118](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L118)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:118](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L118)
 
 ## Methods
 
@@ -138,7 +138,7 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:142](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L142)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:142](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L142)
 
 ***
 
@@ -156,7 +156,7 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:140](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L140)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:140](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L140)
 
 ***
 
@@ -174,7 +174,7 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:143](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L143)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:143](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L143)
 
 ***
 
@@ -192,4 +192,4 @@ The names of the contract methods
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:144](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L144)
+[packages/converter-typescript/src/types/ethers-v5-contract-context.ts:144](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v5-contract-context.ts#L144)

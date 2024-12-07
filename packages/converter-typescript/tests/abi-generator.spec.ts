@@ -640,8 +640,8 @@ describe('TypingsGenerator', async () => {
     //     removeAllWhiteSpace(
     //       await prettierFormat(`import { ContractTransaction } from 'ethers';
     //         import { Arrayish, BigNumber, BigNumberish, Interface } from 'ethers/utils';
-    //         import { EthersContractContext } from 'ethereum-abi-types-generator';
-    //         export type ContractContext = EthersContractContext<
+    //         import { EthersContractContextV4 } from 'ethereum-abi-types-generator';
+    //         export type ContractContext = EthersContractContextV4<
     //           Abi,
     //           AbiEventsContext,
     //           AbiEvents

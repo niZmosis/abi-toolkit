@@ -38,7 +38,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:34](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L34)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:24](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L24)
 
 ***
 
@@ -52,7 +52,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:39](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L39)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:29](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L29)
 
 ***
 
@@ -66,7 +66,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:40](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L40)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:30](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L30)
 
 ***
 
@@ -76,7 +76,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:59](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L59)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:49](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L49)
 
 ***
 
@@ -86,7 +86,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:57](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L57)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:47](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L47)
 
 ***
 
@@ -100,7 +100,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:35](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L35)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:25](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L25)
 
 ***
 
@@ -114,7 +114,7 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:37](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L37)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:27](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L27)
 
 ***
 
@@ -128,13 +128,13 @@ The type of contract events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:36](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L36)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:26](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L26)
 
 ## Methods
 
 ### \_deployed()
 
-> **\_deployed**(`blockTag`?): `Promise`\<[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>\>
+> **\_deployed**(`blockTag`?): `Promise`\<[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>\>
 
 #### Parameters
 
@@ -142,37 +142,37 @@ The type of contract events
 
 #### Returns
 
-`Promise`\<[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>\>
+`Promise`\<[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:63](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L63)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:53](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L53)
 
 ***
 
 ### addListener()
 
-> **addListener**(`eventName`, `listener`): [`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+> **addListener**(`eventName`, `listener`): [`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Parameters
 
-• **eventName**: [`EventFilter`](../type-aliases/EventFilter.md) \| `TEventType`
+• **eventName**: `EventFilter` \| `TEventType`
 
 • **listener**: `Listener`
 
 #### Returns
 
-[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:86](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L86)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:76](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L76)
 
 ***
 
 ### attach()
 
-> **attach**(`addressOrName`): [`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+> **attach**(`addressOrName`): [`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Parameters
 
@@ -180,17 +180,17 @@ The type of contract events
 
 #### Returns
 
-[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:74](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L74)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:64](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L64)
 
 ***
 
 ### connect()
 
-> **connect**(`signerOrProvider`): [`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+> **connect**(`signerOrProvider`): [`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 Type any here so if you are using a different version of ethers then
 installed it will still compile
@@ -203,25 +203,25 @@ should be type of Wallet | Signer | Provider | string
 
 #### Returns
 
-[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:71](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L71)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:61](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L61)
 
 ***
 
 ### deployed()
 
-> **deployed**(): `Promise`\<[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>\>
+> **deployed**(): `Promise`\<[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>\>
 
 #### Returns
 
-`Promise`\<[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>\>
+`Promise`\<[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:60](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L60)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:50](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L50)
 
 ***
 
@@ -231,7 +231,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Parameters
 
-• **eventName**: `string` \| [`EventFilter`](../type-aliases/EventFilter.md)
+• **eventName**: `string` \| `EventFilter`
 
 • ...**args**: `any`[]
 
@@ -245,7 +245,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:43](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L43)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:33](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L33)
 
 ***
 
@@ -267,7 +267,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:41](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L41)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:31](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L31)
 
 ***
 
@@ -277,7 +277,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Parameters
 
-• **eventName?**: `string` \| [`EventFilter`](../type-aliases/EventFilter.md)
+• **eventName?**: `string` \| `EventFilter`
 
 #### Returns
 
@@ -289,7 +289,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:44](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L44)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:34](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L34)
 
 ***
 
@@ -299,7 +299,7 @@ should be type of Wallet | Signer | Provider | string
 
 #### Parameters
 
-• **eventName**: `string` \| [`EventFilter`](../type-aliases/EventFilter.md)
+• **eventName**: `string` \| `EventFilter`
 
 #### Returns
 
@@ -311,71 +311,71 @@ should be type of Wallet | Signer | Provider | string
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:45](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L45)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:35](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L35)
 
 ***
 
 ### on()
 
-> **on**(`event`, `listener`): [`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+> **on**(`event`, `listener`): [`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Parameters
 
-• **event**: [`EventFilter`](../type-aliases/EventFilter.md) \| `TEventType`
+• **event**: `EventFilter` \| `TEventType`
 
 • **listener**: `Listener`
 
 #### Returns
 
-[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:78](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L78)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:68](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L68)
 
 ***
 
 ### once()
 
-> **once**(`event`, `listener`): [`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+> **once**(`event`, `listener`): [`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Parameters
 
-• **event**: [`EventFilter`](../type-aliases/EventFilter.md) \| `TEventType`
+• **event**: `EventFilter` \| `TEventType`
 
 • **listener**: `Listener`
 
 #### Returns
 
-[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:82](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L82)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:72](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L72)
 
 ***
 
 ### removeAllListeners()
 
-> **removeAllListeners**(`eventName`): [`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+> **removeAllListeners**(`eventName`): [`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Parameters
 
-• **eventName**: [`EventFilter`](../type-aliases/EventFilter.md) \| `TEventType`
+• **eventName**: `EventFilter` \| `TEventType`
 
 #### Returns
 
-[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:90](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L90)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:80](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L80)
 
 ***
 
 ### removeListener()
 
-> **removeListener**(`eventName`, `listener`): [`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+> **removeListener**(`eventName`, `listener`): [`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Parameters
 
@@ -385,8 +385,8 @@ should be type of Wallet | Signer | Provider | string
 
 #### Returns
 
-[`EthersContractContext`](../type-aliases/EthersContractContext.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
+[`EthersContractContextV4`](../type-aliases/EthersContractContextV4.md)\<`TMethods`, `TEventsContext`, `TEventType`\>
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:93](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L93)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:83](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L83)

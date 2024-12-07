@@ -1,4 +1,4 @@
-import type { Signer } from 'ethersv4'
+import type { Signer, EventFilter } from 'ethersv4'
 import type {
   BlockTag,
   Listener,
@@ -9,22 +9,12 @@ import type {
 import type { Interface } from 'ethersv4/utils'
 
 /**
- * Represents an event filter for Ethereum contracts.
- */
-export declare type EventFilter = {
-  address?: string
-  topics?: string[]
-  fromBlock?: BlockTag
-  toBlock?: BlockTag
-}
-
-/**
  * Represents the context of an Ethers contract with methods, events, and event types.
  * @template TMethods The contract methods
  * @template TEventsContext The context for contract events
  * @template TEventType The type of contract events
  */
-export type EthersContractContext<TMethods, TEventsContext, TEventType> =
+export type EthersContractContextV4<TMethods, TEventsContext, TEventType> =
   EthersContractV4<TMethods, TEventsContext, TEventType> & TMethods
 
 /**
@@ -58,11 +48,11 @@ export interface EthersContractV4<TMethods, TEventsContext, TEventType>
   // to do not exposing any string methods now which is nicer
   readonly filters: TEventsContext
   deployed(): Promise<
-    EthersContractContext<TMethods, TEventsContext, TEventType>
+    EthersContractContextV4<TMethods, TEventsContext, TEventType>
   >
   _deployed(
     blockTag?: BlockTag,
-  ): Promise<EthersContractContext<TMethods, TEventsContext, TEventType>>
+  ): Promise<EthersContractContextV4<TMethods, TEventsContext, TEventType>>
   /**
    * Type any here so if you are using a different version of ethers then
    * installed it will still compile
@@ -70,28 +60,28 @@ export interface EthersContractV4<TMethods, TEventsContext, TEventType>
    */
   connect(
     signerOrProvider: any,
-  ): EthersContractContext<TMethods, TEventsContext, TEventType>
+  ): EthersContractContextV4<TMethods, TEventsContext, TEventType>
   attach(
     addressOrName: string,
-  ): EthersContractContext<TMethods, TEventsContext, TEventType>
+  ): EthersContractContextV4<TMethods, TEventsContext, TEventType>
   // need to overwrite the event filters for strongly typed events
   on(
     event: EventFilter | TEventType,
     listener: Listener,
-  ): EthersContractContext<TMethods, TEventsContext, TEventType>
+  ): EthersContractContextV4<TMethods, TEventsContext, TEventType>
   once(
     event: EventFilter | TEventType,
     listener: Listener,
-  ): EthersContractContext<TMethods, TEventsContext, TEventType>
+  ): EthersContractContextV4<TMethods, TEventsContext, TEventType>
   addListener(
     eventName: EventFilter | TEventType,
     listener: Listener,
-  ): EthersContractContext<TMethods, TEventsContext, TEventType>
+  ): EthersContractContextV4<TMethods, TEventsContext, TEventType>
   removeAllListeners(
     eventName: EventFilter | TEventType,
-  ): EthersContractContext<TMethods, TEventsContext, TEventType>
+  ): EthersContractContextV4<TMethods, TEventsContext, TEventType>
   removeListener(
     eventName: TEventType,
     listener: Listener,
-  ): EthersContractContext<TMethods, TEventsContext, TEventType>
+  ): EthersContractContextV4<TMethods, TEventsContext, TEventType>
 }

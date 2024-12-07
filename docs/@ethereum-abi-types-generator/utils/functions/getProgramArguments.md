@@ -22,4 +22,4 @@ A promise that resolves to a ProgramContext containing the parsed options.
 
 ## Defined in
 
-command.utils.ts:51
+[command.utils.ts:51](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/command.utils.ts#L51)

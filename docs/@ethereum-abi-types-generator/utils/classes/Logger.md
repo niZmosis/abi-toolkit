@@ -40,7 +40,7 @@ Any additional logs
 
 #### Defined in
 
-logger.utils.ts:53
+[logger.utils.ts:53](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/logger.utils.ts#L53)
 
 ***
 
@@ -66,7 +66,7 @@ Any additional logs
 
 #### Defined in
 
-logger.utils.ts:11
+[logger.utils.ts:11](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/logger.utils.ts#L11)
 
 ***
 
@@ -92,7 +92,7 @@ Any additional logs
 
 #### Defined in
 
-logger.utils.ts:35
+[logger.utils.ts:35](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/logger.utils.ts#L35)
 
 ***
 
@@ -118,7 +118,7 @@ Any additional logs
 
 #### Defined in
 
-logger.utils.ts:44
+[logger.utils.ts:44](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/logger.utils.ts#L44)
 
 ***
 
@@ -144,7 +144,7 @@ Any additional logs
 
 #### Defined in
 
-logger.utils.ts:27
+[logger.utils.ts:27](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/logger.utils.ts#L27)
 
 ***
 
@@ -170,4 +170,4 @@ Any additional logs
 
 #### Defined in
 
-logger.utils.ts:19
+[logger.utils.ts:19](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/logger.utils.ts#L19)

@@ -38,4 +38,4 @@ bun add @ethereum-abi-types-generator/types
 
 ## Links
 
-- [Github](https://github.com/joshstevens19/ethereum-abi-types-generator)
+- [Github](https://github.com/niZmosis/ethereum-abi-types-generator)

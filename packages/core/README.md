@@ -5,7 +5,7 @@
 
 Generate TypeScript typings for all your Ethereum ABI contract methods and events with 1-liner integrations for `web3` and `ethers`. Never have runtime errors again - bring them into compile-time errors in 2 minutes! 🎉
 
-![GIF Demo](./images/gif-demo.gif)
+![GIF Demo](../../images/gif-demo.gif)
 
 A CLI tool that allows you to convert an ABI JSON file into fully loaded interface types.
 

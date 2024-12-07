@@ -113,7 +113,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es2018.pro
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:212](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L212)
+[packages/converter-typescript/src/types/web3-contract-context.ts:212](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L212)
 
 #### on(type, handler)
 
@@ -131,7 +131,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es2018.pro
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:214](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L214)
+[packages/converter-typescript/src/types/web3-contract-context.ts:214](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L214)
 
 #### on(type, handler)
 
@@ -149,7 +149,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es2018.pro
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:219](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L219)
+[packages/converter-typescript/src/types/web3-contract-context.ts:219](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L219)
 
 #### on(type, handler)
 
@@ -167,7 +167,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es2018.pro
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:224](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L224)
+[packages/converter-typescript/src/types/web3-contract-context.ts:224](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L224)
 
 ***
 
@@ -189,7 +189,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es2018.pro
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:198](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L198)
+[packages/converter-typescript/src/types/web3-contract-context.ts:198](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L198)
 
 #### once(type, handler)
 
@@ -207,7 +207,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es2018.pro
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:200](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L200)
+[packages/converter-typescript/src/types/web3-contract-context.ts:200](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L200)
 
 #### once(type, handler)
 
@@ -225,7 +225,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es2018.pro
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:205](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L205)
+[packages/converter-typescript/src/types/web3-contract-context.ts:205](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L205)
 
 #### once(type, handler)
 
@@ -243,7 +243,7 @@ node\_modules/.pnpm/typescript@5.5.4/node\_modules/typescript/lib/lib.es2018.pro
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:210](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L210)
+[packages/converter-typescript/src/types/web3-contract-context.ts:210](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L210)
 
 ***
 

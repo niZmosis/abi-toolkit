@@ -20,7 +20,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:34](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L34)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:24](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L24)
 
 ***
 
@@ -30,7 +30,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:39](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L39)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:29](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L29)
 
 ***
 
@@ -40,7 +40,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:40](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L40)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:30](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L30)
 
 ***
 
@@ -50,7 +50,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:35](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L35)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:25](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L25)
 
 ***
 
@@ -60,7 +60,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:37](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L37)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:27](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L27)
 
 ***
 
@@ -70,7 +70,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:36](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L36)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:26](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L26)
 
 ## Methods
 
@@ -80,7 +80,7 @@ Represents a basic Ethereum contract interface.
 
 #### Parameters
 
-• **eventName**: `string` \| [`EventFilter`](../type-aliases/EventFilter.md)
+• **eventName**: `string` \| `EventFilter`
 
 • ...**args**: `any`[]
 
@@ -90,7 +90,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:43](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L43)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:33](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L33)
 
 ***
 
@@ -108,7 +108,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:41](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L41)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:31](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L31)
 
 ***
 
@@ -118,7 +118,7 @@ Represents a basic Ethereum contract interface.
 
 #### Parameters
 
-• **eventName?**: `string` \| [`EventFilter`](../type-aliases/EventFilter.md)
+• **eventName?**: `string` \| `EventFilter`
 
 #### Returns
 
@@ -126,7 +126,7 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:44](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L44)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:34](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L34)
 
 ***
 
@@ -136,7 +136,7 @@ Represents a basic Ethereum contract interface.
 
 #### Parameters
 
-• **eventName**: `string` \| [`EventFilter`](../type-aliases/EventFilter.md)
+• **eventName**: `string` \| `EventFilter`
 
 #### Returns
 
@@ -144,4 +144,4 @@ Represents a basic Ethereum contract interface.
 
 #### Defined in
 
-[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:45](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L45)
+[packages/converter-typescript/src/types/ethers-v4-contract-context.ts:35](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/ethers-v4-contract-context.ts#L35)

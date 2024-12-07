@@ -24,4 +24,4 @@ The ABI content, or an empty string if the file is incompatible (e.g. not a JSON
 
 ## Defined in
 
-files.utils.ts:285
+[files.utils.ts:310](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/files.utils.ts#L310)

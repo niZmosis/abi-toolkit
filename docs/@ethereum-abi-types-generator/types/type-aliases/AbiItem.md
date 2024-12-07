@@ -68,4 +68,4 @@ The type of the ABI item.
 
 ## Defined in
 
-[abi.types.ts:58](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/abi.types.ts#L58)
+[abi.types.ts:58](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/types/src/abi.types.ts#L58)

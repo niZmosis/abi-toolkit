@@ -38,7 +38,7 @@ The type of events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:171](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L171)
+[packages/converter-typescript/src/types/web3-contract-context.ts:171](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L171)
 
 ***
 
@@ -60,7 +60,7 @@ The type of events
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:155](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L155)
+[packages/converter-typescript/src/types/web3-contract-context.ts:155](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L155)
 
 #### estimateGas(callback)
 
@@ -76,7 +76,7 @@ The type of events
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:160](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L160)
+[packages/converter-typescript/src/types/web3-contract-context.ts:160](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L160)
 
 #### estimateGas(options, callback)
 
@@ -94,7 +94,7 @@ The type of events
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:162](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L162)
+[packages/converter-typescript/src/types/web3-contract-context.ts:162](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L162)
 
 #### estimateGas(options)
 
@@ -110,7 +110,7 @@ The type of events
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:167](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L167)
+[packages/converter-typescript/src/types/web3-contract-context.ts:167](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L167)
 
 #### estimateGas(undefined)
 
@@ -122,7 +122,7 @@ The type of events
 
 ##### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:169](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L169)
+[packages/converter-typescript/src/types/web3-contract-context.ts:169](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L169)
 
 ***
 
@@ -142,4 +142,4 @@ The type of events
 
 #### Defined in
 
-[packages/converter-typescript/src/types/web3-contract-context.ts:143](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/converter-typescript/src/types/web3-contract-context.ts#L143)
+[packages/converter-typescript/src/types/web3-contract-context.ts:143](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/converter-typescript/src/types/web3-contract-context.ts#L143)

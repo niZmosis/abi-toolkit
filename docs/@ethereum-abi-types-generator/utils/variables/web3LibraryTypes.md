@@ -12,4 +12,4 @@ Array of supported web3 library versions.
 
 ## Defined in
 
-library.utils.ts:43
+[library.utils.ts:43](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/library.utils.ts#L43)

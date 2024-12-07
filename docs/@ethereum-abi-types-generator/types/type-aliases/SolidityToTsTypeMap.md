@@ -8,7 +8,7 @@
 
 > **SolidityToTsTypeMap**: `object`
 
-Maps Solidity types to their corresponding TypeScript types.
+Maps Solidity types to their corresponding TypeScript types for Ethers.js V5 an V6.
 
 ## Type declaration
 
@@ -22,7 +22,7 @@ Maps Solidity types to their corresponding TypeScript types.
 
 ### bytes
 
-> **bytes**: `"Arrayish"`
+> **bytes**: `"BytesLike"`
 
 ### function
 
@@ -46,4 +46,4 @@ Maps Solidity types to their corresponding TypeScript types.
 
 ## Defined in
 
-[solidity.types.ts:66](https://github.com/niZmosis/ethereum-abi-types-generator/blob/b8e282ea584f52118722e9d563db502ef3e0aa75/packages/types/src/solidity.types.ts#L66)
+[solidity.types.ts:80](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/types/src/solidity.types.ts#L80)

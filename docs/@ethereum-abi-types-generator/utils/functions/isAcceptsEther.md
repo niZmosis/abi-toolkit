@@ -9,6 +9,7 @@
 > **isAcceptsEther**(`abiItem`): `boolean`
 
 Checks if an ABI item accepts Ether.
+Used for Web3.js compatibility.
 
 ## Parameters
 
@@ -24,4 +25,4 @@ True if the ABI item accepts Ether, false otherwise.
 
 ## Defined in
 
-abi.utils.ts:48
+[abi.utils.ts:58](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/abi.utils.ts#L58)

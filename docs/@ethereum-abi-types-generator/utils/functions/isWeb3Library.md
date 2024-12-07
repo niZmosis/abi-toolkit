@@ -24,4 +24,4 @@ True if the library is a web3 library, false otherwise.
 
 ## Defined in
 
-library.utils.ts:57
+[library.utils.ts:57](https://github.com/niZmosis/ethereum-abi-types-generator/blob/8be0c174f1ad191b06c4413881733fc6912573c5/packages/utils/src/library.utils.ts#L57)

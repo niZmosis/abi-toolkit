@@ -10,6 +10,8 @@
 
 - [ClassGenerator](classes/ClassGenerator.md)
 - [Generator](classes/Generator.md)
+- [InternalInterfaceV5](classes/InternalInterfaceV5.md)
+- [InternalInterfaceV6](classes/InternalInterfaceV6.md)
 - [TypingsGenerator](classes/TypingsGenerator.md)
 
 ## Interfaces
@@ -36,8 +38,9 @@
 
 ## Type Aliases
 
-- [EthersContractContext](type-aliases/EthersContractContext.md)
+- [ContractFunctionV5](type-aliases/ContractFunctionV5.md)
+- [ContractFunctionV6](type-aliases/ContractFunctionV6.md)
+- [EthersContractContextV4](type-aliases/EthersContractContextV4.md)
 - [EthersContractContextV5](type-aliases/EthersContractContextV5.md)
 - [EthersContractContextV6](type-aliases/EthersContractContextV6.md)
-- [EventFilter](type-aliases/EventFilter.md)
 - [Web3ContractContext](type-aliases/Web3ContractContext.md)
