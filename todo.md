@@ -3,7 +3,7 @@
 ## WIP
 
 - App
-- Class generation with and without ethereum-multicall
+- Class generation with and without multicall-toolkit
 - README
 
 ## Future

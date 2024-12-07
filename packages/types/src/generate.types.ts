@@ -99,7 +99,7 @@ export type ClassConfigContext = {
   classOutputFileName: string
   /** The suffix to append to the file name of the generated classes. eg. (my-abi.contract.ts vs my-abi.ts). Defaults to "contract" */
   classOutputFileSuffix: string
-  /** Whether to integrate ethereum-multicall into the class */
+  /** Whether to integrate multicall-toolkit into the class */
   classMulticall: boolean
 }
 

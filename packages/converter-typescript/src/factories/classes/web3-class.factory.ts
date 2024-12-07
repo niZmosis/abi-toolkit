@@ -69,7 +69,7 @@ export class Web3ClassFactory {
       imports.push(
         `import${
           verbatimModuleSyntax ? ' type' : ''
-        } { Multicall } from 'ethereum-multicall';`,
+        } { Multicall } from 'multicall-toolkit';`,
       )
     }
 

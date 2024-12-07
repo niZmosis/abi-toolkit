@@ -77,7 +77,7 @@ export class EthersClassFactory {
       imports.push(
         `import${
           verbatimModuleSyntax ? ' type' : ''
-        } { MulticallProviderBase } from '@ethereum-multicall/provider';`,
+        } { MulticallProviderBase } from '@multicall-toolkit/provider';`,
       )
       imports.push(
         `import${verbatimModuleSyntax ? ' type' : ''} {
@@ -90,7 +90,7 @@ export class EthersClassFactory {
   ContractContextOptions,
   InferredReferencedMethodCalls,
   ContractResults,
-} from '@ethereum-multicall/types';`,
+} from '@multicall-toolkit/types';`,
       )
     }
 
