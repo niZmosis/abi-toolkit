@@ -16,7 +16,7 @@ Configuration options for generating classes.
 
 > **classMulticall**: `boolean`
 
-Whether to integrate ethereum-multicall into the class
+Whether to integrate multicall-toolkit into the class
 
 ### classOutputDir
 

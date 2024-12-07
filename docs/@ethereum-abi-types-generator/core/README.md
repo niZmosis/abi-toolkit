@@ -183,7 +183,7 @@ There are two ways to use this package: via the CLI or via a configuration file.
 - **`classOutputDir`**: The output directory for the class. If not set, it will use the `typingsOutputDir`.
 - **`classOutputFileName`**: The file name to use for the generated class. Only used for single file input. Defaults to name of the ABI file.
 - **`classOutputFileSuffix`**: The suffix to append to the file name of the generated classes. e.g., (my-abi.contract.ts vs my-abi.ts). Defaults to "contract".
-- **`classMulticall`**: Whether to integrate ethereum-multicall into the class.
+- **`classMulticall`**: Whether to integrate multicall-toolkit into the class.
 
 ### **Watching Options**
 
