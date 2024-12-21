@@ -73,7 +73,7 @@ function mapSolidityTypeToTypescriptString(
 
   // Check for bytes variants
   if (solidityType.match(/^bytes\d+$/)) {
-    return 'Bytes'
+    return 'BytesLike'
   }
 
   // Handle tuple types
